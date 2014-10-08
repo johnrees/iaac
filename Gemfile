@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+gem 'normalize-rails'
+gem 'figaro', github: 'laserlemon/figaro'
+gem 'simple_form', github: 'plataformatec/simple_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0.beta2'
 # Use postgresql as the database for Active Record
@@ -9,6 +11,7 @@ gem 'pg'
 gem 'sass-rails', '~> 5.0.0.beta1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'haml-rails'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -24,7 +27,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -33,6 +36,28 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'brakeman'
+end
+
+group :test do
+  gem 'simplecov', require: false
+  gem 'zonebie'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'database_cleaner'
+  # gem "codeclimate-test-reporter", require: nil
+end
+
+group :development do
+  # gem 'ruby-graphviz', '~> 1.0.0'
+  gem 'guard-rspec', require: false
+  gem 'letter_opener'
+end
+
+group :development, :test do
+
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
