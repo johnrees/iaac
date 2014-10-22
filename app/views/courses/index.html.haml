@@ -1,4 +1,6 @@
 = title "Courses"
 
 - @courses.each do |course|
-  = link_to course, course
+  = content_tag_for :div, course do
+
+    = link_to course, course

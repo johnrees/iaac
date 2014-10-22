@@ -8,15 +8,18 @@
         - @user.errors.full_messages.each do |message|
           %li= message
   .field
+    = f.label :first_name
+    = f.text_field :first_name, autofocus: params[:first_name].blank?
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
     = f.label :public_email
-    %br/
     = f.text_field :public_email
   .field
     = f.label :password
-    %br/
     = f.password_field :password
   .field
     = f.label :password_confirmation
-    %br/
     = f.password_field :password_confirmation
   .actions= f.submit "Sign Up"

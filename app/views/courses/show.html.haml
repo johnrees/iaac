@@ -1,6 +1,19 @@
 = title @course
 
+- @course.children.each do |course|
+  = content_tag_for :div, course do
+    = link_to course, course
+
 = simple_format @course.description
 
 %h3 Tutors
+- @tutors.each do |tutor|
+  = content_tag_for :div, tutor do
+    = link_to tutor, tutor
+
 %h3 Students
+- User.with_role(:student, @course).each do |student|
+  = content_tag_for :div, student do
+    = link_to student do
+      = placeholder 100
+      = student

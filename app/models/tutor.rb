@@ -1,0 +1,2 @@
+# class Tutor < Member
+# end
