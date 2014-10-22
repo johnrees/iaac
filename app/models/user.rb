@@ -5,9 +5,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :public_email
   validates :public_email, :first_name, :last_name, presence: true
 
-  # has_many :members
-  # has_many :courses, through: :members
-
   def to_s
     "#{first_name} #{last_name}"
   end

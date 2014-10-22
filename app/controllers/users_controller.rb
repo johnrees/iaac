@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authorize, except: [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.with_role(:student, :any).uniq.order(:last_name)
   end
 
   def new

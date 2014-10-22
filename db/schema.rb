@@ -36,16 +36,6 @@ ActiveRecord::Schema.define(version: 20141013184110) do
 
   add_index "courses", ["parent_id", "sort_order"], name: "index_courses_on_parent_id_and_sort_order", using: :btree
 
-  create_table "members", force: true do |t|
-    t.string   "type"
-    t.integer  "course_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "members", ["type", "course_id", "user_id"], name: "index_members_on_type_and_course_id_and_user_id", unique: true, using: :btree
-
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
