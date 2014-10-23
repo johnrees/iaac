@@ -1,0 +1,14 @@
+= title "Edit Course"
+
+= simple_form_for @course do |f|
+  %fieldset
+    %legend Course Details
+    = f.input :name
+    = f.input :description
+  %fieldset
+    %legend Students
+    -# = f.association :students
+  %fieldset
+    %legend Tutors
+    = render @course.tutors
+  = f.submit

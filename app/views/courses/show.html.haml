@@ -6,6 +6,9 @@
 
 = simple_format @course.description
 
+- if policy(@course).update?
+  = link_to "edit course", edit_course_path(@course)
+
 %h3 Tutors
 = render @course.tutors
 

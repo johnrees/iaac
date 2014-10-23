@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize, except: [:new, :create]
+  before_filter :check_auth, except: [:new, :create]
 
   def index
-    @users = User.with_role(:student, :any).uniq.order(:last_name)
+    @users = User.all.order(:last_name)
   end
 
   def new

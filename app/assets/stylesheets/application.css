@@ -42,3 +42,7 @@ label {
   display: inline-block;
   width: 200px;
 }
+
+.user {
+  overflow: hidden;
+}

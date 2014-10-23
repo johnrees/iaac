@@ -2,6 +2,8 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
 
+  include Pundit
+
   self.responder = ApplicationResponder
   respond_to :html
 
@@ -16,7 +18,7 @@ private
   end
   helper_method :current_user
 
-  def authorize
+  def check_auth
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 
