@@ -9,4 +9,12 @@ class Course < ActiveRecord::Base
     name
   end
 
+  def tutors
+    User.with_role(:tutor, self)
+  end
+
+  def students
+    User.with_role(:student, self)
+  end
+
 end

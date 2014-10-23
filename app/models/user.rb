@@ -13,4 +13,12 @@ class User < ActiveRecord::Base
     Course.with_role(:student, self).roots
   end
 
+  def courses
+    if has_role? :admin
+      Course.all
+    else
+      Course.with_role([:tutor,:student,:coordinator,:assistant], self)
+    end
+  end
+
 end

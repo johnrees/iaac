@@ -7,13 +7,7 @@
 = simple_format @course.description
 
 %h3 Tutors
-- @tutors.each do |tutor|
-  = content_tag_for :div, tutor do
-    = link_to tutor, tutor
+= render @course.tutors
 
 %h3 Students
-- User.with_role(:student, @course).each do |student|
-  = content_tag_for :div, student do
-    = link_to student do
-      = placeholder 100
-      = student
+= render @course.students
