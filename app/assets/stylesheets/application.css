@@ -46,3 +46,8 @@ label {
 .user {
   overflow: hidden;
 }
+
+th {
+  text-align: left;
+  width: 200px;
+}

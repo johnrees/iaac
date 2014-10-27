@@ -1,6 +1,8 @@
 = title "Courses"
 
+- if policy(Course).create?
+  = link_to "add course", new_course_path
+
 - @courses.each do |course|
   = content_tag_for :div, course do
-
     = link_to course, course

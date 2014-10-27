@@ -1,9 +1,14 @@
 class Course < ActiveRecord::Base
+
   resourcify
   acts_as_tree order: 'sort_order'
 
   validates_presence_of :name
   validates_presence_of :description
+
+  attr_accessor :student_ids, :tutor_ids
+
+  before_update :add_people
 
   def to_s
     name
@@ -15,6 +20,22 @@ class Course < ActiveRecord::Base
 
   def students
     User.with_role(:student, self)
+  end
+
+private
+
+  def add_people
+
+    # add students
+    User.find(student_ids.reject(&:blank?)).each do |user|
+      user.add_role :student, self
+    end
+
+    # add tutors
+    User.find(tutor_ids.reject(&:blank?)).each do |user|
+      user.add_role :tutor, self
+    end
+
   end
 
 end

@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    @user.update_attributes user_params
+    respond_with @user
+  end
+
   def create
     @user = User.create user_params
     session[:user_id] = @user.id if @user

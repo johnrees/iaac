@@ -2,6 +2,15 @@ class CoursesController < ApplicationController
 
   before_filter :check_auth
 
+  def new
+    @course = Course.new
+  end
+
+  def create
+    @course = Course.create course_params
+    respond_with @course
+  end
+
   def index
     @courses = current_user.courses
   end

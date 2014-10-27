@@ -8,6 +8,21 @@ RSpec.describe Course, :type => :feature do
     expect(page).to have_title("Courses")
   end
 
+  skip "can add new tutors"
+  skip "can add new students"
+
+  it "can add course" do
+    user = create(:user)
+    user.add_role :admin
+    login user
+    visit courses_path
+    click_link "add course"
+    fill_in "Name", with: "new course"
+    fill_in "Description", with: "desc"
+    click_button "Create Course"
+    expect(page).to have_content("created")
+  end
+
   it "can view individual course" do
     user = create(:user)
     course = create(:course, name: 'cool course')
