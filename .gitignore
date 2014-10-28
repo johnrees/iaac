@@ -10,4 +10,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /resources
+127.0.0.1
 /tmp
