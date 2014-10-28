@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  %body
+    - flash.each do |key, value|
+      = content_tag :div, value, class: "flash #{key}"
+
+    = link_to "Courses", admin_courses_path
+    = link_to "People", admin_users_path
+    %hr/
+
+    = yield

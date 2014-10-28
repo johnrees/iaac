@@ -1,0 +1,13 @@
+= title "People"
+
+%table
+  %thead
+    %tr
+      %th{colspan: 2} First / Last Name
+      %th Email
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to user.first_name, edit_admin_user_path(user)
+        %td= link_to user.last_name, edit_admin_user_path(user)
+        %td= mail_to user.public_email, user.public_email

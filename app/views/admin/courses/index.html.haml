@@ -1,0 +1,9 @@
+= title "Courses"
+%table
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= link_to course, edit_admin_course_path(course)
