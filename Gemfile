@@ -1,3 +1,4 @@
+ruby "2.1.4"
 source 'https://rubygems.org'
 
 gem 'normalize-rails'
@@ -13,6 +14,8 @@ gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0'
 gem 'haml-rails'
 # Use CoffeeScript for .js.coffee assets and views
+gem 'countries'
+gem 'country_select'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'rolify'
 gem 'responders'

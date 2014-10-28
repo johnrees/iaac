@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   rolify
   has_secure_password
   validates_uniqueness_of :public_email
-  validates :public_email, :first_name, :last_name, presence: true
+
+  validates :public_email, :first_name, :last_name, :country_code, presence: true
 
   def to_s
     "#{first_name} #{last_name}"
@@ -19,6 +20,10 @@ class User < ActiveRecord::Base
     else
       Course.with_role([:tutor,:student,:coordinator,:assistant], self)
     end
+  end
+
+  def country
+    Country[country_code] if country_code.present?
   end
 
 end

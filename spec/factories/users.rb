@@ -6,6 +6,7 @@ FactoryGirl.define do
     last_name "Rees"
     public_email "john@iaac.net"
     private_email "john@bitsushi.com"
+    country_code "GB"
     password "password1234"
     password_confirmation "password1234"
   end

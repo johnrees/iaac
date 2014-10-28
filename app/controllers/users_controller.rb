@@ -39,7 +39,9 @@ private
       :public_email,
       :private_email,
       :password,
-      :password_confirmation)
+      :password_confirmation,
+      :country_code
+    )
   end
 
 end
