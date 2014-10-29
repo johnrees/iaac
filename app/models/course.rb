@@ -26,14 +26,18 @@ private
 
   def add_people
 
-    # add students
-    User.find(student_ids.reject(&:blank?)).each do |user|
-      user.add_role :student, self
+    if student_ids.present?
+      # add students
+      User.find(student_ids.reject(&:blank?)).each do |user|
+        user.add_role :student, self
+      end
     end
 
-    # add tutors
-    User.find(tutor_ids.reject(&:blank?)).each do |user|
-      user.add_role :tutor, self
+    if tutor_ids.present?
+      # add tutors
+      User.find(tutor_ids.reject(&:blank?)).each do |user|
+        user.add_role :tutor, self
+      end
     end
 
   end

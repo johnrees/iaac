@@ -10,10 +10,6 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def c
-    Course.with_role(:student, self).roots
-  end
-
   def courses
     if has_role? :admin
       Course.all

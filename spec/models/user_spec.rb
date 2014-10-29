@@ -15,4 +15,8 @@ RSpec.describe User, :type => :model do
     expect(user.to_s).to eq("Homer Simpson")
   end
 
+  it "has country" do
+    expect(FactoryGirl.build_stubbed(:user, country_code: 'fr').country.to_s).to eq('France')
+  end
+
 end
