@@ -1,6 +1,8 @@
-- title "People"
 .row
-  .col-md-3
+  .columns.large-12
+    = title "People"
+.row
+  .columns.large-4
     .list-group
       .list-group-item
         %span.badge 14
@@ -9,15 +11,15 @@
         %span.badge 140
         Students
 
-  .col-md-9
+  .columns.large-8
     -# .row
     -#   .col-md-12
     -#     %h4 Administrators
     -#     = render User.with_role(:admin)
     .row
-      -# %h4 Tutors
+      %h4 Tutors
       = render User.with_role(:tutor, :any).order('last_name')
     .row
-      -# %h4 Students
+      %h4 Students
       - 20.times do
         = render User.with_role(:student, :any).order('last_name')

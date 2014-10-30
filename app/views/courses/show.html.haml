@@ -1,23 +1,29 @@
-= title @course
 .row
-  .col-md-12
+  .columns.large-12
+    = title @course
     - @course.children.each do |course|
       = content_tag_for :div, course do
         = link_to course, course
 
-    = simple_format @course.description
-
 .row
-  .col-md-12
+  .columns.large-12
     - if policy(@course).update?
-      = link_to "edit course", edit_course_path(@course), class: 'btn btn-default'
+      = link_to "edit course", edit_course_path(@course), class: 'button'
 
 .row
-  .col-md-12
-    %h3 Tutors
+  .columns.large-8
+    %h4 Course Description
+    = simple_format Faker::Lorem.paragraphs(3).join("\n\n")
+    .row
+      .columns.large-12
+        %h3 Students
+        = render @course.students
+
+  .columns.large-4
+    %h4 About the tutors
+    - 2.times do
+      .row{style: 'margin-bottom: 10px'}
+        .columns.large-12
+          = placeholder 100
+
     = render @course.tutors
-
-.row
-  .col-md-12
-    %h3 Students
-    = render @course.students

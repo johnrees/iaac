@@ -1,8 +1,11 @@
-= title "Add Course"
+.row
+  .columns.large-12
 
-= simple_form_for @course do |f|
-  %fieldset
-    %legend Course Details
-    = f.input :name
-    = f.input :description
-  = f.submit
+    = title "Add Course"
+
+    = simple_form_for @course do |f|
+      %fieldset
+        %legend Course Details
+        = f.input :name
+        = f.input :description
+      = f.submit

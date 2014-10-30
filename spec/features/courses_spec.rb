@@ -40,9 +40,9 @@ RSpec.describe Course, :type => :feature do
     login user
     visit course_path(course)
     click_link "edit"
-    fill_in "Description", with: "blahblahblah"
+    fill_in "Name", with: "BLAH"
     click_button "Update Course"
-    expect(page).to have_content("blahblahblah")
+    expect(page).to have_title("BLAH")
   end
 
 end

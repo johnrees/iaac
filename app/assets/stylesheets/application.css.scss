@@ -1,20 +1,15 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+@import "foundation_and_overrides";
 
-h1,h2,h3 {
-  text-transform: uppercase;
-  font-weight: 800;
-}
-.navbar-default {
-  // background: none;
-  border: none;
 
+
+
+h1,h2 {
   text-transform: uppercase;
-  a { font-weight: bold;
-    color: #111 !important; }
 }
 
-body a { color: #111; }
+h3,h4,h5 {
+  font-weight: 400;
+}
 
 .user {
   ul,li {
@@ -24,39 +19,12 @@ body a { color: #111; }
   }
 }
 
-/*h1 {
-
+.c-courses.a-show {
+  h1 {
+    margin: 2em 0;
+  }
+  .course-name {
+    text-transform: uppercase;
+    line-height: 1em;
+  }
 }
-
-a {
-  text-decoration: none;
-  color: #EEE;
-}
-
-body {
-  padding: 10px 50px;
-  background: #222;
-  line-height: 2em;
-}
-
-* {
-  color: #AAA;
-}
-
-input, textarea {
-  color: #222 !important;
-}
-
-label {
-  display: inline-block;
-  width: 200px;
-}
-
-.user {
-  overflow: hidden;
-}
-
-th {
-  text-align: left;
-  width: 200px;
-}*/

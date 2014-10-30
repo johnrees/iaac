@@ -1,9 +1,11 @@
-= title @user
-= mail_to @user.public_email, @user.public_email
-= @user.country
+.row
+  .columns.large-12
+    = title @user
+    = mail_to @user.public_email, @user.public_email
+    = @user.country
 
-%br/
+    %br/
 
-= placeholder 200
+    = placeholder 200
 
--# - if current_user and current_user.has_role? :admin
+    -# - if current_user and current_user.has_role? :admin
