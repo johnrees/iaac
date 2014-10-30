@@ -1,12 +1,14 @@
 = title "Courses"
 
-= link_to "add course", new_admin_course_path, class: 'button'
+.row
+  .col-md-12
+    = link_to "add course", new_admin_course_path, class: 'btn btn-default'
 
-%table
-  %thead
-    %tr
-      %th Name
-  %tbody
-    - @courses.each do |course|
-      %tr
-        %td= link_to course, admin_course_path(course)
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Name
+      %tbody
+        - @courses.each do |course|
+          %tr
+            %td= link_to course, admin_course_path(course)

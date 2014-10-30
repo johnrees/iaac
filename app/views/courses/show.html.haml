@@ -1,16 +1,23 @@
 = title @course
+.row
+  .col-md-12
+    - @course.children.each do |course|
+      = content_tag_for :div, course do
+        = link_to course, course
 
-- @course.children.each do |course|
-  = content_tag_for :div, course do
-    = link_to course, course
+    = simple_format @course.description
 
-= simple_format @course.description
+.row
+  .col-md-12
+    - if policy(@course).update?
+      = link_to "edit course", edit_course_path(@course), class: 'btn btn-default'
 
-- if policy(@course).update?
-  = link_to "edit course", edit_course_path(@course)
+.row
+  .col-md-12
+    %h3 Tutors
+    = render @course.tutors
 
-%h3 Tutors
-= render @course.tutors
-
-%h3 Students
-= render @course.students
+.row
+  .col-md-12
+    %h3 Students
+    = render @course.students

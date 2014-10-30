@@ -1,9 +1,9 @@
 = title "Update Settings"
 
-= simple_form_for @user do |f|
+= simple_form_for @user, html: { role: 'form' } do |f|
   = f.input :first_name
   = f.input :last_name
   = f.input :public_email
   = f.input :private_email
   = f.input :country_code, label: 'Country'
-  = f.submit "Update details"
+  = f.submit "Update details", class: 'btn btn-default'

@@ -1,0 +1,61 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+h1,h2,h3 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.navbar-default {
+  // background: none;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  a { color: #111 !important; }
+}
+
+body a { color: #111; }
+
+.user {
+  ul,li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+/*h1 {
+
+}
+
+a {
+  text-decoration: none;
+  color: #EEE;
+}
+
+body {
+  padding: 10px 50px;
+  background: #222;
+  line-height: 2em;
+}
+
+* {
+  color: #AAA;
+}
+
+input, textarea {
+  color: #222 !important;
+}
+
+label {
+  display: inline-block;
+  width: 200px;
+}
+
+.user {
+  overflow: hidden;
+}
+
+th {
+  text-align: left;
+  width: 200px;
+}*/

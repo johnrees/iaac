@@ -1,8 +1,10 @@
 = title "Courses"
 
 - if policy(Course).create?
-  = link_to "add course", new_course_path
+  = link_to "add course", new_course_path, class: 'btn btn-default'
 
-- @courses.each do |course|
-  = content_tag_for :div, course do
-    = link_to course, course
+%table.table.table-striped
+  - @courses.each do |course|
+    = content_tag_for :tr, course do
+      %td
+        %h4= link_to course, course
