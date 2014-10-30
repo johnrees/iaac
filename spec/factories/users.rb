@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :user do
     first_name "John"
     last_name "Rees"
-    public_email "john@iaac.net"
-    private_email "john@bitsushi.com"
+    sequence(:public_email) { |n| "john#{n}@iaac.net" }
+    sequence(:private_email) { |n| "john#{n}@bitsushi.com" }
     country_code "GB"
     password "password1234"
     password_confirmation "password1234"

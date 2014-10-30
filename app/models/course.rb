@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-
+  has_paper_trail
   resourcify
   acts_as_tree order: 'sort_order'
 

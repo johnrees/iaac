@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  has_paper_trail
   rolify
   has_secure_password
   validates_uniqueness_of :public_email

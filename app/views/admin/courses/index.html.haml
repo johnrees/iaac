@@ -1,4 +1,7 @@
 = title "Courses"
+
+= link_to "add course", new_admin_course_path, class: 'button'
+
 %table
   %thead
     %tr
@@ -6,4 +9,4 @@
   %tbody
     - @courses.each do |course|
       %tr
-        %td= link_to course, edit_admin_course_path(course)
+        %td= link_to course, admin_course_path(course)

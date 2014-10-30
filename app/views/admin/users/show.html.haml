@@ -1,0 +1,12 @@
+= title @user
+
+%table
+  - (User.column_names - ['password_digest']).each do |column|
+    %tr
+      %th= column
+      %td= @user[column]
+
+%h3 Courses
+%ul
+  - @user.courses.each do |course|
+    %li= link_to course, course

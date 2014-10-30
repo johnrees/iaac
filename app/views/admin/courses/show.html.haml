@@ -1,0 +1,17 @@
+= title @course
+
+= button_to "delete", [:admin, @course], method: :delete, data: { confirm: "Are you sure?" }
+= link_to "edit", edit_admin_course_path(@course)
+
+%table
+  - Course.column_names.each do |column|
+    %tr
+      %th= column
+      %td= @course[column]
+
+%ul
+  - @course.versions.each do |version|
+    %li
+      = version.whodunnit
+      = version.event
+      = version.object

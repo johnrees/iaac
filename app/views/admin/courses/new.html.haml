@@ -1,0 +1,8 @@
+= title "Add Course"
+
+= simple_form_for [:admin,@course] do |f|
+  %fieldset
+    %legend Course Details
+    = f.input :name
+    = f.input :description
+  = f.submit

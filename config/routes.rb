@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :courses
     resources :users
-    root to: 'courses#index'
+    root to: 'static#dashboard'
   end
 
   root to: 'courses#index'

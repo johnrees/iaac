@@ -1,6 +1,8 @@
 !!!
 %html
   %head
+    %title= [content_for(:title),'IAAC Admin'].reject(&:blank?).join(' | ')
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   %body
     - flash.each do |key, value|
