@@ -8,9 +8,10 @@ h1,h2,h3 {
 .navbar-default {
   // background: none;
   border: none;
-  font-weight: bold;
+
   text-transform: uppercase;
-  a { color: #111 !important; }
+  a { font-weight: bold;
+    color: #111 !important; }
 }
 
 body a { color: #111; }

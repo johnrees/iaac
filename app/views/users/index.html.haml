@@ -15,10 +15,9 @@
     -#     %h4 Administrators
     -#     = render User.with_role(:admin)
     .row
-      .col-md-12
-        %h4 Tutors
-        = render User.with_role(:tutor, :any).order('last_name')
+      -# %h4 Tutors
+      = render User.with_role(:tutor, :any).order('last_name')
     .row
-      .col-md-12
-        %h4 Students
+      -# %h4 Students
+      - 20.times do
         = render User.with_role(:student, :any).order('last_name')
