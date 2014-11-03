@@ -1,27 +1,31 @@
-= title "Log in"
+.row
+  .columns.large-12
+    = title "Log in"
 
-= form_tag sessions_path do
-  .field
-    = label_tag :email
-    = text_field_tag :email, params[:email], autofocus: params[:email].blank?
-  .field
-    = label_tag :password
-    = password_field_tag :password
-  .actions= submit_tag "Log In"
+    = form_tag sessions_path do
+      .field
+        = label_tag :email
+        = text_field_tag :email, params[:email], autofocus: params[:email].blank?
+      .field
+        = label_tag :password
+        = password_field_tag :password
+      .actions= submit_tag "Log In", class: 'button small'
 
 %hr/
 
-= form_tag sessions_path do
-  = hidden_field_tag :email, "ramin@bitsushi.com"
-  = hidden_field_tag :password, "password"
-  = submit_tag "login as student"
-
-= form_tag sessions_path do
-  = hidden_field_tag :email, "luis@bitsushi.com"
-  = hidden_field_tag :password, "password"
-  = submit_tag "login as tutor"
-
-= form_tag sessions_path do
-  = hidden_field_tag :email, "ana@bitsushi.com"
-  = hidden_field_tag :password, "password"
-  = submit_tag "login as admin"
+.row
+  .columns.small-4
+    = form_tag sessions_path do
+      = hidden_field_tag :email, "ramin@bitsushi.com"
+      = hidden_field_tag :password, "password"
+      = submit_tag "login as student"
+  .columns.small-4
+    = form_tag sessions_path do
+      = hidden_field_tag :email, "luis@bitsushi.com"
+      = hidden_field_tag :password, "password"
+      = submit_tag "login as tutor"
+  .columns.small-4
+    = form_tag sessions_path do
+      = hidden_field_tag :email, "ana@bitsushi.com"
+      = hidden_field_tag :password, "password"
+      = submit_tag "login as admin"

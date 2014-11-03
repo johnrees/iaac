@@ -21,9 +21,10 @@
 
   .columns.large-4
     %h4 About the tutors
-    - 2.times do
+    - @course.tutors.each do |tutor|
       .row{style: 'margin-bottom: 10px'}
         .columns.large-12
           = placeholder 100
+          = tutor
 
-    = render @course.tutors
+
