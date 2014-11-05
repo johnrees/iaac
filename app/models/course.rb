@@ -3,6 +3,8 @@ class Course < ActiveRecord::Base
   resourcify
   acts_as_tree order: 'sort_order'
 
+  has_many :grades
+
   validates_presence_of :name
   validates_presence_of :description
 

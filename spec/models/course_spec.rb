@@ -4,6 +4,8 @@ RSpec.describe Course, :type => :model do
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
+  it { should have_many(:grades) }
+
   skip "acts as tree"
   skip "resourcify"
 

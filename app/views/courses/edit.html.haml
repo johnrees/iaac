@@ -8,6 +8,7 @@
         %legend Course Details
         = f.input :name
         = f.input :description
+        = f.input :credits
       %fieldset
         %legend Students
         = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: @course.students.ids }, multiple: true
@@ -15,4 +16,4 @@
         %legend Tutors
         = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: @course.tutors.ids }, multiple: true
 
-      = f.submit
+      = f.submit class: 'button'

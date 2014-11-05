@@ -1,11 +1,11 @@
-= content_tag_for :div, user, class: 'columns large-4 left' do
+= content_tag_for :li, user do
   = link_to user do
     .thumbnail
       = placeholder 150
     .caption
-      %h5= user
-      = user.country
-      - unless user.has_role? :admin
-        %ul
-          - user.courses.each do |course|
-            %li= course
+      = user
+      -# = user.country
+      -# - unless user.has_role? :admin
+      -#   %ul
+      -#     - user.courses.each do |course|
+      -#       %li= course

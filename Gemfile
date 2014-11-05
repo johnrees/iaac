@@ -2,8 +2,9 @@ ruby "2.1.4"
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0.beta2'
+gem 'rails', '4.2.0.beta4'
 gem 'foundation-rails'
+gem 'jquery-turbolinks', github: 'kossnocorp/jquery.turbolinks'
 # gem 'autoprefixer-rails'
 
 gem 'normalize-rails'

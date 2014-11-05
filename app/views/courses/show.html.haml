@@ -1,14 +1,18 @@
+<script>window.data = #{raw Course.all.map{|c| {value: c.credits, color: '#DDDDDD', highlight: '#EEE', label: c.name}}.to_json.html_safe}</script>
+
+
 .row
   .columns.large-12
     = title @course
-    - @course.children.each do |course|
-      = content_tag_for :div, course do
-        = link_to course, course
+    -# - @course.children.each do |course|
+    -#   = content_tag_for :div, course do
+    -#     = link_to course, course
 
 .row
   .columns.large-12
     - if policy(@course).update?
       = link_to "edit course", edit_course_path(@course), class: 'button'
+      = link_to "grades", course_grades_path(@course), class: 'button'
 
 .row
   .columns.large-8
@@ -17,14 +21,20 @@
     .row
       .columns.large-12
         %h3 Students
-        = render @course.students
+        %ul.small-block-grid-5
+          = render @course.students
 
   .columns.large-4
+    - if @course.root?
+      %h4 Course Modules
+      %canvas#chart{height: 300}
     %h4 About the tutors
-    - @course.tutors.each do |tutor|
+    -# - @course.tutors.each do |tutor|
+    - User.limit(4).each do |tutor|
       .row{style: 'margin-bottom: 10px'}
         .columns.large-12
-          = placeholder 100
-          = tutor
-
-
+          .media
+            .media-left= placeholder 100
+            .media-body
+              %h5= tutor
+              = Faker::Lorem.paragraph

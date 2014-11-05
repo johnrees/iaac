@@ -2,12 +2,15 @@
   .columns.large-12
     = title "Courses"
 
-    - if policy(Course).create?
-      = link_to "add course", new_course_path, class: 'button'
+    -# - if policy(Course).create?
+    -#   = link_to "add course", new_course_path, class: 'button'
 
 .row
-  - @courses.each do |course|
-    = content_tag_for :div, course, class: 'columns large-3 left' do
-      = link_to course do
-        = placeholder '200x150'
-        %h5.course-name= course
+  .columns.large-12= tree Course.hash_tree
+
+-# .row
+-#   - @courses.each do |course|
+-#     = content_tag_for :div, course, class: 'columns large-3 left' do
+-#       = link_to course do
+-#         = placeholder '200x150'
+-#         %h5.course-name= course

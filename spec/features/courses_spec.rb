@@ -11,7 +11,7 @@ RSpec.describe Course, :type => :feature do
   skip "can add new tutors"
   skip "can add new students"
 
-  it "can add course" do
+  skip "can add course" do
     user = create(:user)
     user.add_role :admin
     login user

@@ -6,9 +6,8 @@
 
     <title><%= [content_for(:title),'IAAC'].reject(&:blank?).join(' | ') %></title>
     <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Montserrat:400,700', 'application', media: 'all', 'data-turbolinks-track' => true %>
-
-
     <%= javascript_include_tag "vendor/modernizr", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -28,7 +27,7 @@
         <!-- Right Nav Section -->
         <ul class="right">
           <li class="has-dropdown">
-            <a href="#"><%= current_user %></a>
+            <%= link_to current_user, current_user %>
             <ul class="dropdown">
               <% if current_user.has_role? :admin %>
                 <li><%= link_to "Admin", admin_root_path %></li>
@@ -50,24 +49,16 @@
 
     </div>
     <% flash.each do |name, msg| %>
-    <% if msg.is_a?(String) %>
-      <div data-alert class="alert-box <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
-        <%= content_tag :div, msg %>
-        <a href="#" class="close">&times;</a>
-      </div>
+      <% if msg.is_a?(String) %>
+        <div data-alert class="alert-box <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
+          <%= content_tag :div, msg %>
+          <a href="#" class="close">&times;</a>
+        </div>
+      <% end %>
     <% end %>
-
-    <div class="row">
-    <div class="columns large-12">
-<%# flash.each do |name, msg| %>
-<%#= content_tag :div, msg, class: "alert alert-info" %>
-<%# end %>
-
-    <% end %>
-    </div>
-    </div>
+    <%# flash.each do |name, msg| %>
+    <%#= content_tag :div, msg, class: "alert alert-info" %>
+    <%# end %>
     <%= yield %>
-
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </body>
 </html>

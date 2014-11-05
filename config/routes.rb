@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   resources :users, path: 'people'
   resources :sessions
-  resources :courses
+
+  resources :courses do
+    resources :grades
+  end
 
   namespace :admin do
     resources :courses

@@ -1,0 +1,73 @@
+:css
+  th.rotate {
+  text-align: left !important;
+    /* Something you can count on */
+    height: 140px;
+    white-space: nowrap;
+  }
+
+  th.rotate > div {
+    transform:
+      /* Magic Numbers */
+      translate(25px, 51px)
+      /* 45 is really 360 - 45 */
+      rotate(315deg);
+    width: 30px;
+  }
+  th.rotate > div > span {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+  }
+
+  label {
+    -# border-top: 2px solid red;
+  }
+
+  table, tr, td, th {
+    width: 100%;
+    padding: 0;
+    border-collapse: collapse;
+    cell-padding: none;
+    line-height: 1;
+  }
+
+
+.row
+  .columns.large-12
+
+    = title "Grades"
+
+    %ul
+      - @grades.each do |grade|
+        %li= grade
+
+    %table
+      -# %thead
+      -#   %th
+      -#   %th.rotate{ colspan: 3 }
+      -#     %div
+      -#       %span Fail
+      -#   %th.rotate
+      -#     %div
+      -#       %span Incomplete
+      -#   %th.rotate{ colspan: 2 }
+      -#     %div
+      -#       %span Low Pass
+      -#   %th.rotate{ colspan: 2 }
+      -#     %div
+      -#       %span Pass
+      -#   %th.rotate{ colspan: 2 }
+      -#     %div
+      -#       %span High Pass
+
+      %tbody
+        - @course.students.each do |student|
+          %tr
+            %th= link_to student, student
+            - (1..10).each do |i|
+              %th
+                = label_tag do
+                  = radio_button_tag :grade, :a
+
+
+    = button_tag "Send grades to Students", data: { confirm: "Are you sure you want to do this?"}
