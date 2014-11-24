@@ -1,14 +1,58 @@
 .row
   .columns.large-12
+
     = title @user
+    = link_to "Edit details", '#', class: 'button tiny'
 
     %table
-      - (User.column_names - ['password_digest']).each do |column|
-        %tr
-          %th= column
-          %td= @user[column]
+      %tr
+        %th Country
+        %td= @user.country
+      %tr
+        %th Public Email
+        %td= mail_to @user.public_email, @user.public_email
+      %tr
+        %th Private Email
+        %td= mail_to @user.private_email, @user.private_email
 
+    %hr/
     %h3 Courses
-    %ul
-      - @user.courses.each do |course|
-        %li= link_to course, course
+    = link_to "Edit courses", '#', class: 'button tiny'
+    - if @user.courses.empty?
+      .notice #{@user.first_name} is not enrolled in any courses.
+    - else
+      %table
+        - @user.courses.each do |course|
+          %tr
+            %td= link_to course, course
+
+    %hr/
+    %h3
+      Transactions (€#{@user.status})
+    = link_to "Add a CHARGE", new_admin_user_charge_path(@user), class: 'button small alert'
+    = link_to "Add a PAYMENT", new_admin_user_payment_path(@user), class: 'button small success'
+    - if @user.transactions.empty?
+      .notice #{@user.first_name} has no transactions.
+    - else
+      %table
+        %thead
+          %tr
+            %th Amount
+            %th Description
+            %th Occurred at
+            %th Created at
+        - @user.transactions.each do |transaction|
+          %tr{class: transaction.class}
+            %td.amount= User.fancy_amount transaction.amount
+            %td= transaction.description
+            %td= #transaction.occurred_at.stamp('22 nov 99')
+            %td= transaction.created_at.stamp('22 nov 99')
+
+
+
+
+    -# %table
+    -#   - (User.column_names - ['password_digest']).each do |column|
+    -#     %tr
+    -#       %th{style: 'width: 200px'}= column
+    -#       %td= @user[column]

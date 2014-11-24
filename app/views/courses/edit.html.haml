@@ -7,13 +7,14 @@
       %fieldset
         %legend Course Details
         = f.input :name
+        = f.input :subtitle
         = f.input :description
         = f.input :credits
-      %fieldset
-        %legend Students
-        = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: @course.students.ids }, multiple: true
-      %fieldset
-        %legend Tutors
-        = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: @course.tutors.ids }, multiple: true
+      -# %fieldset
+      -#   %legend Students
+      -#   = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: @course.students.ids }, multiple: true
+      -# %fieldset
+      -#   %legend Tutors
+      -#   = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: @course.tutors.ids }, multiple: true
 
       = f.submit class: 'button'

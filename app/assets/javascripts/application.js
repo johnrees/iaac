@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require foundation
 //= require Chart
+//= require jquery.maskMoney.min.js
+//= require jquery.autosize
 //= require_tree .
 //= require turbolinks
 

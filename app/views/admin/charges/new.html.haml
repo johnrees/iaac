@@ -1,0 +1,9 @@
+.row
+  .columns.large-12
+    = title "Add a new Charge"
+    = simple_form_for [:admin, @user, @charge] do |f|
+      %h3= @user
+      %hr/
+      = f.input :amount_as_decimal, label: 'Amount in €'
+      = f.input :description
+      = f.submit class: 'button'

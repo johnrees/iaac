@@ -39,7 +39,7 @@ RSpec.describe Course, :type => :feature do
     user.add_role :tutor, course
     login user
     visit course_path(course)
-    click_link "edit"
+    click_link "edit course"
     fill_in "Name", with: "BLAH"
     click_button "Update Course"
     expect(page).to have_title("BLAH")

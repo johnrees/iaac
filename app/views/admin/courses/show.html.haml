@@ -1,17 +1,20 @@
-= title @course
+.row
+  .columns.large-12
+    = title @course
 
-= button_to "delete", [:admin, @course], method: :delete, data: { confirm: "Are you sure?" }
-= link_to "edit", edit_admin_course_path(@course)
+    = link_to "edit", edit_admin_course_path(@course), class: 'button small'
+    = button_to "delete", [:admin, @course], method: :delete, data: { confirm: "Are you sure?" }, class: 'button alert small'
 
-%table
-  - Course.column_names.each do |column|
-    %tr
-      %th= column
-      %td= @course[column]
 
-%ul
-  - @course.versions.each do |version|
-    %li
-      = version.whodunnit
-      = version.event
-      = version.object
+    %table
+      - Course.column_names.each do |column|
+        %tr
+          %th{style: 'width: 200px'}= column
+          %td= @course[column]
+
+    %ul
+      - @course.versions.each do |version|
+        %li
+          = version.whodunnit
+          = version.event
+          = version.object

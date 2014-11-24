@@ -1,10 +1,13 @@
 .row
   .columns.large-12
     = title @user
-    = mail_to @user.public_email, @user.public_email
-    = @user.country
+    - if current_user.has_role? :admin
+      = link_to "admin page", admin_user_path(@user), class: 'button small'
+    %p
+      = mail_to @user.public_email, @user.public_email
+      \/
+      = @user.country
 
-    %br/
-    = placeholder 200
-
-    -# - if current_user and current_user.has_role? :admin
+.row
+  .columns.large-4{style: 'margin-bottom: 10px'}= placeholder 200
+  .columns.large-8= simple_format Faker::Lorem.paragraph

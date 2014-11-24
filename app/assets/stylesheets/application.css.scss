@@ -1,34 +1,4 @@
 @import "foundation_and_overrides";
-
-h1,h2 {
-  text-transform: uppercase;
-}
-
-h3,h4,h5 {
-  font-weight: 400;
-}
-
-.user {
-  ul,li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-}
-
-.c-courses.a-show {
-  h1 {
-    margin: 1em 0;
-  }
-  .course-name {
-    text-transform: uppercase;
-    line-height: 1em;
-  }
-}
-
-ul > li {
-  margin-bottom: 2em;
-  li {
-    margin-bottom: 0;
-  }
-}
+@import "main";
+@import "admin";
+@import "grades";

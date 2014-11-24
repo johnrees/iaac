@@ -9,6 +9,7 @@
       .field
         = label_tag :password
         = password_field_tag :password
+        = hidden_field_tag :goto, params[:goto]
       .actions= submit_tag "Log In", class: 'button small'
 
 %hr/
@@ -16,16 +17,19 @@
 .row
   .columns.small-4
     = form_tag sessions_path do
-      = hidden_field_tag :email, "ramin@bitsushi.com"
+      = hidden_field_tag :email, "shannon@mcdermott.biz"
       = hidden_field_tag :password, "password"
+      = hidden_field_tag :goto, params[:goto]
       = submit_tag "login as student"
   .columns.small-4
     = form_tag sessions_path do
       = hidden_field_tag :email, "rodrigo.aguirre@gmail.com"
       = hidden_field_tag :password, "password"
+      = hidden_field_tag :goto, params[:goto]
       = submit_tag "login as tutor"
   .columns.small-4
     = form_tag sessions_path do
       = hidden_field_tag :email, "ana@bitsushi.com"
       = hidden_field_tag :password, "password"
+      = hidden_field_tag :goto, params[:goto]
       = submit_tag "login as admin"

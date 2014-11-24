@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :feature do
 
-  it "lists users" do
+  it "lists STUDENTS" do
     admin = FactoryGirl.create(:user)
     admin.add_role :admin
 
-    FactoryGirl.create(:user, first_name: 'Steve', last_name: 'Irwin')
+    u = FactoryGirl.create(:user, first_name: 'Steve', last_name: 'Irwin')
+    u.add_role(:student, FactoryGirl.create(:course))
     login admin
     visit admin_users_path
     expect(page).to have_link('Irwin')

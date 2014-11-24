@@ -2,15 +2,31 @@
 %html
   %head
     %title= [content_for(:title),'IAAC Admin'].reject(&:blank?).join(' | ')
-
+    = javascript_include_tag "application"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  %body
-    - flash.each do |key, value|
-      = content_tag :div, value, class: "flash #{key}"
+  %body#admin
 
-    = link_to "Courses", admin_courses_path
-    = link_to "People", admin_users_path
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        %div{:class => "alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}", "data-alert" => ""}
+          = content_tag :div, msg
+          %a.close{:href => "#"} &times;
 
-    %hr/
+    .contain-to-grid{style: 'background-color: #444'}
+
+      %nav.top-bar{"data-topbar" => "", :role => "navigation"}
+        %ul.title-area
+          %li.name
+            %h1
+              = link_to admin_root_path do
+                = image_tag "logo-iaac-white.png", style: 'height:  30px;'
+        %section.top-bar-section
+          / Left Nav Section
+          %ul.right
+            %li= link_to "Main Site", root_path
+          %ul.left
+            %li= link_to "Students", admin_users_path
+            %li= link_to "Courses", admin_courses_path
+
 
     = yield

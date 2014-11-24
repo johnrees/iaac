@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  layout Proc.new{ request.xhr? ? false : 'application' }
+
   before_filter :check_auth, except: [:new, :create]
 
   def index

@@ -19,4 +19,10 @@ class Grade < ActiveRecord::Base
   belongs_to :student, class_name: 'User'
   belongs_to :course
   validates :grader, :student, :course, :value, presence: true
+
+
+  def self.for student, course
+    find_or_initialize_by({student: student, course: course})
+  end
+
 end

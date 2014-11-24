@@ -1,73 +1,60 @@
-:css
-  th.rotate {
-  text-align: left !important;
-    /* Something you can count on */
-    height: 140px;
-    white-space: nowrap;
-  }
-
-  th.rotate > div {
-    transform:
-      /* Magic Numbers */
-      translate(25px, 51px)
-      /* 45 is really 360 - 45 */
-      rotate(315deg);
-    width: 30px;
-  }
-  th.rotate > div > span {
-    border-bottom: 1px solid #ccc;
-    padding: 5px 10px;
-  }
-
-  label {
-    -# border-top: 2px solid red;
-  }
-
-  table, tr, td, th {
-    width: 100%;
-    padding: 0;
-    border-collapse: collapse;
-    cell-padding: none;
-    line-height: 1;
-  }
-
+.row
+  .columns.large-12
+    %ul.breadcrumbs
+      %li= link_to "Courses", courses_path
+      - @course.self_and_ancestors.reverse.each do |course|
+        %li= link_to course, course
 
 .row
   .columns.large-12
 
     = title "Grades"
 
-    %ul
-      - @grades.each do |grade|
-        %li= grade
-
-    %table
-      -# %thead
-      -#   %th
-      -#   %th.rotate{ colspan: 3 }
-      -#     %div
-      -#       %span Fail
-      -#   %th.rotate
-      -#     %div
-      -#       %span Incomplete
-      -#   %th.rotate{ colspan: 2 }
-      -#     %div
-      -#       %span Low Pass
-      -#   %th.rotate{ colspan: 2 }
-      -#     %div
-      -#       %span Pass
-      -#   %th.rotate{ colspan: 2 }
-      -#     %div
-      -#       %span High Pass
+    %table#grades
+      %thead
+        %th
+        %th.rotate{ colspan: 3 }
+          %div
+            %span Fail
+        %th.rotate
+          %div
+            %span Incomplete
+        %th.rotate{ colspan: 2 }
+          %div
+            %span Low Pass
+        %th.rotate{ colspan: 2 }
+          %div
+            %span Pass
+        %th.rotate{ colspan: 2 }
+          %div
+            %span High Pass
 
       %tbody
         - @course.students.each do |student|
-          %tr
-            %th= link_to student, student
-            - (1..10).each do |i|
-              %th
-                = label_tag do
-                  = radio_button_tag :grade, :a
+          -# = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
+          = form_tag do |f|
+            %tr
+              %th{rowspan: 2}= link_to student, student, data: { reveal_id: "modal", reveal_ajax: "true" }
+              - (1..10).each do |i|
+                %th
+                  = label_tag do
+                    -# = f.radio_button :value, i, class: 'grade-radio'
+                    = radio_button_tag "student-#{student.id}-value", i, nil, class: 'grade-radio'
 
+            %tr
+              %td{colspan: 10}
+                = text_area "notes-#{student.id}", nil, placeholder: 'Notes...'
+                -# = f.input_field :notes, placeholder: 'Notes...'
+                -# = f.association :student, as: :hidden
+                -# = f.submit
 
     = button_tag "Send grades to Students", data: { confirm: "Are you sure you want to do this?"}
+
+:javascript
+  TogetherJSConfig_autoStart = true
+  TogetherJSConfig_siteName = 'IAAC'
+  TogetherJSConfig_toolName = 'Collaboration'
+  TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
+  TogetherJSConfig_dontShowClicks = true
+  TogetherJSConfig_cloneClicks = "table#grades input"
+= javascript_include_tag "https://togetherjs.com/togetherjs-min.js"

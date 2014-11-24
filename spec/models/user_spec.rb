@@ -24,4 +24,6 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build_stubbed(:user, country_code: 'fr').country.to_s).to eq('France')
   end
 
+  skip "has courses"
+
 end

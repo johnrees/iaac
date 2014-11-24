@@ -11,9 +11,12 @@ module ApplicationHelper
   end
 
   def tree hash
-    html = "<ul>"
+    html = "<ul class='tree'>"
     hash.keys.each do |key|
-      html += "<li><h5>#{link_to(key,key)}</h5>"
+      # css = "style='border-left-color: #{(@course == key ? '#FEF200' : '#ccc')}'"
+      css = "class='course-link #{'highlight' if @course and @course.highlight?(key.id)}'"
+      cls = 'something' unless current_user.enrolled_in? key
+      html += "<li #{css}><strong>#{link_to_unless_current(key,key,class: cls)}</strong><span class='subtitle'>#{key.subtitle}</span>"
       # <i>#{key.description}</i>
       html += "#{tree(hash[key])}</li>"
     end

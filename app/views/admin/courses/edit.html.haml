@@ -1,15 +1,17 @@
-= title "Edit Course"
+.row
+  .columns.large-12
+    = title "Edit Course"
 
-= simple_form_for [:admin,@course] do |f|
-  %fieldset
-    %legend Course Details
-    = f.input :name
-    = f.input :description
-  %fieldset
-    %legend Students
-    = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: @course.students.ids }, multiple: true
-  %fieldset
-    %legend Tutors
-    = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: @course.tutors.ids }, multiple: true
+    = simple_form_for [:admin,@course] do |f|
+      %fieldset
+        %legend Course Details
+        = f.input :name
+        = f.input :description
+      %fieldset
+        %legend Students
+        = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: @course.students.ids }, multiple: true
+      %fieldset
+        %legend Tutors
+        = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: @course.tutors.ids }, multiple: true
 
-  = f.submit
+      = f.submit class: 'button'

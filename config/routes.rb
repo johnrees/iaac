@@ -13,8 +13,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :courses
-    resources :users
-    root to: 'static#dashboard'
+    resources :users do
+      resources :charges
+      resources :payments
+    end
+    root to: 'users#index'
   end
 
   root to: 'courses#index'

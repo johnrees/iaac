@@ -1,13 +1,13 @@
-= title "Courses"
-
 .row
-  .col-md-12
+  .columns.large-12
+    = title "Courses"
+
     = link_to "add course", new_admin_course_path, class: 'button'
 
     %table.table.table-striped
       %thead
         %tr
-          %th Name
+          %th= sort_link @q, :name
       %tbody
         - @courses.each do |course|
           %tr

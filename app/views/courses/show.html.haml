@@ -1,40 +1,70 @@
-<script>window.data = #{raw Course.all.map{|c| {value: c.credits, color: '#DDDDDD', highlight: '#EEE', label: c.name}}.to_json.html_safe}</script>
+<script>window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highlight?(c.id) ? '#FEF200' : '#ddd'), highlight: (@course == c ? '#FEF200' : '#f5f5f5'), label: c.name, value: c.id }}.to_json.html_safe}</script>
 
+-# = @course.self_and_ancestors_ids
+
+:css
+  .grade {
+    margin-bottom: 20px;
+  }
+  .my-grade {
+    font-size: 5em;
+    font-weight: bold;
+  }
 
 .row
   .columns.large-12
-    = title @course
-    -# - @course.children.each do |course|
-    -#   = content_tag_for :div, course do
-    -#     = link_to course, course
+    %ul.breadcrumbs
+      %li= link_to "Courses", courses_path
+      - @course.self_and_ancestors.reverse.each do |course|
+        %li= link_to course, course
+
+    - title @course
+    %h1
+      = @course
+      %span.subtitle= @course.subtitle
 
 .row
   .columns.large-12
     - if policy(@course).update?
       = link_to "edit course", edit_course_path(@course), class: 'button'
-      = link_to "grades", course_grades_path(@course), class: 'button'
+      - if @course.leaf?
+        = link_to "grades", course_grades_path(@course), class: 'button'
 
 .row
   .columns.large-8
-    %h4 Course Description
-    = simple_format Faker::Lorem.paragraphs(3).join("\n\n")
+    -#{style: 'border-right: 1px solid #f8f8f8'}
+
+    -# .row.grade
+    -#   .columns.large-4.my-grade 9
+    -#   .columns.large-8
+
+
+    .description{style: 'color: #888;'}= simple_format Faker::Lorem.paragraphs(3).join("\n\n")
     .row
       .columns.large-12
-        %h3 Students
-        %ul.small-block-grid-5
-          = render @course.students
+        %h4 Students
+        - if @course.students.empty?
+          .panel No students have been assigned to this course yet
+        - else
+          %ul.small-block-grid-2.large-block-grid-5.medium-block-grid-3
+            = render @course.students
 
-  .columns.large-4
-    - if @course.root?
+  .columns.large-4.side
+    - if @modules.any?
       %h4 Course Modules
-      %canvas#chart{height: 300}
-    %h4 About the tutors
-    -# - @course.tutors.each do |tutor|
-    - User.limit(4).each do |tutor|
-      .row{style: 'margin-bottom: 10px'}
-        .columns.large-12
-          .media
-            .media-left= placeholder 100
-            .media-body
-              %h5= tutor
-              = Faker::Lorem.paragraph
+      %canvas#chart{height: 180}
+      = tree @course.root.hash_tree
+
+    - if @course.tutors.any?
+      %h4 About the Tutors
+      - @course.tutors.each do |tutor|
+        -# = link_to tutor do
+        .row{style: 'margin-top: 20px'}
+          .columns.large-12
+            .media
+              .media-left= placeholder 70
+              .media-body
+                .user-name= tutor
+                .tutor-description
+                  .email= mail_to tutor.public_email, tutor.public_email
+                  = Faker::Lorem.paragraph

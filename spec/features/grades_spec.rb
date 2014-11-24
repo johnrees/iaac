@@ -19,6 +19,8 @@ RSpec.describe Course, :type => :feature do
     expect(page).to have_content("Bart Simpson")
   end
 
+  skip "has self.for method"
+
 # 0-3   FAIL (this means that the student is not going to get his Master Degree, so this grade has to be justified and well explained)
 # 4     INCOMPLETE (this means that the tutor has to offer another deadline in order to receive a second submission that he will grade again)
 # 5-6   LOW PASS

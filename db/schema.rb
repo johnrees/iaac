@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104152217) do
+ActiveRecord::Schema.define(version: 20141119111531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141104152217) do
     t.integer  "parent_id"
     t.integer  "sort_order"
     t.integer  "credits"
+    t.string   "subtitle"
   end
 
   add_index "courses", ["parent_id", "sort_order"], name: "index_courses_on_parent_id_and_sort_order", using: :btree
@@ -61,16 +62,31 @@ ActiveRecord::Schema.define(version: 20141104152217) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "transactions", force: true do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.text     "description"
+    t.datetime "occurred_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "transactions", ["type", "user_id"], name: "index_transactions_on_type_and_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "public_email"
     t.string   "private_email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "country_code"
+    t.integer  "financial_status", default: 0
   end
+
+  add_index "users", ["financial_status"], name: "index_users_on_financial_status", using: :btree
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"

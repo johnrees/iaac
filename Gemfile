@@ -1,12 +1,14 @@
 ruby "2.1.4"
 source 'https://rubygems.org'
 
+gem 'stamp'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0.beta4'
-gem 'foundation-rails'
+gem 'foundation-rails', github: 'zurb/foundation-rails'
 gem 'jquery-turbolinks', github: 'kossnocorp/jquery.turbolinks'
 # gem 'autoprefixer-rails'
 
+gem 'quiet_assets', group: :development
 gem 'normalize-rails'
 gem 'figaro', github: 'laserlemon/figaro'
 gem 'simple_form', github: 'plataformatec/simple_form'
@@ -14,6 +16,7 @@ gem 'paper_trail'
 gem 'launchy'
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'ransack'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0.beta1'
 # Use Uglifier as compressor for JavaScript assets

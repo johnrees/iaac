@@ -1,0 +1,2 @@
+# u = User.create({ first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, country_code: Faker::Address.country_code, private_email: Faker::Internet.email, public_email: Faker::Internet.email, password: 'password' })
+# u.add_role :student, c

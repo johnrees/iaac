@@ -12,16 +12,32 @@ class Course < ActiveRecord::Base
 
   before_update :add_people
 
+  def to_param
+    "#{id}-#{name.gsub('.','').parameterize}-#{created_at.year}"
+  end
+
   def to_s
     name
   end
 
+  # def tutors
+  #   User.with_role(:tutor, self)
+  # end
+
   def tutors
-    User.with_role(:tutor, self)
+    self_and_descendants.map{ |d| [User.with_role(:tutor, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
   end
 
   def students
-    User.with_role(:student, self)
+    self_and_descendants.map{ |d| [User.with_role(:student, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
+  end
+
+  def full_name
+    [name,subtitle].reject(&:blank?).join(' / ')
+  end
+
+  def highlight? course_id
+    self_and_ancestors_ids.include? course_id
   end
 
 private

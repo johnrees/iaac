@@ -1,0 +1,257 @@
+th {
+  vertical-align: top;
+}
+
+#modal {
+  h1 {
+    margin: 0 0 0.5em 0;
+  }
+}
+
+input.grade-radio {
+  margin: 0 !important;
+}
+
+.side {
+  background: #f8f8f8;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 4px;
+  h4 {
+    font-size: 1.3em;
+    color: #666;
+  }
+}
+
+.reveal-modal {
+  h1 {
+    font-size: 2.2em;
+  }
+}
+
+.user {
+  overflow: hidden;
+}
+
+body {
+  padding-bottom: 40px;
+}
+
+a {
+  -webkit-font-smoothing: antialiased;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  // -webkit-font-smoothing: antialiased;
+}
+
+h1,h2 {
+  text-transform: uppercase;
+  line-height: 1em;
+}
+
+h3,h4,h5 {
+  font-weight: 400;
+}
+
+h4 {
+  // border-bottom: 2px solid #000;
+  margin-bottom: 1em;
+  font-weight: 800;
+  // text-transform: uppercase;
+}
+
+h5,h6 {
+  font-family: Helvetica;
+}
+
+img.placeholder {
+  border-radius: 4px;
+}
+
+.user {
+  ul,li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.c-courses.a-show {
+  h1 {
+    margin: 1em 0;
+  }
+  .course-name {
+    text-transform: uppercase;
+    line-height: 1em;
+  }
+}
+
+ul > li {
+  margin-bottom: 2em;
+  li {
+    margin-bottom: 0;
+  }
+}
+
+// .media-left, .media-right, .media-body {
+// display: table-cell;
+// vertical-align: top;
+// }
+// .media-left, .media>.pull-left {
+// padding-right: 10px;
+// }
+// .media:first-child {
+// margin-top: 0;
+// }
+// .media {
+//   display: table;
+// margin-top: 15px;
+// }
+
+.media {
+  &, .media-body {
+    zoom: 1;
+    overflow: hidden;
+  }
+  .media-left {
+    float: left !important;
+    margin-right: 10px;
+  }
+}
+
+
+.user-country {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.user {
+  line-height: 1.5;
+}
+
+span.subtitle {
+  font-size: 0.8em;
+  display: block;
+  color: #888;
+}
+
+.tutor-description {
+  color: #888;
+  font-size: 0.8em;
+}
+
+li.user {
+  margin-bottom: 5px;
+}
+
+.user-name {
+  font-weight: bold;
+  line-height: 1.4em;
+  margin-top: 5px;
+  // color: #111;
+}
+
+.subtitle {
+  font-style: italic;
+}
+
+.count {
+  color: #DDD;
+  font-weight: normal;
+}
+
+.breadcrumbs > * {
+  text-transform: none !important;
+  font-weight: bold;
+}
+
+ul.tree {
+  margin-left: 0;
+  margin-bottom: 30px;
+  li {
+    .subtitle { margin-bottom: 10px; }
+    overflow: hidden;
+    margin: 10px 0;
+    line-height: 1.2;
+    font-size: 1.2em;
+    list-style: none;
+  }
+  ul.tree {
+    margin-bottom: 0;
+    // margin-left: 25px;
+    li {
+      .subtitle { margin-bottom: 0; }
+      padding: 0 0 0 10px;
+      line-height: 1.5;
+      font-size: 1em;
+      list-style: none;
+      border-left-width: 2px;
+      border-left-style: solid;
+      margin: 3px 0;
+    }
+
+    li li {
+      border: none;
+    }
+  }
+}
+
+footer {
+  position: relative;
+  background: #F8F8F8;
+  padding: 30px 0 60px 0;
+  font-size: 0.8em;
+  margin-top: 40px;
+  ul,li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    font-size: 0.8em;
+    color: #888;
+    font-weight: bold;
+
+  }
+  .address {
+    margin-top: 20px;
+    border-top: 1px solid #EEE;
+    padding-top: 10px;
+    text-align: center;
+    bottom: 10px;
+    color: #CCC;
+  }
+}
+
+
+.alert-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: block;
+  z-index: 999;
+}
+
+
+a.something {
+  color: #888 !important;
+}
+
+li.course-link {
+  border-left: #ddd;
+  &.highlight {
+    border-left: #FEF200;
+  }
+}
+
+canvas {
+  cursor: pointer;
+}

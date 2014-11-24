@@ -1,17 +1,40 @@
-= title "People"
+.row
+  .columns.large-12
+    = title "Students"
 
-= link_to "Students", "#"
-= link_to "Tutors", "#"
-= link_to "Admins", "#"
+    -# = link_to "Students", "#"
+    -# = link_to "Tutors", "#"
+    -# = link_to "Admins", "#"
 
-%table
-  %thead
-    %tr
-      %th{colspan: 2} First / Last Name
-      %th Email
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= link_to user.first_name, admin_user_path(user)
-        %td= link_to user.last_name, admin_user_path(user)
-        %td= mail_to user.public_email, user.public_email
+    = search_form_for [:admin,@q] do |f|
+      = f.label :first_name_or_last_name_cont
+      = f.search_field :first_name_or_last_name_cont
+      = f.submit class: 'button small'
+
+    %h4 Total: €#{User.fancy_amount Transaction.total}
+
+
+    %table
+      %thead
+        %tr
+          %th
+            = sort_link @q, :first_name, 'First'
+            \/
+            = sort_link @q, :last_name
+          %th= sort_link @q, :financial_status, 'Status'
+          %th= sort_link @q, :public_email
+          %th= sort_link @q, :private_email
+
+          %th= sort_link @q, :created_at, 'Registered'
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td
+              = link_to user.first_name, admin_user_path(user), class: 'dark'
+              = link_to user.last_name, admin_user_path(user), class: 'dark'
+            %td.amount
+              - unless user.status == '0.00'
+                = user.status
+            %td= mail_to user.public_email, user.public_email
+            %td= mail_to user.private_email, user.private_email
+            %td{style: 'text-align: right'}= user.created_at.stamp('2 Nov 99')

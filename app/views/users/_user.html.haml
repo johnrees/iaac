@@ -1,10 +1,11 @@
 = content_tag_for :li, user do
-  = link_to user do
+  = link_to user, data: { reveal_id: "modal", reveal_ajax: "true" } do
     .thumbnail
       = placeholder 150
+      -# = image_tag "http://lorempixel.com/150/150/people?#{rand(1000)}", class: 'placeholder'
     .caption
-      = user
-      -# = user.country
+      .user-name= user
+      .user-country= user.country
       -# - unless user.has_role? :admin
       -#   %ul
       -#     - user.courses.each do |course|

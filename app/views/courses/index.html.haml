@@ -6,7 +6,13 @@
     -#   = link_to "add course", new_course_path, class: 'button'
 
 .row
-  .columns.large-12= tree Course.hash_tree
+  .columns.large-12
+    %ul.large-block-grid-3
+      - @course_roots.each do |root|
+        %li
+          = placeholder '300x150'
+          -# = image_tag "http://lorempixel.com/300/150/city?#{rand(1000)}", class: 'placeholder'
+          = tree root.hash_tree
 
 -# .row
 -#   - @courses.each do |course|

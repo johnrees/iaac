@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   validates :public_email, :first_name, :last_name, :country_code, presence: true
 
+  has_many :transactions
+  has_many :payments
+  has_many :charges
+
   has_many :grades, foreign_key: 'student_id'
   has_many :given_grades, class_name: 'Grade', foreign_key: 'grader_id'
   has_many :received_grades, class_name: 'Grade', foreign_key: 'student_id'
@@ -25,6 +29,19 @@ class User < ActiveRecord::Base
 
   def country
     Country[country_code] if country_code.present?
+  end
+
+  def self.fancy_amount num
+    '%.2f' % [((num||0)/100.0)]
+  end
+
+  def status
+    User.fancy_amount financial_status
+  end
+
+  def enrolled_in? course
+    return true unless course.leaf?
+    has_role? :student, course
   end
 
   # before_validation :default_email

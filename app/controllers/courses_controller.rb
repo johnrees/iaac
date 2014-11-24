@@ -4,15 +4,19 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    authorize @course
   end
 
   def create
     @course = Course.create course_params
+    authorize @course
     respond_with @course
   end
 
   def index
     @courses = current_user.courses
+    authorize @courses
+    @course_roots = @courses.map{ |c| c.root }.sort!{ |a,b| a.name <=> b.name }.uniq
   end
 
   def edit
@@ -28,7 +32,11 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = current_user.courses.find(params[:id])
+    @course = Course.find(params[:id])
+    redirect_to course_path(@course) unless request.path == course_path(@course)
+    authorize @course
+    # @course = current_user.courses.find(params[:id])
+    @modules = @course.root.self_and_descendants.where.not(credits: nil)
   end
 
 private

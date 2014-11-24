@@ -3,13 +3,9 @@
     = title "People"
 .row
   .columns.large-3
-    .list-group
-      .list-group-item
-        %span.badge 14
-        Tutors
-      .list-group-item
-        %span.badge 140
-        Students
+    %ul.side-nav.list-group
+      %li.list-group-item= link_to 'Tutors', '#tutors'
+      %li.list-group-item= link_to 'Students', '#students'
 
   .columns.large-9
     -# .row
@@ -17,8 +13,10 @@
     -#     %h4 Administrators
     -#     = render User.with_role(:admin)
     .row
-      %h4 Tutors
-      %ul.small-block-grid-5= render User.with_role(:tutor, :any).order('last_name').uniq
+      .columns.large-12
+        %h4#tutors Tutors
+        %ul.large-block-grid-5= render User.with_role(:tutor, :any).order('last_name').uniq
     .row
-      %h4 Students
-      %ul.small-block-grid-5= render User.with_role(:student, :any).order('last_name').uniq
+      .columns.large-12
+        %h4#students Students
+        %ul.large-block-grid-5= render User.with_role(:student, :any).order('last_name').uniq

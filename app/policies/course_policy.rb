@@ -1,5 +1,9 @@
 class CoursePolicy < ApplicationPolicy
 
+  def index?
+    user
+  end
+
   def create?
     user.has_role? :admin
   end

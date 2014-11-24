@@ -1,7 +1,9 @@
 class Admin::CoursesController < Admin::AdminController
 
   def index
-    @courses = Course.all
+    # @courses = Course.all
+    @q = Course.search(params[:q])
+    @courses = @q.result(distinct: true)
   end
 
   def show
