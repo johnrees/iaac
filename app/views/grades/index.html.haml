@@ -31,30 +31,28 @@
 
       %tbody
         - @course.students.each do |student|
-          -# = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
-          = form_tag do |f|
-            %tr
-              %th{rowspan: 2}= link_to student, student, data: { reveal_id: "modal", reveal_ajax: "true" }
-              - (1..10).each do |i|
-                %th
-                  = label_tag do
-                    -# = f.radio_button :value, i, class: 'grade-radio'
-                    = radio_button_tag "student-#{student.id}-value", i, nil, class: 'grade-radio'
+          %tr
+            %td
+              = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
+                = content_tag_for :table, student do
+                  %tr
+                    %th= link_to student, student, data: { reveal_id: "modal", reveal_ajax: "true" }
 
-            %tr
-              %td{colspan: 10}
-                = text_area "notes-#{student.id}", nil, placeholder: 'Notes...'
-                -# = f.input_field :notes, placeholder: 'Notes...'
-                -# = f.association :student, as: :hidden
-                -# = f.submit
+                    - (1..10).each do |i|
+                      %td
+                        = label_tag do
+                          = f.radio_button :value, i, class: 'grade-radio', id: "value-#{student.id}-#{i}"
+                          -# = radio_button_tag "student-#{student.id}-value", i, nil, class: 'grade-radio'
+                    %td= f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
+                    = f.association :student, as: :hidden
 
     = button_tag "Send grades to Students", data: { confirm: "Are you sure you want to do this?"}
 
-:javascript
-  TogetherJSConfig_autoStart = true
-  TogetherJSConfig_siteName = 'IAAC'
-  TogetherJSConfig_toolName = 'Collaboration'
-  TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
-  TogetherJSConfig_dontShowClicks = true
-  TogetherJSConfig_cloneClicks = "table#grades input"
-= javascript_include_tag "https://togetherjs.com/togetherjs-min.js"
+-# :javascript
+-#   TogetherJSConfig_autoStart = true
+-#   TogetherJSConfig_siteName = 'IAAC'
+-#   TogetherJSConfig_toolName = 'Collaboration'
+-#   TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
+-#   TogetherJSConfig_dontShowClicks = true
+-#   TogetherJSConfig_cloneClicks = "table#grades input"
+-# = javascript_include_tag "https://togetherjs.com/togetherjs-min.js"

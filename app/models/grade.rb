@@ -18,7 +18,7 @@ class Grade < ActiveRecord::Base
   belongs_to :grader, class_name: 'User'
   belongs_to :student, class_name: 'User'
   belongs_to :course
-  validates :grader, :student, :course, :value, presence: true
+  # validates :grader, :student, :course, :value, presence: true
 
 
   def self.for student, course

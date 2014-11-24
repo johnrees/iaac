@@ -7,7 +7,7 @@ jQuery ->
   #   $(this).parents('form').submit()
 
   $('table#grades input, table#grades textarea').change ->
-    $(this).parents('form').submit()
+    $(this).closest('form').submit()
 
 # fireTogetherJSVisibility = ->
 #   alert('a')

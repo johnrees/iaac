@@ -14,7 +14,16 @@ class GradesController < ApplicationController
     @grade.grader = current_user
     authorize @grade
     @grade.save!
-    respond_with(@course,@grade)
+    respond_with([@course,@grade], location: course_grades_path(@course))
+  end
+
+  def update
+    @course = Course.find(params[:course_id])
+    @grade = Grade.find(params[:id])
+    # @grade.grader = current_user
+    authorize @grade
+    @grade.update_attributes grade_params
+    respond_with([@course,@grade], location: course_grades_path(@course))
   end
 
 private

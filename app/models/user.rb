@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
   def enrolled_in? course
     return true unless course.leaf?
-    has_role? :student, course
+    has_role?(:student, course) || has_role?(:tutor, course)
   end
 
   # before_validation :default_email
