@@ -21,8 +21,14 @@ class Grade < ActiveRecord::Base
   # validates :grader, :student, :course, :value, presence: true
 
 
+  GRADES = %w(fail fail fail incomplete low_pass low_pass pass pass high_pass high_pass).map(&:humanize)
+
   def self.for student, course
     find_or_initialize_by({student: student, course: course})
+  end
+
+  def to_s
+    [value, course].join(' - ')
   end
 
 end

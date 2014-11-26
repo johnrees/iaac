@@ -1,8 +1,31 @@
+:css
+  label {
+  font-size: 0.8em;
+  font-weight: bold;
+  }
+  label input.grade-radio {
+  margin-left: 2px !important;
+  }
+  textarea {
+  font-size: 0.8em;
+  margin: 0 !important;
+  }
+  .grade {
+    margin-top: 5px;
+    padding: 5px 8px;
+    font-size: 0.7em;
+    color: #FFF;
+    text-transform: uppercase;
+    border-radius: 4px;
+    display: none;
+    clear: both;
+  }
+
 .row
   .columns.large-12
     %ul.breadcrumbs
       %li= link_to "Courses", courses_path
-      - @course.self_and_ancestors.reverse.each do |course|
+      - @course.ancestors.reverse.each do |course|
         %li= link_to course, course
 
 .row
@@ -11,48 +34,52 @@
     = title "Grades"
 
     %table#grades
-      %thead
-        %th
-        %th.rotate{ colspan: 3 }
-          %div
-            %span Fail
-        %th.rotate
-          %div
-            %span Incomplete
-        %th.rotate{ colspan: 2 }
-          %div
-            %span Low Pass
-        %th.rotate{ colspan: 2 }
-          %div
-            %span Pass
-        %th.rotate{ colspan: 2 }
-          %div
-            %span High Pass
+      -# %thead
+      -#   %th
+      -#   %th.rotate{ colspan: 3 }
+      -#     %div
+      -#       %span Fail
+      -#   %th.rotate
+      -#     %div
+      -#       %span Incomplete
+      -#   %th.rotate{ colspan: 2 }
+      -#     %div
+      -#       %span Low Pass
+      -#   %th.rotate{ colspan: 2 }
+      -#     %div
+      -#       %span Pass
+      -#   %th.rotate{ colspan: 2 }
+      -#     %div
+      -#       %span High Pass
 
       %tbody
         - @course.students.each do |student|
           %tr
-            %td
+            %td{colspan: 100}
               = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
                 = content_tag_for :table, student do
                   %tr
-                    %th= link_to student, student, data: { reveal_id: "modal", reveal_ajax: "true" }
+                    %th{rowspan: 2, width: 200}
+                      = link_to student, student, data: { reveal_id: "modal", reveal_ajax: "true" }
+                      .grade
 
-                    - (1..10).each do |i|
+                    - Grade::GRADES.each_with_index do |type, i|
                       %td
                         = label_tag do
-                          = f.radio_button :value, i, class: 'grade-radio', id: "value-#{student.id}-#{i}"
+                          = (i+1)
+                          = f.radio_button :value, (i+1), class: 'grade-radio', id: "value-#{student.id}-#{i+1}", data: { grade: type }
                           -# = radio_button_tag "student-#{student.id}-value", i, nil, class: 'grade-radio'
-                    %td= f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
-                    = f.association :student, as: :hidden
+                    %tr
+                      %td{colspan: 100, style: 'background: none !important'}= f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
+                      = f.association :student, as: :hidden
 
     = button_tag "Send grades to Students", data: { confirm: "Are you sure you want to do this?"}
 
--# :javascript
--#   TogetherJSConfig_autoStart = true
--#   TogetherJSConfig_siteName = 'IAAC'
--#   TogetherJSConfig_toolName = 'Collaboration'
--#   TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
--#   TogetherJSConfig_dontShowClicks = true
--#   TogetherJSConfig_cloneClicks = "table#grades input"
--# = javascript_include_tag "https://togetherjs.com/togetherjs-min.js"
+:javascript
+  TogetherJSConfig_autoStart = true
+  TogetherJSConfig_siteName = 'IAAC'
+  TogetherJSConfig_toolName = 'Collaboration'
+  TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
+  TogetherJSConfig_dontShowClicks = true
+  TogetherJSConfig_cloneClicks = "table#grades input"
+= javascript_include_tag "https://togetherjs.com/togetherjs-min.js"

@@ -8,8 +8,7 @@ jQuery ->
       tooltipTemplate : "<%if (label){%><%=label%>: <%}%><%= value %> credits"
     })
     document.getElementById('chart').onclick = (evt) ->
-      # console.log myNewChart.getSegmentsAtEvent(evt)
-      window.location = "/courses/#{myNewChart.getSegmentsAtEvent(evt)[0].value}"
+      window.location = window.urls["#{myNewChart.getSegmentsAtEvent(evt)[0].label}"];
 
   $('.alert-box').delay(2000).fadeOut()
   $('textarea').autosize()

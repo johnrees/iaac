@@ -1,7 +1,8 @@
 = content_tag_for :li, user do
   = link_to user, data: { reveal_id: "modal", reveal_ajax: "true" } do
     .thumbnail
-      = placeholder 150
+      = image_tag user.avatar, style: 'width: 200px; height: auto;'
+      -# = placeholder 150
       -# = image_tag "http://lorempixel.com/150/150/people?#{rand(1000)}", class: 'placeholder'
     .caption
       .user-name= user

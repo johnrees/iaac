@@ -2,13 +2,22 @@
   .columns.large-12
     = title "Courses"
 
-    = link_to "add course", new_admin_course_path, class: 'button'
+    = link_to "add course", new_admin_course_path, class: 'button success tiny'
 
-    %table.table.table-striped
-      %thead
-        %tr
-          %th= sort_link @q, :name
-      %tbody
-        - @courses.each do |course|
-          %tr
-            %td= link_to course, admin_course_path(course)
+    -# %table.table.table-striped
+    -#   %thead
+    -#     %tr
+    -#       %th= sort_link @q, :name
+    -#   %tbody
+    -#     - @courses.each do |course|
+    -#       %tr
+    -#         %td= link_to course, admin_course_path(course)
+
+.row
+  .columns.large-12
+    = arranged_tree_as_list(@courses) do |course|
+      = link_to course, [:admin,course]
+    -# %ul.large-block-grid-3
+    -#   - Course.roots.each do |root|
+    -#     %li
+    -#       = tree root.hash_tree, :admin

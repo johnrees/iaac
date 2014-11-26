@@ -15,8 +15,25 @@ class User < ActiveRecord::Base
   has_many :given_grades, class_name: 'Grade', foreign_key: 'grader_id'
   has_many :received_grades, class_name: 'Grade', foreign_key: 'student_id'
 
+  ransacker :student_users, :formatter => proc { |v|
+    # [10,100]
+    # User.with_role(:student,:any).map(&:id)
+    # Course.find(v).students.map(&:id)
+    # Role.joins(:users).where(:roles => { :name => :student, :resource_type => :student }, :users => {:id => v}).map(&:resource_id)
+    # Role.joins(:users)
+    # Course.find(v).students.map(&:id)
+    [10,11]
+    # User.with_role(:student,:any).map(&:id)
+  } do |parent|
+    parent.table[:first_name]
+  end
+
   def to_s
     "#{first_name} #{last_name}"
+  end
+
+  def avatar
+    photo || "http://placehold.it/200x200"
   end
 
   def courses
@@ -41,7 +58,7 @@ class User < ActiveRecord::Base
 
   def enrolled_in? course
     return true unless course.leaf?
-    has_role?(:student, course) || has_role?(:tutor, course)
+    has_role?(:student, course) || has_role?(:tutor, course) || has_role?(:admin)
   end
 
   # before_validation :default_email

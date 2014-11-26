@@ -14,9 +14,17 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = current_user.courses
-    authorize @courses
-    @course_roots = @courses.map{ |c| c.root }.sort!{ |a,b| a.name <=> b.name }.uniq
+    courses = current_user.courses.pluck('courses.ancestry,courses.id')
+    ids = courses.map(&:last)
+    courses = courses.map{ |a| a.reject(&:blank?).first.to_s.split('/').first }.uniq
+
+    @courses = Course.select('courses.*').where(
+      "courses.id IN (?) OR courses.ancestry LIKE ANY (array[?]) OR courses.ancestry IN (?)",
+      courses,
+      courses.map{|val| "#{val}%" },
+      courses
+    ).arrange(order: :name)
+
   end
 
   def edit
@@ -33,10 +41,9 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    redirect_to course_path(@course) unless request.path == course_path(@course)
+    @grade = Grade.where(student: current_user, course: @course).first
     authorize @course
-    # @course = current_user.courses.find(params[:id])
-    @modules = @course.root.self_and_descendants.where.not(credits: nil)
+    @modules = @course.root.subtree
   end
 
 private

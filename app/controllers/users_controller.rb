@@ -42,7 +42,8 @@ private
       :private_email,
       :password,
       :password_confirmation,
-      :country_code
+      :country_code,
+      :photo
     )
   end
 

@@ -6,17 +6,18 @@
     -# = link_to "Tutors", "#"
     -# = link_to "Admins", "#"
 
-    = search_form_for [:admin,@q] do |f|
-      = f.label :first_name_or_last_name_cont
-      = f.search_field :first_name_or_last_name_cont
-      = f.submit class: 'button small'
+    .panel
+      = search_form_for [:admin,@q], :builder => SimpleForm::FormBuilder do |f|
+        = f.input :first_name_or_last_name_cont
+        = f.input :student_users_in, :collection => Course.all
+        = f.submit 'Filter', class: 'button small'
 
-    %h4 Total: €#{User.fancy_amount Transaction.total}
-
+    -# %h4 Total: €#{User.fancy_amount Transaction.total}
 
     %table
       %thead
         %tr
+          %th= check_box_tag :toggle_all, nil, false, id: 'toggle-all'
           %th
             = sort_link @q, :first_name, 'First'
             \/
@@ -24,11 +25,11 @@
           %th= sort_link @q, :financial_status, 'Status'
           %th= sort_link @q, :public_email
           %th= sort_link @q, :private_email
-
           %th= sort_link @q, :created_at, 'Registered'
       %tbody
         - @users.each do |user|
           %tr
+            %td{style: "vertical-align: middle"}= check_box_tag "user_ids[]", user.id
             %td
               = link_to user.first_name, admin_user_path(user), class: 'dark'
               = link_to user.last_name, admin_user_path(user), class: 'dark'

@@ -2,21 +2,18 @@
   .columns.large-12
     = title "Courses"
 
-    -# - if policy(Course).create?
-    -#   = link_to "add course", new_course_path, class: 'button'
-
 .row
   .columns.large-12
-    %ul.large-block-grid-3
-      - @course_roots.each do |root|
-        %li
-          = placeholder '300x150'
-          -# = image_tag "http://lorempixel.com/300/150/city?#{rand(1000)}", class: 'placeholder'
-          = tree root.hash_tree
+    = arranged_tree_as_list(@courses) do |course|
+      = link_to course, course
+      %span.subtitle= course.subtitle
 
--# .row
--#   - @courses.each do |course|
--#     = content_tag_for :div, course, class: 'columns large-3 left' do
--#       = link_to course do
--#         = placeholder '200x150'
--#         %h5.course-name= course
+    -# %ul.large-block-grid-3
+    -#   - @course_roots.each do |root|
+    -#     %li
+    -#       = link_to root do
+    -#         = placeholder '300x150'
+    -#       -# - root.subtree.each do |a|
+    -#       -#   = a.inspect
+    -#       = arranged_tree_as_list(@courses) do |course|
+    -#         = link_to course, course

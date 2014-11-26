@@ -17,6 +17,7 @@
 //= require Chart
 //= require jquery.maskMoney.min.js
 //= require jquery.autosize
+//= require selectize
 //= require_tree .
 //= require turbolinks
 

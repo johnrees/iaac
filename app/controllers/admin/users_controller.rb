@@ -1,8 +1,8 @@
 class Admin::UsersController < Admin::AdminController
 
   def index
-    @q = User.with_role(:student, :any).search(params[:q])
-    @q.sorts = 'last_name asc' if @q.sorts.empty?
+    @q = User.search(params[:q])
+    # @q.sorts = 'last_name asc' if @q.sorts.empty?
     @users = @q.result(distinct: true)
   end
 

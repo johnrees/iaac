@@ -8,7 +8,8 @@ class Admin::AdminController < ApplicationController
 private
 
   def check_admin
-    raise ActionController::RoutingError.new('Not Found') unless current_user and current_user.has_role? :admin
+    # raise ActionController::RoutingError.new('Not Found')
+    redirect_to root_path unless current_user and current_user.has_role? :admin
   end
 
 end

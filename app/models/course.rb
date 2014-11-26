@@ -1,7 +1,9 @@
 class Course < ActiveRecord::Base
+
   has_paper_trail
   resourcify
-  acts_as_tree order: 'sort_order'
+  # acts_as_tree order: 'sort_order'
+  has_ancestry cache_depth: true
 
   has_many :grades
 
@@ -11,6 +13,9 @@ class Course < ActiveRecord::Base
   attr_accessor :student_ids, :tutor_ids
 
   before_update :add_people
+
+  # scope :students, lambda { |c| User.with_role(:student, c) }
+  # scope :tutors, lambda { |c| User.with_role(:tutor, c) }
 
   def to_param
     "#{id}-#{name.gsub('.','').parameterize}-#{created_at.year}"
@@ -25,11 +30,11 @@ class Course < ActiveRecord::Base
   # end
 
   def tutors
-    self_and_descendants.map{ |d| [User.with_role(:tutor, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
+    subtree.map{ |d| [User.with_role(:tutor, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
   end
 
   def students
-    self_and_descendants.map{ |d| [User.with_role(:student, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
+    subtree.map{ |d| [User.with_role(:student, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
   end
 
   def full_name
@@ -37,7 +42,7 @@ class Course < ActiveRecord::Base
   end
 
   def highlight? course_id
-    self_and_ancestors_ids.include? course_id
+    [id,ancestor_ids].flatten.include? course_id
   end
 
 private

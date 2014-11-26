@@ -2,12 +2,12 @@
   .columns.large-12
     = title @user
     - if current_user.has_role? :admin
-      = link_to "admin page", admin_user_path(@user), class: 'button small'
+      = link_to "admin page", admin_user_path(@user), class: 'button tiny'
     %p
       = mail_to @user.public_email, @user.public_email
       \/
       = @user.country
 
 .row
-  .columns.large-4{style: 'margin-bottom: 10px'}= placeholder 200
-  .columns.large-8= simple_format Faker::Lorem.paragraph
+  .columns.large-3.small-5{style: 'margin-bottom: 10px'}= image_tag @user.photo
+  .columns.large-9.small-7= simple_format Faker::Lorem.paragraph

@@ -1,13 +1,14 @@
 class Admin::CoursesController < Admin::AdminController
 
   def index
-    # @courses = Course.all
-    @q = Course.search(params[:q])
-    @courses = @q.result(distinct: true)
+    # # @courses = Course.all
+    # @q = Course.search(params[:q])
+    # @courses = @q.result(distinct: true)
+    @courses = Course.arrange(order: :name)
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.includes(:grades).find(params[:id])
   end
 
   def new

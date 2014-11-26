@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119111531) do
+ActiveRecord::Schema.define(version: 20141125155138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,15 +28,14 @@ ActiveRecord::Schema.define(version: 20141119111531) do
   create_table "courses", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "parent_id"
-    t.integer  "sort_order"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "credits"
     t.string   "subtitle"
+    t.boolean  "published",      default: false
+    t.string   "ancestry"
+    t.integer  "ancestry_depth", default: 0
   end
-
-  add_index "courses", ["parent_id", "sort_order"], name: "index_courses_on_parent_id_and_sort_order", using: :btree
 
   create_table "grades", force: true do |t|
     t.integer  "grader_id"
@@ -84,6 +83,7 @@ ActiveRecord::Schema.define(version: 20141119111531) do
     t.datetime "updated_at",                   null: false
     t.string   "country_code"
     t.integer  "financial_status", default: 0
+    t.string   "photo"
   end
 
   add_index "users", ["financial_status"], name: "index_users_on_financial_status", using: :btree

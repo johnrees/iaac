@@ -10,4 +10,11 @@
         = f.input :public_email
         = f.input :private_email
         = f.input :country_code, label: 'Country'
+      %fieldset
+        %legend Photo
+        = image_tag @user.photo, id: 'photo-preview', style: 'max-height: 100px'
+        = f.input_field :photo, type: 'filepicker', data: { fp_apikey: 'AKgBepWaKTqCgyJQbKgyaz' }
+
       = f.submit "Update details", class: 'button'
+
+= javascript_include_tag '//api.filepicker.io/v1/filepicker.js', "data-turbolinks-track" => true

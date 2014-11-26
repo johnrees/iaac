@@ -12,9 +12,31 @@
           %th{style: 'width: 200px'}= column
           %td= @course[column]
 
-    %ul
-      - @course.versions.each do |version|
-        %li
-          = version.whodunnit
-          = version.event
-          = version.object
+.row
+  .columns.large-6
+    %h4 Tutors
+    %table
+      %tbody
+        - @course.tutors.each do |tutor|
+          %tr
+            %td= link_to tutor, tutor
+
+  .columns.large-6
+    %h4 Students
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Grade
+      %tbody
+        - @course.students.each do |student|
+          %tr
+            %td= link_to student, student
+            %td= Grade.where(student: student, course: @course).first
+
+    -# %ul
+    -#   - @course.versions.each do |version|
+    -#     %li
+    -#       = version.whodunnit
+    -#       = version.event
+    -#       = version.object

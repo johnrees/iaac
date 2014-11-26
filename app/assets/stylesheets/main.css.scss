@@ -173,6 +173,10 @@ li.user {
   font-weight: bold;
 }
 
+// ul.tree ul.tree {
+//   margin-left: 0;
+// }
+
 ul.tree {
   margin-left: 0;
   margin-bottom: 30px;
@@ -193,7 +197,7 @@ ul.tree {
       line-height: 1.5;
       font-size: 1em;
       list-style: none;
-      border-left-width: 2px;
+      border-left-width: 4px;
       border-left-style: solid;
       margin: 3px 0;
     }
@@ -247,6 +251,7 @@ a.something {
 
 li.course-link {
   border-left: #ddd;
+  font-weight: bold;
   &.highlight {
     border-left: #FEF200;
   }
@@ -255,3 +260,21 @@ li.course-link {
 canvas {
   cursor: pointer;
 }
+
+
+.grade {
+    background: #5CB85C;
+
+}
+
+  .grade.Fail {
+  background: #D9534F !important;
+  }
+  .grade.Incomplete {
+  background: #F0AD4E !important;
+  }
+  .grade {
+    p,h2, {
+      color: #FFF;
+    }
+  }

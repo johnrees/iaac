@@ -26,6 +26,13 @@
           %tr
             %td= link_to course, course
 
+      %hr/
+      %h3 Grades
+      %table
+        - @user.grades.each do |grade|
+          %tr
+            %td= grade
+
     %hr/
     %h3
       Transactions (€#{@user.status})
