@@ -34,16 +34,21 @@ RSpec.describe Course, :type => :model do
     expect(course.students).to include(user)
   end
 
-  it "has add_people before_update (students)" do
-    course.student_ids = [user.id]
-    course.save!
-    expect(course.students).to include(user)
+  %w(student tutor).each do |type|
+    it "has add_people before_update (#{type}s)" do
+      3.times do
+        u = create(:user)
+        u.add_role type, course
+      end
+      expect(course.send(type.pluralize).count).to eq(3)
+      # FIX THIS
+      course.tutor_ids = [user.id]
+      course.student_ids = [user.id]
+
+      course.save!
+      expect(course.send(type.pluralize)).to eq([user])
+    end
   end
 
-  it "has add_people before_update (tutors)" do
-    course.tutor_ids = [user.id]
-    course.save!
-    expect(course.tutors).to include(user)
-  end
 
 end
