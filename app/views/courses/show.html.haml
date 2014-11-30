@@ -1,20 +1,3 @@
-:css
-  .grade {
-    margin-bottom: 20px;
-  }
-  .my-grade {
-    font-size: 5em;
-    font-weight: bold;
-  }
-  .big-grade {
-    font-size: 3em;
-    font-weight: bold;
-    display: inline;
-  }
-  .small-grade {
-
-  }
-
 <script>
 window.urls = [];
 - @modules.each do |m|
@@ -33,8 +16,6 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
       = @course
       %span.subtitle= @course.subtitle
 
-.row
-  .columns.large-12
     - if policy(@course).update?
       = link_to "edit course", edit_course_path(@course), class: 'button tiny'
       - if current_user.has_role? :admin
@@ -43,6 +24,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
         = link_to "grades", course_grades_path(@course), class: 'button tiny'
 
 .row
+
   .columns.large-8
     .description{style: 'color: #888;'}
       - if @grade
@@ -62,13 +44,13 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
         - if @course.students.empty?
           .panel No students have been assigned to this module yet
         - else
-          %ul.small-block-grid-2.large-block-grid-5.medium-block-grid-3= render @course.students
+          %ul.small-block-grid-3.large-block-grid-5.medium-block-grid-3= render @course.students
 
-  .columns.large-4.side
+  .columns.large-4.side.right
     - if @modules.any?
       %h4 Course Modules
       %canvas#chart{height: 180}
-      = arranged_tree_as_list(@modules.arrange) do |course|
+      = arranged_tree_as_list(@modules.arrange(order: :name)) do |course|
         = link_to_unless_current course, course
 
     - if @course.tutors.any?

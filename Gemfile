@@ -23,7 +23,7 @@ gem 'haml-rails'
 gem 'countries'
 gem 'country_select'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'rolify'
+gem 'rolify', '3.4.0'
 gem 'responders'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -36,7 +36,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'pundit'
+gem 'pundit', github: 'elabs/pundit'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

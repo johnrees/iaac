@@ -17,6 +17,8 @@
   .columns.large-12
     = arranged_tree_as_list(@courses) do |course|
       = link_to course, [:admin,course]
+      %span.subtitle= course.subtitle
+
     -# %ul.large-block-grid-3
     -#   - Course.roots.each do |root|
     -#     %li

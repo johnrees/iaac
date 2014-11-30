@@ -1,14 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe Course, :type => :feature do
+RSpec.describe Grade, :type => :feature do
 
-  let(:tutor) { FactoryGirl.create(:user) }
-  let(:student) { FactoryGirl.create(:user, first_name: 'Bart', last_name: 'Simpson') }
-  let(:course) { FactoryGirl.create(:course) }
+  let(:tutor) { create(:user) }
+  let(:student) { create(:user, first_name: 'Bart', last_name: 'Simpson') }
+  let(:course) { create(:course) }
 
   before(:each) do
     tutor.add_role :tutor, course
     student.add_role :student, course
+  end
+
+  it "can submit for review" do
+    login tutor
+    visit course_grades_path(course)
+    fill_in "Value", with: 8.95
+    # choose "value-#{student.id}-2", visible: false
+    fill_in "notes-#{student.id}", with: "These are some notes"
+    click_button "Create Grade"
+    click_link "Submit for Review"
+    expect(page).to have_content("sent")
   end
 
   it "can see course grades" do
@@ -19,12 +30,25 @@ RSpec.describe Course, :type => :feature do
     expect(page).to have_content("Bart Simpson")
   end
 
-  skip "has self.for method"
+  it "can add grades" do
+    login tutor
+    visit course_grades_path(course)
+    fill_in "Value", with: 2.14
+    # choose "value-#{student.id}-2", visible: false
+    fill_in "notes-#{student.id}", with: "These are some notes"
+    click_button "Create Grade"
+    expect(page).to have_content("successfully created")
+  end
 
-# 0-3   FAIL (this means that the student is not going to get his Master Degree, so this grade has to be justified and well explained)
-# 4     INCOMPLETE (this means that the tutor has to offer another deadline in order to receive a second submission that he will grade again)
-# 5-6   LOW PASS
-# 7-8   PASS
-# 9-10  HIGH PASS
+  it "can update grades" do
+    create(:grade, student: student, value: 1, course: course)
+    login tutor
+    visit course_grades_path(course)
+    fill_in "Value", with: 7.99
+    # choose "value-#{student.id}-1", visible: false
+    fill_in "notes-#{student.id}", with: "These are some notes"
+    click_button "Update Grade"
+    expect(page).to have_content("successfully updated")
+  end
 
 end

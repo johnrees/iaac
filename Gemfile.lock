@@ -10,6 +10,13 @@ GIT
       polyamorous (~> 1.1)
 
 GIT
+  remote: git://github.com/elabs/pundit.git
+  revision: 1609690fc45d0389af38d6fe19aad79478895252
+  specs:
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/kossnocorp/jquery.turbolinks.git
   revision: 6f336f1d3acceef95f9289129b64b00edc5709e7
   specs:
@@ -199,8 +206,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pundit (0.3.0)
-      activesupport (>= 3.0.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.6.0.beta)
@@ -238,7 +243,7 @@ GEM
       json (~> 1.4)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
-    rolify (3.4.1)
+    rolify (3.4.0)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -346,12 +351,12 @@ DEPENDENCIES
   letter_opener
   paper_trail
   pg
-  pundit
+  pundit!
   quiet_assets
   rails (= 4.2.0.beta4)
   ransack!
   responders
-  rolify
+  rolify (= 3.4.0)
   rspec-rails
   sass-rails (~> 5.0.0.beta1)
   sdoc (~> 0.4.0)

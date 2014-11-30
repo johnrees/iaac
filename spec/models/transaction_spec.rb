@@ -10,19 +10,19 @@ RSpec.describe Transaction, :type => :model do
   skip "has amount_as_decimal"
 
   it "calls update_user after_save" do
-    transaction = FactoryGirl.create(:transaction, amount: 100)
-    FactoryGirl.create(:transaction, amount: -50, user: transaction.user)
+    transaction = create(:transaction, amount: 100)
+    create(:transaction, amount: -50, user: transaction.user)
     expect(transaction.user.financial_status).to eq(50)
   end
 
   it "has total" do
-    FactoryGirl.create(:transaction, amount: 100)
-    FactoryGirl.create(:transaction, amount: 200)
+    create(:transaction, amount: 100)
+    create(:transaction, amount: 200)
     expect(Transaction.total).to eq(300)
   end
 
   it "has amount_as_decimal" do
-    transaction = FactoryGirl.create(:transaction, amount_as_decimal: "$300.00")
+    transaction = create(:transaction, amount_as_decimal: "$300.00")
     expect(transaction.amount).to eq(30000)
   end
 

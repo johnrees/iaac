@@ -9,11 +9,17 @@ RSpec.describe Course, :type => :model do
   skip "acts as tree"
   skip "resourcify"
 
-  let(:course) { FactoryGirl.create(:course) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:course) { create(:course) }
+  let(:user) { create(:user) }
+
+  skip "has self.for method"
+
+  it "has full name" do
+    expect(build_stubbed(:course, name: 'AA', subtitle: 'BB').full_name).to eq('AA / BB')
+  end
 
   it "has to_s" do
-    expect(FactoryGirl.build_stubbed(:course, name: 'MAA').to_s).to eq('MAA')
+    expect(build_stubbed(:course, name: 'MAA').to_s).to eq('MAA')
   end
 
   it "has tutors" do

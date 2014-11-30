@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :course do
     name "Architecture Course"
     description "A description of the architecture course"
+    published true
   end
 end

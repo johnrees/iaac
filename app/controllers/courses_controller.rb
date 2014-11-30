@@ -2,17 +2,6 @@ class CoursesController < ApplicationController
 
   before_filter :check_auth
 
-  def new
-    @course = Course.new
-    authorize @course
-  end
-
-  def create
-    @course = Course.create course_params
-    authorize @course
-    respond_with @course
-  end
-
   def index
     courses = current_user.courses.pluck('courses.ancestry,courses.id')
     ids = courses.map(&:last)
@@ -23,7 +12,7 @@ class CoursesController < ApplicationController
       courses,
       courses.map{|val| "#{val}%" },
       courses
-    ).arrange(order: :name)
+    ).where(published: true).arrange(order: :name)
 
   end
 

@@ -1,0 +1,8 @@
+.row
+  .columns.large-12
+    = simple_form_for [:admin,@user] do |f|
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :public_email
+      = f.input :private_email
+      = f.submit

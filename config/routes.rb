@@ -7,13 +7,16 @@ Rails.application.routes.draw do
   resources :users, path: 'people'
   resources :sessions
 
-  resources :courses do
-    resources :grades
+  resources :courses, except: [:new, :create] do
+    resources :grades do
+      post :submit_for_review, on: :collection
+    end
   end
 
   namespace :admin do
     resources :courses
     resources :users do
+      post :modify, on: :collection
       resources :charges
       resources :payments
     end

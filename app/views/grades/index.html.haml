@@ -1,26 +1,3 @@
-:css
-  label {
-  font-size: 0.8em;
-  font-weight: bold;
-  }
-  label input.grade-radio {
-  margin-left: 2px !important;
-  }
-  textarea {
-  font-size: 0.8em;
-  margin: 0 !important;
-  }
-  .grade {
-    margin-top: 5px;
-    padding: 5px 8px;
-    font-size: 0.7em;
-    color: #FFF;
-    text-transform: uppercase;
-    border-radius: 4px;
-    display: none;
-    clear: both;
-  }
-
 .row
   .columns.large-12
     %ul.breadcrumbs
@@ -63,23 +40,26 @@
                       = link_to student, student, data: { reveal_id: "modal", reveal_ajax: "true" }
                       .grade
 
-                    - Grade::GRADES.each_with_index do |type, i|
-                      %td
-                        = label_tag do
-                          = (i+1)
-                          = f.radio_button :value, (i+1), class: 'grade-radio', id: "value-#{student.id}-#{i+1}", data: { grade: type }
-                          -# = radio_button_tag "student-#{student.id}-value", i, nil, class: 'grade-radio'
+                    = f.input :value, as: :string
+                    -# - Grade::GRADES.each_with_index do |type, i|
+                    -#   %td
+                    -#     = label_tag do
+                    -#       = (i+1)
+                    -#       = f.radio_button :value, (i+1), class: 'grade-radio', id: "value-#{student.id}-#{i+1}", data: { grade: type }
+                    -#       -# = radio_button_tag "student-#{student.id}-value", i, nil, class: 'grade-radio'
                     %tr
                       %td{colspan: 100, style: 'background: none !important'}= f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
                       = f.association :student, as: :hidden
+                      = f.submit
 
-    = button_tag "Send grades to Students", data: { confirm: "Are you sure you want to do this?"}
+    = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}
 
-:javascript
-  TogetherJSConfig_autoStart = true
-  TogetherJSConfig_siteName = 'IAAC'
-  TogetherJSConfig_toolName = 'Collaboration'
-  TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
-  TogetherJSConfig_dontShowClicks = true
-  TogetherJSConfig_cloneClicks = "table#grades input"
-= javascript_include_tag "https://togetherjs.com/togetherjs-min.js"
+- unless Rails.env.test?
+  :javascript
+    TogetherJSConfig_autoStart = true
+    TogetherJSConfig_siteName = 'IAAC'
+    TogetherJSConfig_toolName = 'Collaboration'
+    TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
+    TogetherJSConfig_dontShowClicks = true
+    TogetherJSConfig_cloneClicks = "table#grades input"
+  = javascript_include_tag "https://togetherjs.com/togetherjs-min.js"

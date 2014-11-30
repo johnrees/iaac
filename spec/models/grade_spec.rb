@@ -10,4 +10,10 @@ RSpec.describe Grade, :type => :model do
   skip { should validate_presence_of(:course) }
   skip { should validate_presence_of(:value) }
 
+  it "has to_s" do
+    course = build(:course, name: 'a course')
+    grade = build(:grade, value: 3, course: course)
+    expect(grade.to_s).to eq('3 - a course')
+  end
+
 end

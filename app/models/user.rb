@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_uniqueness_of :public_email, :private_email
 
-  validates :public_email, :first_name, :last_name, :country_code, presence: true
+  validates :public_email, :first_name, :last_name, presence: true
+  # :country_code,
 
   has_many :transactions
   has_many :payments
@@ -15,25 +16,25 @@ class User < ActiveRecord::Base
   has_many :given_grades, class_name: 'Grade', foreign_key: 'grader_id'
   has_many :received_grades, class_name: 'Grade', foreign_key: 'student_id'
 
-  ransacker :student_users, :formatter => proc { |v|
-    # [10,100]
-    # User.with_role(:student,:any).map(&:id)
-    # Course.find(v).students.map(&:id)
-    # Role.joins(:users).where(:roles => { :name => :student, :resource_type => :student }, :users => {:id => v}).map(&:resource_id)
-    # Role.joins(:users)
-    # Course.find(v).students.map(&:id)
-    [10,11]
-    # User.with_role(:student,:any).map(&:id)
-  } do |parent|
-    parent.table[:first_name]
-  end
+  # ransacker :student_users, :formatter => proc { |v|
+  #   # [10,100]
+  #   # User.with_role(:student,:any).map(&:id)
+  #   # Course.find(v).students.map(&:id)
+  #   # Role.joins(:users).where(:roles => { :name => :student, :resource_type => :student }, :users => {:id => v}).map(&:resource_id)
+  #   # Role.joins(:users)
+  #   # Course.find(v).students.map(&:id)
+  #   [10,11]
+  #   # User.with_role(:student,:any).map(&:id)
+  # } do |parent|
+  #   parent.table[:first_name]
+  # end
 
   def to_s
     "#{first_name} #{last_name}"
   end
 
   def avatar
-    photo || "http://placehold.it/200x200"
+    photo.present? ? "#{photo}/convert?format=jpg&fit=crop&w=200&h=200" : "http://placehold.it/200x200"
   end
 
   def courses
@@ -57,7 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def enrolled_in? course
-    return true unless course.leaf?
+    # return true unless course.has_children?
     has_role?(:student, course) || has_role?(:tutor, course) || has_role?(:admin)
   end
 

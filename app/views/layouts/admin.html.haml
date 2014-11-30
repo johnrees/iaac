@@ -2,7 +2,7 @@
 %html
   %head
     %title= [content_for(:title),'IAAC Admin'].reject(&:blank?).join(' | ')
-    = javascript_include_tag "application"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   %body#admin
 

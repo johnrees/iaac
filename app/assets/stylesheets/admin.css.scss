@@ -1,14 +1,15 @@
 body#admin {
 
+  table {
+    overflow-x: scroll;
+    max-width: 100%;
+  }
+
   .top-bar {
     li a {
       color: #EEE !important;
       background-color: #444444 !important;
     }
-  }
-
-  table {
-    width: 100%;
   }
 
   td,th {
@@ -37,13 +38,10 @@ body#admin {
       rotate(315deg);
     width: 30px;
   }
+
   th.rotate > div > span {
     border-bottom: 1px solid #ccc;
     padding: 5px 10px;
-  }
-
-  label {
-    // border-top: 2px solid red;
   }
 
   table {
@@ -51,7 +49,6 @@ body#admin {
   }
 
   table, tr, td, th {
-    // width: 100%;
     padding: 0;
     border-collapse: collapse;
     cell-padding: none;

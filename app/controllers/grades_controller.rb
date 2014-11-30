@@ -2,6 +2,11 @@ class GradesController < ApplicationController
 
   respond_to :html, :js
 
+  def submit_for_review
+    @course = Course.find(params[:course_id])
+    render text: 'sent'
+  end
+
   def index
     @course = Course.find(params[:course_id])
     @grades = @course.grades

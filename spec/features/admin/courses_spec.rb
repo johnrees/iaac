@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Course, :type => :feature do
 
-  let(:course) { FactoryGirl.create(:course, name: 'Painting') }
-  let(:admin) { FactoryGirl.create(:user) }
+  let(:course) { create(:course, name: 'Painting') }
+  let(:admin) { create(:user) }
 
   before(:each) do
     admin.add_role :admin
@@ -30,7 +30,7 @@ RSpec.describe Course, :type => :feature do
     expect(page).to have_content("created")
   end
 
-  skip "can edit course" do
+  it "can edit course" do
     visit admin_course_path(course)
     click_link "edit"
     fill_in "Description", with: "blahblahblah"
@@ -38,7 +38,7 @@ RSpec.describe Course, :type => :feature do
     expect(page).to have_content("blahblahblah")
   end
 
-  skip "can delete course" do
+  it "can delete course" do
     visit admin_course_path(course)
     click_button "delete"
     expect(page).to have_content("destroyed")

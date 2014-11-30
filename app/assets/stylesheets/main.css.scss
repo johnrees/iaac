@@ -278,3 +278,61 @@ canvas {
       color: #FFF;
     }
   }
+
+
+.c-grades.a-index {
+
+  form {
+    margin: 0;
+    padding: 0;
+  }
+
+  input[type=submit] {
+    display: none;
+  }
+
+  label {
+  font-size: 0.8em;
+  font-weight: bold;
+  }
+  label input.grade-radio {
+  margin-left: 2px !important;
+  }
+  textarea {
+  font-size: 0.8em;
+  margin: 0 !important;
+  }
+  .grade {
+    margin-top: 5px;
+    padding: 5px 8px;
+    font-size: 0.7em;
+    color: #FFF;
+    text-transform: uppercase;
+    border-radius: 4px;
+    display: none;
+    clear: both;
+  }
+
+}
+
+ul a {
+  font-weight: bold;
+}
+
+.c-courses.a-show {
+  .grade {
+    margin-bottom: 20px;
+  }
+  .my-grade {
+    font-size: 5em;
+    font-weight: bold;
+  }
+  .big-grade {
+    font-size: 3em;
+    font-weight: bold;
+    display: inline;
+  }
+  .small-grade {
+
+  }
+}

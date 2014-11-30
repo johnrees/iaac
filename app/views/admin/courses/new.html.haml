@@ -1,11 +1,4 @@
 .row
   .columns.large-12
     = title "Add Course"
-
-    = simple_form_for [:admin,@course] do |f|
-      %fieldset
-        %legend Course Details
-        -# = f.association :parent
-        = f.input :name
-        = f.input :description
-      = f.submit class: 'button'
+    = render "form", course: @course

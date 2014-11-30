@@ -1,4 +1,5 @@
 jQuery ->
+
   $('#toggle-all').click ->
     val = $(this).is(':checked')
     console.log val

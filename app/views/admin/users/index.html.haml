@@ -9,33 +9,36 @@
     .panel
       = search_form_for [:admin,@q], :builder => SimpleForm::FormBuilder do |f|
         = f.input :first_name_or_last_name_cont
-        = f.input :student_users_in, :collection => Course.all
+        -# = f.input :student_users_in, :collection => Course.all
         = f.submit 'Filter', class: 'button small'
 
     -# %h4 Total: €#{User.fancy_amount Transaction.total}
 
-    %table
-      %thead
-        %tr
-          %th= check_box_tag :toggle_all, nil, false, id: 'toggle-all'
-          %th
-            = sort_link @q, :first_name, 'First'
-            \/
-            = sort_link @q, :last_name
-          %th= sort_link @q, :financial_status, 'Status'
-          %th= sort_link @q, :public_email
-          %th= sort_link @q, :private_email
-          %th= sort_link @q, :created_at, 'Registered'
-      %tbody
-        - @users.each do |user|
+    = form_tag modify_admin_users_path, method: 'post' do
+      = button_tag "Delete Selected", name: 'delete-selected', class: 'button tiny'
+
+      %table
+        %thead
           %tr
-            %td{style: "vertical-align: middle"}= check_box_tag "user_ids[]", user.id
-            %td
-              = link_to user.first_name, admin_user_path(user), class: 'dark'
-              = link_to user.last_name, admin_user_path(user), class: 'dark'
-            %td.amount
-              - unless user.status == '0.00'
-                = user.status
-            %td= mail_to user.public_email, user.public_email
-            %td= mail_to user.private_email, user.private_email
-            %td{style: 'text-align: right'}= user.created_at.stamp('2 Nov 99')
+            %th= check_box_tag :toggle_all, nil, false, id: 'toggle-all'
+            %th
+              = sort_link @q, :first_name, 'First'
+              \/
+              = sort_link @q, :last_name
+            %th= sort_link @q, :financial_status, 'Status'
+            %th= sort_link @q, :public_email
+            %th= sort_link @q, :private_email
+            %th= sort_link @q, :created_at, 'Registered'
+        %tbody
+          - @users.each do |user|
+            = content_tag_for :tr, user do
+              %td{style: "vertical-align: middle"}= check_box_tag "user_ids[]", user.id
+              %td
+                = link_to user.first_name, admin_user_path(user), class: 'dark'
+                = link_to user.last_name, admin_user_path(user), class: 'dark'
+              %td.amount
+                - unless user.status == '0.00'
+                  = user.status
+              %td= mail_to user.public_email, user.public_email
+              %td= mail_to user.private_email, user.private_email
+              %td{style: 'text-align: right'}= user.created_at.stamp('2 Nov 99')

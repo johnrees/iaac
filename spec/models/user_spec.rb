@@ -5,7 +5,7 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of :public_email }
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :last_name }
-  it { should validate_presence_of :country_code }
+  # it { should validate_presence_of :country_code }
   it { should validate_uniqueness_of :public_email }
   it { should validate_uniqueness_of :private_email }
 
@@ -13,7 +13,7 @@ RSpec.describe User, :type => :model do
   it { should have_many(:received_grades) }
 
   let(:user) {
-    FactoryGirl.build_stubbed(:user, first_name: "Homer", last_name: "Simpson")
+    build_stubbed(:user, first_name: "Homer", last_name: "Simpson")
   }
 
   it "has name as to_s" do
@@ -21,9 +21,20 @@ RSpec.describe User, :type => :model do
   end
 
   it "has country" do
-    expect(FactoryGirl.build_stubbed(:user, country_code: 'fr').country.to_s).to eq('France')
+    expect(build_stubbed(:user, country_code: 'fr').country.to_s).to eq('France')
   end
 
   skip "has courses"
+
+  it "has enrolled_in?" do
+    user = create(:user)
+    course = create(:course)
+    expect(user.has_role? :student, course).to be_falsey
+    expect(user.enrolled_in? course).to be_falsey
+    user.add_role :student, course
+    user.reload
+    expect(user.has_role? :student, course).to be_truthy
+    expect(user.enrolled_in? course).to be_truthy
+  end
 
 end
