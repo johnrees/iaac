@@ -28,13 +28,13 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
   .columns.large-8
     .description{style: 'color: #888;'}
       - if @grade
-        .panel.grade{style: 'border: none; color: #FFF;', class: Grade::GRADES[@grade.value-1]}
+        .panel.grade{style: 'border: none; color: #FFF;', class: Grade::GRADES[(@grade.value/100)-1]}
           .row
             .columns.small-3
-              %span.big-grade= @grade.value
+              %span.big-grade= @grade.value_as_decimal
               %span.small-grade /10
             .columns.small-9
-              %h2= Grade::GRADES[@grade.value-1].upcase
+              %h2= Grade::GRADES[(@grade.value/100)-1].upcase
               = simple_format @grade.notes
 
       = simple_format Faker::Lorem.paragraphs(3).join("\n\n")

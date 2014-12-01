@@ -322,17 +322,22 @@ ul a {
   }
 }
 
-#main-container {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  width: 100%;
-}
-
-#main {
-  flex: 1;
-}
-
 a.inactive {
   color: #888;
 }
+
+// .contain-to-grid {
+//   height: 65px;
+//   margin-bottom: 15px;
+// }
+
+// #main-container {
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+//   width: 100%;
+// }
+
+// #main {
+//   flex: 1;
+// }

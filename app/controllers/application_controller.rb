@@ -25,7 +25,7 @@ private
   helper_method :current_user
 
   def check_auth
-    redirect_to login_url(goto: request.path), alert: "Not authorized" if current_user.nil?
+    redirect_to login_url(goto: request.path), alert: ("Not authorized" if request.path != '/') if current_user.nil?
   end
 
 end
