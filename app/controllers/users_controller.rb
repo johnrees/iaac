@@ -43,7 +43,8 @@ private
       :password,
       :password_confirmation,
       :country_code,
-      :photo
+      :photo,
+      :description
     )
   end
 
