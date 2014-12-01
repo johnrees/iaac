@@ -8,7 +8,7 @@
 
     .panel
       = search_form_for [:admin,@q], :builder => SimpleForm::FormBuilder do |f|
-        = f.input :first_name_or_last_name_cont
+        = f.input :first_name_or_last_name_cont, label: 'First or Last Name'
         -# = f.input :student_users_in, :collection => Course.all
         = f.submit 'Filter', class: 'button small'
 
@@ -25,7 +25,7 @@
               = sort_link @q, :first_name, 'First'
               \/
               = sort_link @q, :last_name
-            %th= sort_link @q, :financial_status, 'Status'
+            -# %th= sort_link @q, :financial_status, 'Status'
             %th= sort_link @q, :public_email
             %th= sort_link @q, :private_email
             %th= sort_link @q, :created_at, 'Registered'
@@ -34,11 +34,12 @@
             = content_tag_for :tr, user do
               %td{style: "vertical-align: middle"}= check_box_tag "user_ids[]", user.id
               %td
+                = image_tag user.avatar, class: 'user-avatar tiny'
                 = link_to user.first_name, admin_user_path(user), class: 'dark'
                 = link_to user.last_name, admin_user_path(user), class: 'dark'
-              %td.amount
-                - unless user.status == '0.00'
-                  = user.status
+              -# %td.amount
+              -#   - unless user.status == '0.00'
+              -#     = user.status
               %td= mail_to user.public_email, user.public_email
               %td= mail_to user.private_email, user.private_email
               %td{style: 'text-align: right'}= user.created_at.stamp('2 Nov 99')

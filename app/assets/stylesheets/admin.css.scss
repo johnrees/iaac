@@ -19,6 +19,17 @@ body#admin {
     }
   }
 
+  th {
+    vertical-align: middle;
+  }
+  table input {
+      margin: 0;
+    }
+
+  thead th {
+    padding: 10px 5px !important;
+  }
+
   .top-bar {
     background: #444;
   }

@@ -347,6 +347,12 @@ img.user-avatar {
   width: 200px;
   height: auto;
   border-radius: 4px;
+  &.tiny {
+    border-radius: 2px;
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }
 }
 
 input[type='number'] {

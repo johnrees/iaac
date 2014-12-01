@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201082310) do
+ActiveRecord::Schema.define(version: 20141201105348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20141201082310) do
     t.boolean  "published",      default: false
     t.string   "ancestry"
     t.integer  "ancestry_depth", default: 0
+    t.boolean  "gradeable",      default: false
   end
 
   create_table "grades", force: true do |t|

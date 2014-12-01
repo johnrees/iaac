@@ -5,6 +5,8 @@
 .row
   .columns.large-12
     = arranged_tree_as_list(@courses, ul_class_top: ['large-block-grid-3']) do |course|
+      -# .course-grade{class: ('gradeable' if course.gradeable?) } 10.00
+      -# .course-info
       = link_to course, course, class: (course.active ? 'active' : 'inactive')
       %span.subtitle= course.subtitle
 

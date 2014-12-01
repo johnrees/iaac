@@ -6,6 +6,7 @@
     = simple_form_for @course do |f|
       %fieldset
         %legend Course Details
+        = f.input :gradeable
         = f.input :name
         = f.input :description
       = f.submit

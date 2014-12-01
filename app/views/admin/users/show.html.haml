@@ -32,12 +32,12 @@
           %tr
             %td= link_to course, course
 
-      %hr/
-      %h3 Grades
-      %table
-        - @user.grades.each do |grade|
-          %tr
-            %td= grade
+      -# %hr/
+      -# %h3 Grades
+      -# %table
+      -#   - @user.grades.each do |grade|
+      -#     %tr
+      -#       %td= grade
 
     %hr/
     %h3
@@ -69,3 +69,4 @@
     -#     %tr
     -#       %th{style: 'width: 200px'}= column
     -#       %td= @user[column]
+
