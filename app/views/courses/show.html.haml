@@ -65,4 +65,4 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
                 .user-name= tutor
                 .tutor-description
                   .email= mail_to tutor.public_email, tutor.public_email
-                  = tutor.description
+                  = truncate tutor.description, length: 200
