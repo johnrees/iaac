@@ -53,11 +53,12 @@ gem 'rails_12factor'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'ffaker'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'brakeman'
-  gem 'ffaker'
   gem 'launchy'
   gem 'quiet_assets', group: :development
 end
