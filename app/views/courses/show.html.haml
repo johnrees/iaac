@@ -51,7 +51,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
       %h4 Course Modules
       %canvas#chart{height: 180}
       = arranged_tree_as_list(@modules.arrange(order: :name)) do |course|
-        = link_to_unless_current course, course
+        = link_to_unless_current course, course, class: (@ids.include?(course.id) ? 'active' : 'inactive')
         %span.subtitle= course.subtitle
 
     - if @course.tutors.any?

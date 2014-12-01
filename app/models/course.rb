@@ -25,6 +25,8 @@ class Course < ActiveRecord::Base
   #   students.map(&:id)
   # end
 
+
+
   def to_param
     "#{id}-#{name.gsub('.','').parameterize}-#{created_at.year}"
   end

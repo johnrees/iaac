@@ -14,7 +14,7 @@ RSpec.describe Grade, :type => :feature do
   it "can submit for review" do
     login tutor
     visit course_grades_path(course)
-    fill_in "Value", with: 8.95
+    fill_in "value-#{student.id}", with: 8.95
     # choose "value-#{student.id}-2", visible: false
     fill_in "notes-#{student.id}", with: "These are some notes"
     click_button "Create Grade"
@@ -33,7 +33,7 @@ RSpec.describe Grade, :type => :feature do
   it "can add grades" do
     login tutor
     visit course_grades_path(course)
-    fill_in "Value", with: 2.14
+    fill_in "value-#{student.id}", with: 2.14
     # choose "value-#{student.id}-2", visible: false
     fill_in "notes-#{student.id}", with: "These are some notes"
     click_button "Create Grade"
@@ -44,7 +44,7 @@ RSpec.describe Grade, :type => :feature do
     create(:grade, student: student, value: 1, course: course)
     login tutor
     visit course_grades_path(course)
-    fill_in "Value", with: 7.99
+    fill_in "value-#{student.id}", with: 7.99
     # choose "value-#{student.id}-1", visible: false
     fill_in "notes-#{student.id}", with: "These are some notes"
     click_button "Update Grade"

@@ -13,3 +13,4 @@ jQuery ->
   $('.alert-box').delay(2000).fadeOut()
   $('textarea').autosize()
   $('#charge_amount_as_decimal, #payment_amount_as_decimal').maskMoney({thousands:' ', decimal:',', allowZero:true, suffix: ' €'})
+  $('input.decimal').maskMoney({decimal:'.', allowZero:true})
