@@ -6,7 +6,9 @@
     = f.input :parent_id, collection: Course.list_for_select
     = f.input :gradeable
     = f.input :name
+    = f.input :subtitle
     = f.input :description
+    = f.input :credits
 
   - unless @course.new_record? or @course.has_children?
     %fieldset
