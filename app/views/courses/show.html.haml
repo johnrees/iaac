@@ -37,7 +37,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
               %h2= Grade::GRADES[(@grade.value/100)-1].upcase
               = simple_format @grade.notes
 
-      = simple_format Faker::Lorem.paragraphs(3).join("\n\n")
+      = simple_format @course.description
     .row
       .columns.large-12
         %h4 Students
