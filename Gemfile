@@ -54,6 +54,7 @@ gem 'rails_12factor'
 # gem 'capistrano-rails', group: :development
 
 gem 'ffaker'
+gem "airbrake"
 
 group :development, :test do
   gem 'rspec-rails'
