@@ -252,20 +252,17 @@ canvas {
 
 
 .grade {
-    background: #5CB85C;
+  background: #5CB85C;
+  &.Fail {
+    background: #D9534F !important;
+  }
+  &.Incomplete {
+    background: #F0AD4E !important;
+  }
+  p,h2, {
+    color: #FFF;
+  }
 }
-
-  .grade.Fail {
-  background: #D9534F !important;
-  }
-  .grade.Incomplete {
-  background: #F0AD4E !important;
-  }
-  .grade {
-    p,h2, {
-      color: #FFF;
-    }
-  }
 
 
 .c-grades.a-index {
@@ -334,4 +331,8 @@ ul a {
 
 #main {
   flex: 1;
+}
+
+a.inactive {
+  color: #888;
 }

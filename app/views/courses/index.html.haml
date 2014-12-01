@@ -5,7 +5,7 @@
 .row
   .columns.large-12
     = arranged_tree_as_list(@courses) do |course|
-      = link_to course, course
+      = link_to course, course, class: (course.active ? 'active' : 'inactive')
       %span.subtitle= course.subtitle
 
     -# %ul.large-block-grid-3

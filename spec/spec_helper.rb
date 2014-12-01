@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
   # config.include MailerMacros
 
   # rspec-expectations config goes here. You can use an alternate
