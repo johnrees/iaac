@@ -1,1 +1,5 @@
+<% if @grade.errors.any? %>
+alert("<%= escape_javascript(@grade.errors.messages.inspect).html_safe %>");
+<% else %>
 console.log("Grade updated");
+<% end %>

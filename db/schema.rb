@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125155138) do
+ActiveRecord::Schema.define(version: 20141201082310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20141125155138) do
     t.integer  "grader_id"
     t.integer  "student_id"
     t.integer  "course_id"
-    t.integer  "value"
+    t.decimal  "value",      precision: 6, scale: 2
     t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "grades", ["grader_id"], name: "index_grades_on_grader_id", using: :btree
@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(version: 20141125155138) do
   create_table "transactions", force: true do |t|
     t.string   "type"
     t.integer  "user_id"
-    t.integer  "amount"
+    t.decimal  "amount",      precision: 8, scale: 2
     t.text     "description"
     t.datetime "occurred_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "transactions", ["type", "user_id"], name: "index_transactions_on_type_and_user_id", using: :btree

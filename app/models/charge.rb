@@ -1,8 +1,6 @@
 class Charge < Transaction
 
-
   before_save :make_negative
-
 
 private
 

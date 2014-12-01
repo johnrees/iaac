@@ -12,8 +12,8 @@ RSpec.describe Grade, :type => :model do
 
   it "has to_s" do
     course = build(:course, name: 'a course')
-    grade = build(:grade, value: 3, course: course)
-    expect(grade.to_s).to eq('3 - a course')
+    grade = build(:grade, value: 3.45, course: course)
+    expect(grade.to_s).to eq('3.45 - a course')
   end
 
 end

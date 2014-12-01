@@ -1,15 +1,15 @@
 class GradePolicy < ApplicationPolicy
 
   def index?
-    user
+    user.has_role?(:tutor, :any) || user.has_role?(:admin)
   end
 
   def create?
-    true
+    user.has_role?(:tutor, record.course) || user.has_role?(:admin)
   end
 
   def update?
-    true
+    user.has_role?(:tutor, record.course) || user.has_role?(:admin)
   end
 
 end

@@ -31,7 +31,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
         .panel.grade{style: 'border: none; color: #FFF;', class: Grade::GRADES[(@grade.value/100)-1]}
           .row
             .columns.small-3
-              %span.big-grade= @grade.value_as_decimal
+              %span.big-grade= @grade.value
               %span.small-grade /10
             .columns.small-9
               %h2= Grade::GRADES[(@grade.value/100)-1].upcase

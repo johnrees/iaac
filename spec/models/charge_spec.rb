@@ -9,5 +9,4 @@ RSpec.describe Charge, :type => :model do
     expect(charge.amount).to eq(-100)
   end
 
-
 end

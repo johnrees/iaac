@@ -4,7 +4,8 @@
     = simple_form_for [:admin, @user, @payment] do |f|
       %h3= @user
       %hr/
-      = f.input :amount_as_decimal, label: 'Amount in €'
+      -# = f.input :amount_as_decimal, label: 'Amount in €'
+      = f.input :amount, label: 'Amount in €'
       = f.input :description, placeholder: 'Remember to include any receipt or transfer references...'
       = f.input :occurred_at
       = f.submit class: 'button'

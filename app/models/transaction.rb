@@ -4,10 +4,12 @@ class Transaction < ActiveRecord::Base
   after_save :update_user
 
   # before_validation :do_conversion
-  attr_accessor :amount_as_decimal
+  # attr_accessor :amount_as_decimal
 
   validates_presence_of :description
   # validates_presence_of :amount_as_decimal, :description
+
+  validates :amount, :format => { :with => /\A\-?\d+(?:\.\d{0,2})?\z/ }, :numericality => true
 
   default_scope{order('id desc')}
 
@@ -15,10 +17,10 @@ class Transaction < ActiveRecord::Base
     self.pluck(:amount).inject(0, &:+)
   end
 
-  def amount_as_decimal=(value)
-    @amount_as_decimal = value
-    self.amount = value.gsub(/[^0-9]/i, '')
-  end
+  # def amount_as_decimal=(value)
+  #   @amount_as_decimal = value
+  #   self.amount = value.gsub(/[^0-9]/i, '')
+  # end
 
 private
 

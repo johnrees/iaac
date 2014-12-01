@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def self.fancy_amount num
-    '%.2f' % [((num||0)/100.0)]
+    '%.2f' % (num||0)
   end
 
   def status

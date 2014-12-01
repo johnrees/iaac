@@ -42,7 +42,7 @@
                         = image_tag student.avatar, style: 'width: 50px; height: auto;'
 
                       .grade
-                    %td{width: 90}= f.input_field :value_as_decimal, as: :string, class: 'decimal', id: "value-#{student.id}"
+                    %td{width: 90}= f.input_field :value, step: 0.01, id: "value-#{student.id}"
                     %td{colspan: 100, style: 'background: none !important'}
                       = f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
                       = f.association :student, as: :hidden
