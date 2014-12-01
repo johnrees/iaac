@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   layout "auth"
 
   def new
+    redirect_to root_url if current_user
   end
 
   def create
