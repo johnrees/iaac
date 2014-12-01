@@ -60,7 +60,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
         .row{style: 'margin-top: 20px'}
           .columns.large-12
             .media
-              .media-left= image_tag user.avatar, class: 'user-avatar', style: 'width: 70px; height: 70px'
+              .media-left= image_tag tutor.avatar, class: 'user-avatar', style: 'width: 70px; height: 70px'
               .media-body
                 .user-name= tutor
                 .tutor-description
