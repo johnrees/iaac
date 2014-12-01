@@ -8,6 +8,8 @@
   %body.sessions
     .row
       .columns.large-4.medium-6.small-11.small-centered#container
+        = image_tag "logo-iaac.png", style: 'width: 100%; margin-bottom: 30px;'
+
         - flash.each do |key, value|
           = content_tag :div, value, class: "flash #{key}"
         = yield
