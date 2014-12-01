@@ -57,6 +57,14 @@ $rem-base: 15px;
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
 
+@mixin exports($name) {
+  $module_index: index($modules, $name);
+  @if (($module_index == null) or ($module_index == false)) {
+    $modules: append($modules, $name);
+    @content;
+  }
+}
+
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
 

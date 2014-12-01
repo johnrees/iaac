@@ -9,7 +9,7 @@
     = javascript_include_tag 'application', "data-turbolinks-track" => true
     = csrf_meta_tags
 
-  %body{:class => "c-#{controller_name} a-#{action_name}"}
+  %body{class: "c-#{controller_name} a-#{action_name}"}
     .contain-to-grid
       %nav.top-bar{"data-topbar" => "", :role => "navigation"}
         %ul.title-area
@@ -36,19 +36,19 @@
             -#   .row.collapse
             -#     .large-8.small-9.columns
             -#       %input{:placeholder => "Search...", :type => "text"}
-
-    - flash.each do |name, msg|
-      - if msg.is_a?(String)
-        %div{:class => "alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}", "data-alert" => ""}
-          = content_tag :div, msg
-          %a.close{:href => "#"} &times;
-    = yield
-    #modal.reveal-modal.medium{data: {reveal: true}}
-    %footer
-      .row
-        .columns.large-12
-          %ul
-            %li= link_to "Contact Us", "#"
-            %li= link_to "Privacy Policy", "#"
-            %li= link_to "Terms of Use", "#"
-          .address Institut d'Arquitectura Avançada de Catalunya - Pujades 102 baixos, Poble Nou, 08005 Barcelona - tel. (+34) 93 320 95 20 - fax (+34) 93 300 43 33
+    #main-container
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          %div{:class => "alert-box #{name.to_s == 'notice' ? 'success' : 'alert'}", "data-alert" => ""}
+            = content_tag :div, msg
+            %a.close{:href => "#"} &times;
+      #main= yield
+      #modal.reveal-modal.medium{data: {reveal: true}}
+      %footer
+        .row
+          .columns.large-12
+            %ul
+              %li= link_to "Contact Us", "#"
+              %li= link_to "Privacy Policy", "#"
+              %li= link_to "Terms of Use", "#"
+            .address Institut d'Arquitectura Avançada de Catalunya - Pujades 102 baixos, Poble Nou, 08005 Barcelona - tel. (+34) 93 320 95 20 - fax (+34) 93 300 43 33

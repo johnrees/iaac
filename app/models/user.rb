@@ -41,7 +41,14 @@ class User < ActiveRecord::Base
     if has_role? :admin
       Course.all
     else
-      Course.with_role([:tutor,:student,:coordinator,:assistant], self)
+      c = Course.with_role([:tutor,:student,:coordinator,:assistant], self).pluck('courses.ancestry,courses.id')
+      c = c.map{ |a| a.reject(&:blank?).first.to_s.split('/').first }.uniq
+      Course.select('courses.*').where(
+        "courses.id IN (?) OR courses.ancestry LIKE ANY (array[?]) OR courses.ancestry IN (?)",
+        c,
+        c.map{|val| "#{val}%" },
+        c
+      )
     end
   end
 

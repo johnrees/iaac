@@ -5,7 +5,8 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def show?
-    user.has_role?(:student, record) || user.has_role?(:tutor, record) || user.has_role?(:admin)
+    user.courses.select('courses.id').pluck('id').include?(record.id)
+    # user.has_role?(:student, record) || user.has_role?(:tutor, :any) || user.has_role?(:admin)
   end
 
   def create?

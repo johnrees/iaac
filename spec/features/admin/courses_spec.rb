@@ -16,6 +16,12 @@ RSpec.describe Course, :type => :feature do
     expect(page).to have_link('Painting')
   end
 
+  it "has preview button" do
+    visit admin_course_path(course)
+    click_link "preview"
+    expect(current_path).to eq(course_path(course))
+  end
+
   it "has course page" do
     visit admin_course_path(course)
     expect(page).to have_title('Painting')

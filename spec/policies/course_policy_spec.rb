@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CoursePolicy do
 
-  let(:course) { build_stubbed(:course) }
+  let(:course) { create(:course) }
   subject(:policy) { CoursePolicy.new(user, course) }
 
   context "for a student" do

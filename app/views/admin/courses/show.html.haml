@@ -12,6 +12,7 @@
 .row
   .columns.large-12
 
+    = link_to "preview", course_path(@course), class: 'button small'
     = link_to "edit", edit_admin_course_path(@course), class: 'button small'
     = button_to "delete", [:admin, @course], method: :delete, data: { confirm: "Are you sure?" }, class: 'button alert small'
 

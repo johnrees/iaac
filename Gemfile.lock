@@ -41,11 +41,11 @@ GIT
 
 GIT
   remote: git://github.com/zurb/foundation-rails.git
-  revision: 07983243cb5b710c58ef823bfe1a9854297430d1
+  revision: 2f978000250f1e7443122efec615d61efd6048cc
   specs:
     foundation-rails (5.4.5.0)
       railties (>= 3.1.0)
-      sass (>= 3.2.0)
+      sass (>= 3.2.0, < 3.4)
 
 GEM
   remote: https://rubygems.org/
@@ -269,7 +269,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
-    sass (3.4.7)
+    sass (3.3.14)
     sass-rails (5.0.0.beta1)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2)

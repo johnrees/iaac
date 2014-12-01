@@ -3,17 +3,8 @@ class CoursesController < ApplicationController
   before_filter :check_auth
 
   def index
-    courses = current_user.courses.pluck('courses.ancestry,courses.id')
-    ids = courses.map(&:last)
-    courses = courses.map{ |a| a.reject(&:blank?).first.to_s.split('/').first }.uniq
-
-    @courses = Course.select('courses.*').where(
-      "courses.id IN (?) OR courses.ancestry LIKE ANY (array[?]) OR courses.ancestry IN (?)",
-      courses,
-      courses.map{|val| "#{val}%" },
-      courses
-    ).where(published: true).arrange(order: :name)
-
+    @courses = current_user.courses.arrange(order: :name)
+    # .where(published: true)
   end
 
   def edit
@@ -30,8 +21,8 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    @grade = Grade.where(student: current_user, course: @course).first
     authorize @course
+    @grade = Grade.where(student: current_user, course: @course).first
     @modules = @course.root.subtree
   end
 
