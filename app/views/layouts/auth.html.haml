@@ -1,26 +1,8 @@
 !!!
 %html
   %head
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Montserrat:400,700', 'application', media: 'all', 'data-turbolinks-track' => true
-    :css
-      body {
-        background: url('http://i.imgur.com/sFFEnvD.jpg') top center;
-        background-size: cover;
-      }
-      .flash {
-        margin-bottom: 10px;
-        padding: 5px;
-      }
-      .flash.alert {
-        background: yellow;
-      }
-      h1 {
-        margin-top: 20px;
-      }
-      #container {
-        background: #fff; border-radius: 0 0 4px 4px; padding: 20px;
-      }
-  %body
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  %body.sessions
     .row
       .columns.large-4.medium-6.small-11.small-centered#container
         - flash.each do |key, value|

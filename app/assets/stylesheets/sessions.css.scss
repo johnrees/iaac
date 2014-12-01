@@ -1,0 +1,26 @@
+body.sessions {
+  background: url('http://i.imgur.com/sFFEnvD.jpg') top center;
+  background-size: cover;
+
+  .flash {
+    margin-bottom: 10px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    &.alert {
+      background: #FCBE16;
+      color: darken(#FCBE16, 40%);
+    }
+    &.notice {
+      color: lighten(#51934C, 40%);
+      background: #51934C;
+    }
+  }
+
+  h1 {
+    margin-top: 20px;
+  }
+  #container {
+    background: #fff; border-radius: 0 0 4px 4px; padding: 20px;
+  }
+
+}

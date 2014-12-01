@@ -12,6 +12,9 @@ RSpec.describe User, :type => :feature do
     login admin
     visit admin_users_path
 
+    # avoid weird error
+    User.all.map(&:id)
+
     expect(page).to have_selector('tr.user', count: 4) # includes admin
 
     find(:css, "tr.user:nth-child(2) input[type=checkbox]").set(true)
