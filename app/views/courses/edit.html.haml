@@ -7,11 +7,14 @@
       %fieldset
         %legend Course Details
 
+        = f.input :published
+        = f.input :gradeable
+
         = f.input :name
         = f.input :subtitle
         = f.input :description
         = f.input :credits
-        = f.input :gradeable
+
       -# %fieldset
       -#   %legend Students
       -#   = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: @course.students.ids }, multiple: true
