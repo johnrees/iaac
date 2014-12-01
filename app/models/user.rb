@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   has_paper_trail
   rolify
   has_secure_password
-  validates_uniqueness_of :public_email, :private_email
+  validates_uniqueness_of :private_email, allow_nil: true, allow_blank: true
+  validates_uniqueness_of :public_email
 
   validates :public_email, :first_name, :last_name, presence: true
   # :country_code,

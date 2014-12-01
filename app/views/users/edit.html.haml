@@ -10,6 +10,8 @@
         = f.input :public_email
         = f.input :private_email
         = f.input :country_code, label: 'Country'
+        = f.input :description
+
       %fieldset
         %legend Photo
         = image_tag @user.photo, id: 'photo-preview', style: 'max-height: 100px'

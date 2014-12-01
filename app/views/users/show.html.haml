@@ -10,4 +10,4 @@
 
 .row
   .columns.large-3.small-5{style: 'margin-bottom: 10px'}= image_tag @user.avatar, class: 'user-avatar'
-  .columns.large-9.small-7= simple_format Faker::Lorem.paragraph
+  .columns.large-9.small-7= simple_format @user.description
