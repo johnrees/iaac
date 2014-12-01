@@ -29,7 +29,7 @@ private
   # end
 
   def update_user
-    user.financial_status = user.transactions.pluck(:amount).inject(0, &:+)
+    user.financial_status = user.transactions.pluck(:amount).inject(0.0, &:+)
     user.save
   end
 
