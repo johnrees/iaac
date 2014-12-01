@@ -291,14 +291,14 @@ canvas {
   margin: 0 !important;
   }
   .grade {
+    clear: both;
+    color: #FFF;
     text-transform: uppercase;
     margin-top: 5px;
     padding: 5px 8px;
     font-size: 0.7em;
     border-radius: 4px;
     display: none;
-    clear: both;
-    color: #FFF;
   }
 
 }

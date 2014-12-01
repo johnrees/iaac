@@ -16,7 +16,6 @@ RSpec.describe User, :type => :feature do
 
     find(:css, "tr.user:nth-child(2) input[type=checkbox]").set(true)
     find(:css, "tr.user:nth-child(3) input[type=checkbox]").set(true)
-
     click_button "Delete Selected"
 
     expect(page).to have_content('destroyed')

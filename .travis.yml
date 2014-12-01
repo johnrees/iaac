@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - 2.1.4
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:create db:migrate db:schema:load
+script:
+  - bundle exec rake spec
+  - bundle exec rake brakeman:run
+bundler_args: --without production
+env:
+  global:
+  - RAILS_ENV=test
+
+# speed tips
+# http://leopard.in.ua/2013/10/12/speed-testing-on-travis/
+
+# deploy after success
+# https://cowbell-labs.com/2014-03-06-capistrano-deploys-from-travis.html
