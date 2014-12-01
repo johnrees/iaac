@@ -7,11 +7,11 @@ module AncestryHelper
     options = {
       :list_type            => :ul,
       :list_style           => '',
-      :ul_class             => [],
+      :ul_class             => ['courses'],
       :ul_class_top         => [],
       :ul_class_children    => [],
       :li_class             => [],
-      :li_class_top         => [],
+      :li_class_top         => ['course'],
       :li_class_children    => [],
       :sort_by              => []
     }.merge(options)

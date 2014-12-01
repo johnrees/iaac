@@ -43,12 +43,17 @@ class User < ActiveRecord::Base
     else
       c0 = Course.select('ancestry,id').with_role([:tutor,:student,:coordinator,:assistant], self).pluck('courses.ancestry,courses.id')
       c = c0.map{ |a| a.reject(&:blank?).first.to_s.split('/').first }.uniq
-      Course.select("courses.*, (SELECT id = ANY ('{#{c0.map(&:last).join(',')}}'::int[])) AS active").where(
+      likes = c.map{|val| "#{val}%" }
+      Course.select("courses.*")
+        .select("( (SELECT id = ANY ('{#{[c + c0.map(&:last)].flatten.join(',')}}'::int[]))  ) AS active")
+        .where(
         "courses.id IN (?) OR courses.ancestry LIKE ANY (array[?]) OR courses.ancestry IN (?)",
         c,
-        c.map{|val| "#{val}%" },
+        likes,
         c
       )
+
+        # OR (SELECT ancestry LIKE ANY ('#{likes}') )
     end
   end
 
