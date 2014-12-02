@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201170008) do
+ActiveRecord::Schema.define(version: 20141202145033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "course_hierarchies", id: false, force: true do |t|
     t.integer "ancestor_id",   null: false
@@ -86,6 +87,11 @@ ActiveRecord::Schema.define(version: 20141201170008) do
     t.decimal  "financial_status", precision: 8, scale: 2, default: 0.0
     t.string   "photo"
     t.text     "description"
+    t.string   "gender"
+    t.date     "dob"
+    t.integer  "mach_id"
+    t.text     "data"
+    t.hstore   "meta"
   end
 
   add_index "users", ["financial_status"], name: "index_users_on_financial_status", using: :btree

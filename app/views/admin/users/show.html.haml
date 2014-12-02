@@ -24,6 +24,14 @@
         %th Description
         %td= simple_format @user.description
 
+    %table
+      - if @user.meta
+        - @user.meta.each do |k,v|
+          %tr
+            %th= k
+            %td= v
+
+
     %hr/
     %h3 Courses
     = link_to "Edit courses", '#', class: 'button tiny'
