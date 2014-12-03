@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe UserMailer, :type => :mailer do
   describe "student_invite" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user, invitation_code: 'testing') }
     let(:mail) { UserMailer.student_invite user.id }
 
     it "renders the headers" do

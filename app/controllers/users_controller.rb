@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :check_auth, except: [:new, :create, :invite]
 
   def invite
+    session[:user_id] = nil
     if @user = User.where(invitation_code: params[:invitation_code]).first
       session[:user_id] = @user.id
       render :invite
@@ -28,7 +29,13 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update_attributes user_params
-    respond_with @user
+    if @user.save
+      @user.update_attribute :invitation_code, nil
+      redirect_to @user, notice: 'Details updated successfully'
+    else
+      render @user.invitation_code.blank? ? :edit : :invite
+    end
+    # respond_with @user
   end
 
   def create
@@ -53,7 +60,9 @@ private
       :password_confirmation,
       :country_code,
       :photo,
-      :description
+      :description,
+      :dob,
+      :gender
     )
   end
 

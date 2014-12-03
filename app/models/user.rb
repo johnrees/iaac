@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :private_email, allow_nil: true, allow_blank: true
   validates_uniqueness_of :public_email
 
+  validates_presence_of :password, :password_confirmation, if: :invitation_code?
   validates :public_email, :first_name, :last_name, presence: true
   # :country_code,
 
