@@ -355,7 +355,7 @@ img.user-avatar {
   width: 200px;
   height: auto;
   border-radius: 4px;
-  transition : all 500ms linear;
+  transition : all 250ms linear;
   &:hover {
     -webkit-filter: grayscale(0%);
     -moz-filter: grayscale(0%);
