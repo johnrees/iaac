@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get 'invite', to: 'users#invite'
+  get 'invite/:invitation_code', to: 'users#invite', as: 'invite'
 
   resources :users, path: 'people'
 

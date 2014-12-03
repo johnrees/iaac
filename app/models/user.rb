@@ -100,16 +100,16 @@ class User < ActiveRecord::Base
 
   # before_create { generate_token(:invitation_code) }
 
-  # def send_password_reset
-  #   generate_token(:password_reset_token)
-  #   self.password_reset_sent_at = Time.zone.now
-  #   save!
-  #   UserMailer.password_reset(self).deliver
-  # end
+  def send_invitation
+    generate_token(:invitation_code)
+    # self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.student_invite(self.id).deliver
+  end
 
   def generate_token(column)
     begin
-      self[column] = SecureRandom.urlsafe_base64
+      self[column] = SecureRandom.urlsafe_base64.gsub(/[^0-9a-zA-Z]/i, '')
     end while User.exists?(column => self[column])
   end
 

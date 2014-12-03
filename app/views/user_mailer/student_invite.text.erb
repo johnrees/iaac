@@ -1,3 +1,6 @@
 Hello <%= @user.first_name %>,
 
-You have been invited to join iaac.
+You have been invited to join iaac!
+
+Go to <%= invite_url(invitation_code: @user.invitation_code) %>
+
