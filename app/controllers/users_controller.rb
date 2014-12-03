@@ -5,9 +5,12 @@ class UsersController < ApplicationController
   before_filter :check_auth, except: [:new, :create, :invite]
 
   def invite
-    @user = User.find(params[:invitation_code])
-    session[:user_id] = @user.id
-    render :invite
+    if @user = User.where(invitation_code: params[:invitation_code]).first
+      session[:user_id] = @user.id
+      render :invite
+    else
+      render text: 'User not found'
+    end
   end
 
   def index
