@@ -344,9 +344,19 @@ a.inactive {
 
 
 img.user-avatar {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: grayscale(100%);
   width: 200px;
-  height: auto;
+  height: 200px;
   border-radius: 4px;
+  -webkit-transition : -webkit-filter 500ms linear;
+  transition : filter 500ms linear;
+  &:hover {
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    filter: grayscale(0%);
+  }
   &.tiny {
     border-radius: 2px;
     height: 30px;
