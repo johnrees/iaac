@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
   def send_invitation
     generate_token(:invitation_code)
     # self.password_reset_sent_at = Time.zone.now
-    save!
+    save
     UserMailer.student_invite(self.id).deliver
   end
 
