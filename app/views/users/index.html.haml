@@ -2,12 +2,12 @@
   .columns.large-12
     = title "People"
 .row
-  .columns.large-3
+  .columns.large-2
     %ul.side-nav.list-group
       %li.list-group-item= link_to 'Tutors', '#tutors'
       %li.list-group-item= link_to 'Students', '#students'
 
-  .columns.large-9
+  .columns.large-10
     -# .row
     -#   .col-md-12
     -#     %h4 Administrators
@@ -19,4 +19,4 @@
     .row
       .columns.large-12
         %h4#students Students
-        %ul.large-block-grid-5= render User.with_role(:student, :any).order('last_name').uniq
+        %ul.large-block-grid-6= render User.with_role(:student, :any).order('last_name').uniq
