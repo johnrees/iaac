@@ -10,6 +10,8 @@
   .columns.large-12
     = link_to "Edit details", edit_admin_user_path(@user), class: 'button tiny'
 
+    = image_tag "http://iaac-storage.s3.amazonaws.com/photos/#{@user.mach_id}-#{@user.photo}"
+
     %table
       %tr
         %th Country
