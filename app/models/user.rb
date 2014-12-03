@@ -30,6 +30,19 @@ class User < ActiveRecord::Base
   #   parent.table[:first_name]
   # end
 
+  def third_person_singular
+    if gender.present?
+      if gender.upcase == "M"
+        "himself"
+      else
+        "herself"
+      end
+    else
+      "themself"
+    end
+    #{user.first_name} hasn't yet added any information about #{@user.third_person_singular}.
+  end
+
   def to_s
     "#{first_name} #{last_name}"
   end

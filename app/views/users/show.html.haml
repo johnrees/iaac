@@ -10,4 +10,8 @@
 
 .row
   .columns.large-3.small-5{style: 'margin-bottom: 10px'}= image_tag @user.avatar, class: 'user-avatar'
-  .columns.large-9.small-7= simple_format @user.description
+  .columns.large-9.small-7
+    - if @user.description.present?
+      = simple_format @user.description
+    - else
+      #{@user.first_name} hasn't yet added any information about #{@user.third_person_singular}.
