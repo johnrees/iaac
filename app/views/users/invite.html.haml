@@ -1,0 +1,29 @@
+.row
+  .columns.large-12
+    = title "Update Settings"
+
+    = simple_form_for @user, html: { role: 'form' } do |f|
+
+      %fieldset
+        %legend Your Details
+        = f.input :first_name
+        = f.input :last_name
+      %fieldset
+        %legend Login Information
+        = f.input :public_email
+        = f.input :private_email
+        = f.input :password
+        = f.input :password_confirmation
+      %fieldset
+        %legend Extra Information
+        = f.input :country_code, label: 'Country'
+        = f.input :description, placeholder: 'A brief description about yourself...'
+        = f.input :dob, label: 'Date of Birth'
+        = f.input :gender, as: :radio_buttons, collection: [['Male', 'M'], ['Female', 'F']]
+
+      %fieldset
+        %legend Photo
+        = image_tag @user.photo, id: 'photo-preview', style: 'max-height: 100px'
+        = f.input_field :photo, type: 'filepicker', data: { fp_apikey: 'AKgBepWaKTqCgyJQbKgyaz' }, onchange: "document.getElementById('photo-preview').src = event.fpfile.url"
+
+      = f.submit "Update details", class: 'button'

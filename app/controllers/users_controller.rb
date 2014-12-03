@@ -2,7 +2,13 @@ class UsersController < ApplicationController
 
   layout Proc.new{ request.xhr? ? false : 'application' }
 
-  before_filter :check_auth, except: [:new, :create]
+  before_filter :check_auth, except: [:new, :create, :invite]
+
+  def invite
+    @user = User.find(params[:invitation_code])
+    session[:user_id] = @user.id
+    render :invite
+  end
 
   def index
     @users = User.all.order(:last_name)
