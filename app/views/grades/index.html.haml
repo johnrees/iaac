@@ -51,7 +51,7 @@
     = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}, class: 'button'
 
 :javascript
-  TogetherJSConfig_autoStart = false
+  TogetherJSConfig_autoStart = true
   TogetherJSConfig_siteName = 'IAAC'
   TogetherJSConfig_toolName = 'Collaboration'
   TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
