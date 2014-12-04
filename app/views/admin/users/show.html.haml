@@ -3,15 +3,17 @@
     %ul.breadcrumbs
       %li= link_to "Students", admin_users_path
     - title @user
-.row
+
+.row{style: 'margin-bottom: 20px;'}
   .columns.large-3= image_tag @user.avatar, class: 'user-avatar'
   .columns.large-9
     %h1
       = @user
+    = link_to "Edit details", edit_admin_user_path(@user), class: 'button tiny'
 
 .row
   .columns.large-12
-    = link_to "Edit details", edit_admin_user_path(@user), class: 'button tiny'
+
     -# = image_tag "http://iaac-storage.s3.amazonaws.com/photos/#{@user.mach_id}-#{@user.meta['Upload a Photo']}"
 
     %table
@@ -69,6 +71,9 @@
             %td= transaction.created_at.stamp('22 nov 99')
 
     %hr/
+
+.row{style: 'margin-bottom: 20px;'}
+  .columns.large-12
 
     %table
       - if @user.meta
