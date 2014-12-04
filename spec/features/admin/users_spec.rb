@@ -17,8 +17,9 @@ RSpec.describe User, :type => :feature do
 
     expect(page).to have_selector('tr.user', count: 4) # includes admin
 
-    find(:css, "tr.user:nth-child(2) input[type=checkbox]").set(true)
     find(:css, "tr.user:nth-child(3) input[type=checkbox]").set(true)
+    find(:css, "tr.user:nth-child(4) input[type=checkbox]").set(true)
+    # save_and_open_page
     click_button "Delete Selected"
 
     expect(page).to have_content('destroyed')

@@ -6,6 +6,8 @@
     %h1
       = @user
 
+    = image_tag @user.avatar, class: 'user-avatar'
+
 .row
   .columns.large-12
     = link_to "Edit details", edit_admin_user_path(@user), class: 'button tiny'
@@ -24,14 +26,6 @@
       %tr
         %th Description
         %td= simple_format @user.description
-
-    %table
-      - if @user.meta
-        - @user.meta.each do |k,v|
-          %tr
-            %th= k
-            %td= v
-
 
     %hr/
     %h3 Courses
@@ -73,12 +67,11 @@
             %td= #transaction.occurred_at.stamp('22 nov 99')
             %td= transaction.created_at.stamp('22 nov 99')
 
+    %hr/
 
-
-
-    -# %table
-    -#   - (User.column_names - ['password_digest']).each do |column|
-    -#     %tr
-    -#       %th{style: 'width: 200px'}= column
-    -#       %td= @user[column]
-
+    %table
+      - if @user.meta
+        - @user.meta.each do |k,v|
+          %tr
+            %th= k
+            %td= v
