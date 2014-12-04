@@ -342,10 +342,12 @@ a.inactive {
 //   flex: 1;
 // }
 
-.reveal-modal img.user-avatar {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
+.reveal-modal, #admin {
+  img.user-avatar {
+    -webkit-filter: none;
+    -moz-filter: none;
+    filter: none;
+  }
 }
 
 img.user-avatar {
