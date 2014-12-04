@@ -3,10 +3,11 @@
     %ul.breadcrumbs
       %li= link_to "Students", admin_users_path
     - title @user
+.row
+  .columns.large-3= image_tag @user.avatar, class: 'user-avatar'
+  .columns.large-9
     %h1
       = @user
-
-    = image_tag @user.avatar, class: 'user-avatar'
 
 .row
   .columns.large-12
