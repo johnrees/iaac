@@ -2,6 +2,25 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :feature do
 
+  let(:user) { create(:user) }
+
+  it "can open invite" do
+    user.send_invitation
+    visit invite_url(invitation_code: user.invitation_code)
+    fill_in 'Password', with: 'pass'
+    fill_in 'Password confirmation', with: 'pass'
+    click_button "Update details"
+    expect(page).to have_content('updated successfully')
+    visit invite_url(invitation_code: user.invitation_code)
+    expect(page).to have_content("User not found")
+  end
+
+  it "has not found for invites" do
+    user.send_invitation
+    visit invite_url(invitation_code: '123')
+    expect(page).to have_content('User not found')
+  end
+
   it "can create user" do
     visit signup_path
     fill_in "First name", with: "John"

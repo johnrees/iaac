@@ -21,7 +21,8 @@
 
 
 
-- if params[:debug].present?
+- if Rails.env.development?
+
   %hr/
 
   .row

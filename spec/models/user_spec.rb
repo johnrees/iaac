@@ -37,4 +37,15 @@ RSpec.describe User, :type => :model do
     expect(user.enrolled_in? course).to be_truthy
   end
 
+  it "has third_person_singular" do
+    user.gender = nil
+    expect(user.third_person_singular).to eq('themself')
+    user.gender = 'M'
+    expect(user.third_person_singular).to eq('himself')
+    user.gender = 'm'
+    expect(user.third_person_singular).to eq('himself')
+    user.gender = 'F'
+    expect(user.third_person_singular).to eq('herself')
+  end
+
 end
