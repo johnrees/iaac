@@ -9,6 +9,7 @@ class GradesController < ApplicationController
 
   def index
     @course = Course.find(params[:course_id])
+    @tutors = @course.tutors
     @grades = @course.grades
     authorize @grades
   end

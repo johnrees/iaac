@@ -10,51 +10,57 @@
 
     = title "Grades"
 
-    %table#grades
-      -# %thead
-      -#   %th
-      -#   %th.rotate{ colspan: 3 }
-      -#     %div
-      -#       %span Fail
-      -#   %th.rotate
-      -#     %div
-      -#       %span Incomplete
-      -#   %th.rotate{ colspan: 2 }
-      -#     %div
-      -#       %span Low Pass
-      -#   %th.rotate{ colspan: 2 }
-      -#     %div
-      -#       %span Pass
-      -#   %th.rotate{ colspan: 2 }
-      -#     %div
-      -#       %span High Pass
+    -# %table#grades
+    -#   -# %thead
+    -#   -#   %th
+    -#   -#   %th.rotate{ colspan: 3 }
+    -#   -#     %div
+    -#   -#       %span Fail
+    -#   -#   %th.rotate
+    -#   -#     %div
+    -#   -#       %span Incomplete
+    -#   -#   %th.rotate{ colspan: 2 }
+    -#   -#     %div
+    -#   -#       %span Low Pass
+    -#   -#   %th.rotate{ colspan: 2 }
+    -#   -#     %div
+    -#   -#       %span Pass
+    -#   -#   %th.rotate{ colspan: 2 }
+    -#   -#     %div
+    -#   -#       %span High Pass
 
-      %tbody
-        - @course.students.each do |student|
+    -#   %tbody
+    - @course.students.each do |student|
+
+      = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
+        = content_tag_for :table, student do
           %tr
-            %td{colspan: 100}
-              = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
-                = content_tag_for :table, student do
-                  %tr
-                    %th{width: 200}
-                      = link_to student, data: { reveal_id: "modal", reveal_ajax: "true" } do
-                        .student-name= student
-                        = image_tag student.avatar, style: 'width: 50px; height: auto;'
+            %th{width: 200}
+              = link_to student, data: { reveal_id: "modal", reveal_ajax: "true" } do
+                = image_tag student.avatar, style: 'width: 50px; height: auto; margin-bottom: 5px;'
+                .student-name= student
 
-                      .grade
-                    %td{width: 90}= f.input_field :value, step: 0.01, id: "value-#{student.id}"
-                    %td{colspan: 100, style: 'background: none !important'}
-                      = f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
-                      = f.association :student, as: :hidden
-                      = f.submit
+
+              .grade
+            %td{width: 90}= f.input_field :value, step: 0.01, id: "value-#{student.id}"
+            %td{colspan: 100, style: 'background: none !important'}
+              = f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
+              = f.association :student, as: :hidden
+              = f.submit
+
+          - @tutors.each do |tutor|
+            %tr.other-tutor
+              %td= tutor
+              %td 10
+              %td Some comments ehre
 
     = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}, class: 'button'
 
-:javascript
-  TogetherJSConfig_autoStart = true
-  TogetherJSConfig_siteName = 'IAAC'
-  TogetherJSConfig_toolName = 'Collaboration'
-  TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
-  TogetherJSConfig_dontShowClicks = true
-  TogetherJSConfig_cloneClicks = "table#grades input"
-= javascript_include_tag "https://togetherjs.com/togetherjs-min.js"
+-# :javascript
+-#   TogetherJSConfig_autoStart = true
+-#   TogetherJSConfig_siteName = 'IAAC'
+-#   TogetherJSConfig_toolName = 'Collaboration'
+-#   TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
+-#   TogetherJSConfig_dontShowClicks = true
+-#   TogetherJSConfig_cloneClicks = "table#grades input"
+-# = javascript_include_tag "https://togetherjs.com/togetherjs-min.js"

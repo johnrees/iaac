@@ -391,3 +391,16 @@ ul.courses li.course > a {
 .large-block-grid-3 .large-block-grid-3>li {
   width: auto;
 }
+
+.other-tutor td {
+  color: #999 !important;
+  font-size: 0.8em;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+table.user {
+  th,td {
+    vertical-align: top;
+  }
+}
