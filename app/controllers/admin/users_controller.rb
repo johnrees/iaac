@@ -6,6 +6,14 @@ class Admin::UsersController < Admin::AdminController
     if params["delete-selected"]
       @users.destroy_all
       return redirect_to admin_users_path, notice: 'Users destroyed'
+    elsif params["add-to-group"]
+      group = Group.find(params["group"]["group_id"])
+      group.users << [@users - group.users]
+      # begin
+      # rescue ActiveRecord::RecordNotUnique => e
+      # end
+
+      return redirect_to admin_users_path, notice: 'Users added to group'
     end
   end
 

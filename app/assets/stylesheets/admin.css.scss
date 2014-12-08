@@ -83,3 +83,17 @@ body#admin {
 form.button_to {
   display: inline;
 }
+
+.groups {
+  margin-top: 5px;
+}
+
+a.group {
+  padding: 2px 4px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  color: #FFF;
+  background: #666;
+  margin-right: 2px;
+}

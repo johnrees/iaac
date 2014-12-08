@@ -1,0 +1,6 @@
+.row
+  .columns.large-12
+    = title "New Group"
+    = simple_form_for [:admin, @group] do |f|
+      = f.input :name
+      = f.submit class: 'button'

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_uniqueness_of :private_email, allow_nil: true, allow_blank: true
   validates_uniqueness_of :public_email
+  has_and_belongs_to_many :groups
 
   validates_presence_of :password, :password_confirmation, if: :invitation_code?
   validates :public_email, :first_name, :last_name, presence: true

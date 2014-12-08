@@ -1,0 +1,5 @@
+.row
+  .columns.large-12
+    = title @group
+
+    %ul.small-block-grid-3.large-block-grid-5.medium-block-grid-3= render partial: 'users/user', collection: @group.users

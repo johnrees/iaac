@@ -15,7 +15,10 @@
     -# %h4 Total: €#{User.fancy_amount Transaction.total}
 
     = form_tag modify_admin_users_path, method: 'post' do
+
       = button_tag "Delete Selected", name: 'delete-selected', class: 'button tiny'
+      = select :group, :group_id, Group.all.collect { |g| [g.name, g.id] }, include_blank: true
+      = button_tag "Add to Group", name: 'add-to-group', class: 'button tiny'
 
       %table
         %thead
@@ -37,6 +40,9 @@
                 = image_tag user.avatar, class: 'user-avatar tiny'
                 = link_to user.first_name, admin_user_path(user), class: 'dark'
                 = link_to user.last_name, admin_user_path(user), class: 'dark'
+                .groups
+                  - user.groups.each do |group|
+                    = link_to group, [:admin, group], class: 'group'
               -# %td.amount
               -#   - unless user.status == '0.00'
               -#     = user.status
