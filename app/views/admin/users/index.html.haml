@@ -16,9 +16,11 @@
 
     = form_tag modify_admin_users_path, method: 'post' do
 
-      = button_tag "Delete Selected", name: 'delete-selected', class: 'button tiny'
-      = select :group, :group_id, Group.all.collect { |g| [g.name, g.id] }, include_blank: true
-      = button_tag "Add to Group", name: 'add-to-group', class: 'button tiny'
+      %table{style: 'border: none'}
+        %tr
+          %td= button_tag "Delete Selected", name: 'delete-selected', class: 'button tiny alert', data: { confirm: 'Are you sure?'}
+          %td= select :group, :group_id, Group.order(name: :asc).collect { |g| [g.name, g.id] }, include_blank: false
+          %td= button_tag "Add to Group", name: 'add-to-group', class: 'button tiny'
 
       %table
         %thead
