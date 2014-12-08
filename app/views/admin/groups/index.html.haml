@@ -1,5 +1,7 @@
 .row
   .columns.large-12
     = title "Groups"
-    - @groups.each do |group|
-      = link_to group, [:admin, group]
+    %ul.groups
+      - @groups.each do |group|
+        = content_tag_for :li, group do
+          = link_to group, [:admin, group]

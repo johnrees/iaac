@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def index
-    @q = User.search(params[:q])
+    @q = User.includes(:groups).search(params[:q])
     # @q.sorts = 'last_name asc' if @q.sorts.empty?
     @users = @q.result(distinct: true)
     # authorize @users
