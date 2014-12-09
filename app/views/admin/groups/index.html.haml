@@ -1,6 +1,7 @@
 .row
   .columns.large-12
     = title "Groups"
+    = link_to "Add Group", new_admin_group_path, class: 'button'
     %ul.groups
       - @groups.each do |group|
         = content_tag_for :li, group do

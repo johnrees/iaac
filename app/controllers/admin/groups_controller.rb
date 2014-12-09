@@ -14,6 +14,12 @@ class Admin::GroupsController < Admin::AdminController
 
   def create
     @group = Group.create group_params
+    respond_with [:admin,@group], location: admin_groups_path
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
     respond_with(:admin,@group)
   end
 

@@ -2,4 +2,6 @@
   .columns.large-12
     = title @group
 
+    = button_to "Delete Group", [:admin, @group], method: :delete, data: { confirm: "Are you sure you want to delete this group?" }, class: 'button alert'
+
     %ul.small-block-grid-3.large-block-grid-5.medium-block-grid-3= render partial: 'users/user', collection: @group.users

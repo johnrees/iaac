@@ -2,6 +2,8 @@ class Admin::UsersController < Admin::AdminController
 
   def modify
     # render text: params.inspect
+    return redirect_to(admin_users_path) unless params['user_ids']
+
     @users = User.where(id: params[:user_ids].reject(&:blank?).map(&:to_i))
     if params["delete-selected"]
       @users.destroy_all
