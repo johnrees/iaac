@@ -19,7 +19,7 @@ class Grade < ActiveRecord::Base
   belongs_to :student, class_name: 'User'
   belongs_to :course
 
-  validates :value, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: { greater_than: 0, less_than_or_equal_to: 10 }
+  validates :value, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: { greater_than: 0, less_than_or_equal_to: 10 }, presence: false
   # validates :grader, :student, :course, :value, presence: true
 
   # def value_as_decimal

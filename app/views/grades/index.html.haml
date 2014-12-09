@@ -20,17 +20,16 @@
                 = link_to student, data: { reveal_id: "modal", reveal_ajax: "true" } do
                   = image_tag student.avatar, style: 'width: 50px; height: auto; margin-bottom: 5px;'
                   .student-name= student
-
-
                 .grade
-              %td{width: 90}
-                = f.input_field :value, step: 0.01, id: "value-#{student.id}", placeholder: "0-10"
-              %td{colspan: 1, style: 'background: none !important'}
-                = f.input_field :notes, placeholder: 'notes...', id: "notes-#{student.id}"
-              %td
-                = f.input_field :private_notes, placeholder: 'private notes...', id: "private-notes-#{student.id}"
-                = f.association :student, as: :hidden
-                = f.submit
+              - if current_user.has_role? :tutor, @course
+                %td{width: 90}
+                  = f.input_field :value, step: 0.01, id: "value-#{student.id}", placeholder: "0-10"
+                %td{colspan: 1, style: 'background: none !important'}
+                  = f.input_field :notes, placeholder: 'notes...', id: "notes-#{student.id}"
+                %td
+                  = f.input_field :private_notes, placeholder: 'private notes...', id: "private-notes-#{student.id}"
+                  = f.association :student, as: :hidden
+                  = f.submit
 
             - @tutors.each do |tutor|
               - grade = Grade.for(student, @course, tutor)
