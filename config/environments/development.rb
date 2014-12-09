@@ -1,5 +1,16 @@
 Rails.application.configure do
 
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    # Bullet.bugsnag = true
+    Bullet.airbrake = true
+    Bullet.add_footer = true
+  end
+
   config.sass.line_comments = false
   config.sass.style = :expanded
 

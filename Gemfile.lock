@@ -17,6 +17,14 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
+  remote: git://github.com/flyerhzm/bullet.git
+  revision: 356312c9d26600921336153434476d007dcd9f95
+  specs:
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
+
+GIT
   remote: git://github.com/kossnocorp/jquery.turbolinks.git
   revision: 6f336f1d3acceef95f9289129b64b00edc5709e7
   specs:
@@ -330,6 +338,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.6.2)
     web-console (2.0.0.beta4)
       activemodel (~> 4.0)
       binding_of_caller (= 0.7.3.pre1)
@@ -347,6 +356,7 @@ DEPENDENCIES
   ancestry
   bcrypt (~> 3.1.7)
   brakeman
+  bullet!
   byebug
   capybara
   coffee-rails (~> 4.0.0)

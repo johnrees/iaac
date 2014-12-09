@@ -77,6 +77,7 @@ group :test do
 end
 
 group :development do
+  gem "bullet", github: 'flyerhzm/bullet'
   # gem 'ruby-graphviz', '~> 1.0.0'
   gem 'guard-rspec', require: false
   gem 'letter_opener'

@@ -8,7 +8,7 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def show
-    @course = Course.includes(:grades).find(params[:id])
+    @course = Course.find(params[:id])
   end
 
   def new
