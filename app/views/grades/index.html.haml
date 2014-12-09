@@ -43,7 +43,8 @@
 
 
                 .grade
-              %td{width: 90}= f.input_field :value, step: 0.01, id: "value-#{student.id}"
+              %td{width: 90}
+                = f.input_field :value, step: 0.01, id: "value-#{student.id}", placeholder: "0-10"
               %td{colspan: 1, style: 'background: none !important'}
                 = f.input_field :notes, placeholder: 'notes...', id: "notes-#{student.id}"
               %td

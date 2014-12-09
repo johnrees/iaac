@@ -16,15 +16,16 @@
 
     = form_tag modify_admin_users_path, method: 'post' do
 
-      %table{style: 'border: none'}
-        %tr
-          %td With Selected:
-          %td= button_tag "Delete Selected", name: 'delete-selected', class: 'button tiny alert', data: { confirm: 'Are you sure?'}
-          %td= select :group, :group_id, Group.order(name: :asc).collect { |g| [g.name, g.id] }, include_blank: false
-          %td= button_tag "Add to Group", name: 'add-to-group', class: 'button tiny'
-
       %table
         %thead
+          %tr
+            %th{colspan: 100}
+              %table{style: 'border: none; margin: 0; padding: 0; background: none;'}
+                %tr
+                  %td With Selected:
+                  %td= button_tag "Delete Selected", name: 'delete-selected', class: 'button tiny alert', data: { confirm: 'Are you sure?'}
+                  %td= select :group, :group_id, Group.order(name: :asc).collect { |g| [g.name, g.id] }, include_blank: false
+                  %td= button_tag "Add to Group", name: 'add-to-group', class: 'button tiny'
           %tr
             %th= check_box_tag :toggle_all, nil, false, id: 'toggle-all'
             %th

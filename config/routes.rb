@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-
   resources :courses, except: [:new, :create] do
     resources :grades do
       post :submit_for_review, on: :collection

@@ -1,5 +1,7 @@
 jQuery ->
 
+  $('a.inactive').closest('li').hide()
+
   $('#toggle-all').click ->
     val = $(this).is(':checked')
     console.log val
