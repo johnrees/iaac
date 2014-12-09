@@ -11,7 +11,7 @@ RSpec.describe Grade, :type => :feature do
     student.add_role :student, course
   end
 
-  it "can submit for review" do
+  skip "can submit for review" do
     login tutor
     visit course_grades_path(course)
     fill_in "value-#{student.id}", with: 8.95

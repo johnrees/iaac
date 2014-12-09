@@ -51,10 +51,10 @@
           - @tutors.each do |tutor|
             %tr.other-tutor
               %td= tutor
-              %td 10
-              %td Some comments ehre
+              %td= tutor.grade_for(student, @course).try(:value)
+              %td= tutor.grade_for(student, @course).try(:notes)
 
-    = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}, class: 'button'
+    -# = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}, class: 'button'
 
 -# :javascript
 -#   TogetherJSConfig_autoStart = true

@@ -115,5 +115,9 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  def grade_for student, course
+    grades.where(student: student, course: course).first
+  end
+
 
 end
