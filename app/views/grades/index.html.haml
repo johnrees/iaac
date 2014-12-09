@@ -30,37 +30,42 @@
     -#   -#       %span High Pass
 
     -#   %tbody
-    - @course.students.each do |student|
+    #grades
+      - @course.students.each do |student|
 
-      = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
-        = content_tag_for :table, student do
-          %tr
-            %th{width: 200}
-              = link_to student, data: { reveal_id: "modal", reveal_ajax: "true" } do
-                = image_tag student.avatar, style: 'width: 50px; height: auto; margin-bottom: 5px;'
-                .student-name= student
+        = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
+          = content_tag_for :table, student do
+            %tr
+              %th{width: 200}
+                = link_to student, data: { reveal_id: "modal", reveal_ajax: "true" } do
+                  = image_tag student.avatar, style: 'width: 50px; height: auto; margin-bottom: 5px;'
+                  .student-name= student
 
 
-              .grade
-            %td{width: 90}= f.input_field :value, step: 0.01, id: "value-#{student.id}"
-            %td{colspan: 100, style: 'background: none !important'}
-              = f.input_field :notes, placeholder: 'Notes...', id: "notes-#{student.id}"
-              = f.association :student, as: :hidden
-              = f.submit
+                .grade
+              %td{width: 90}= f.input_field :value, step: 0.01, id: "value-#{student.id}"
+              %td{colspan: 1, style: 'background: none !important'}
+                = f.input_field :notes, placeholder: 'notes...', id: "notes-#{student.id}"
+              %td
+                = f.input_field :private_notes, placeholder: 'private notes...', id: "private-notes-#{student.id}"
+                = f.association :student, as: :hidden
+                = f.submit
 
-          - @tutors.each do |tutor|
-            %tr.other-tutor
-              %td= tutor
-              %td= tutor.grade_for(student, @course).try(:value)
-              %td= tutor.grade_for(student, @course).try(:notes)
+            - @tutors.each do |tutor|
+              - grade = tutor.grade_for(student, @course)
+              %tr.other-tutor
+                %td= tutor
+                %td= grade.try(:value)
+                %td= grade.try(:notes)
+                %td= grade.try(:private_notes)
 
-    -# = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}, class: 'button'
+      -# = link_to "Submit for Review", submit_for_review_course_grades_path(@course), method: :post, data: { confirm: "Are you sure you want to do this?"}, class: 'button'
 
--# :javascript
--#   TogetherJSConfig_autoStart = true
--#   TogetherJSConfig_siteName = 'IAAC'
--#   TogetherJSConfig_toolName = 'Collaboration'
--#   TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
--#   TogetherJSConfig_dontShowClicks = true
--#   TogetherJSConfig_cloneClicks = "table#grades input"
--# = javascript_include_tag "https://togetherjs.com/togetherjs-min.js"
+  -# :javascript
+  -#   TogetherJSConfig_autoStart = true
+  -#   TogetherJSConfig_siteName = 'IAAC'
+  -#   TogetherJSConfig_toolName = 'Collaboration'
+  -#   TogetherJSConfig_getUserName = function() { return "#{current_user}"; }
+  -#   TogetherJSConfig_dontShowClicks = true
+  -#   TogetherJSConfig_cloneClicks = "table#grades input"
+  -# = javascript_include_tag "https://togetherjs.com/togetherjs-min.js"

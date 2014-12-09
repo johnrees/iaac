@@ -116,7 +116,7 @@ class User < ActiveRecord::Base
   end
 
   def grade_for student, course
-    grades.where(student: student, course: course).first
+    Grade.where(grader: self, student: student, course: course).first
   end
 
 

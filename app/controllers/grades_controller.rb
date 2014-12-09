@@ -1,5 +1,6 @@
 class GradesController < ApplicationController
 
+  before_filter :check_auth
   respond_to :html, :js
 
   def submit_for_review
@@ -9,7 +10,7 @@ class GradesController < ApplicationController
 
   def index
     @course = Course.find(params[:course_id])
-    @tutors = @course.tutors
+    @tutors = @course.tutors - [current_user]
     @grades = @course.grades
     authorize @grades
   end

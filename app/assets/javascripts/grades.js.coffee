@@ -4,7 +4,7 @@ setGrade = (element) ->
 
 jQuery ->
 
-  $('table#grades input, table#grades textarea').change ->
+  $('#grades input, #grades textarea').change ->
     $(this).closest('form').submit()
 
   # $('table#grades input.grade-radio').change ->
