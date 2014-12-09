@@ -10,30 +10,10 @@
 
     = title "Grades"
 
-    -# %table#grades
-    -#   -# %thead
-    -#   -#   %th
-    -#   -#   %th.rotate{ colspan: 3 }
-    -#   -#     %div
-    -#   -#       %span Fail
-    -#   -#   %th.rotate
-    -#   -#     %div
-    -#   -#       %span Incomplete
-    -#   -#   %th.rotate{ colspan: 2 }
-    -#   -#     %div
-    -#   -#       %span Low Pass
-    -#   -#   %th.rotate{ colspan: 2 }
-    -#   -#     %div
-    -#   -#       %span Pass
-    -#   -#   %th.rotate{ colspan: 2 }
-    -#   -#     %div
-    -#   -#       %span High Pass
-
-    -#   %tbody
     #grades
       - @course.students.each do |student|
 
-        = simple_form_for [@course,Grade.for(student,@course)], remote: true do |f|
+        = simple_form_for [@course,Grade.for(student, @course, current_user)], remote: true do |f|
           = content_tag_for :table, student do
             %tr
               %th{width: 200}
@@ -53,7 +33,7 @@
                 = f.submit
 
             - @tutors.each do |tutor|
-              - grade = tutor.grade_for(student, @course)
+              - grade = Grade.for(student, @course, tutor)
               %tr.other-tutor
                 %td= tutor
                 %td= grade.try(:value)

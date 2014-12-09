@@ -33,8 +33,8 @@ class Grade < ActiveRecord::Base
 
   GRADES = %w(fail fail fail incomplete low_pass low_pass pass pass high_pass high_pass).map(&:humanize)
 
-  def self.for student, course
-    find_or_initialize_by({student: student, course: course})
+  def self.for student, course, grader
+    find_or_initialize_by({student: student, course: course, grader: grader})
   end
 
   def to_s

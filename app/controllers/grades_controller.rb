@@ -17,21 +17,17 @@ class GradesController < ApplicationController
 
   def create
     @course = Course.find(params[:course_id])
-    @grade = @course.grades.find_or_create_by(student_id: grade_params[:student_id])
-    @grade.grader = current_user
+    # @grade = @course.grades.find_or_create_by(student_id: grade_params[:student_id], grader: current_user)
+    @grade = Grade.find_or_create_by({ student_id: grade_params[:student_id], course_id: params[:course_id], grader_id: current_user.id })
     authorize @grade
     @grade.update_attributes grade_params
-
-    # @grade = @course.grades.create grade_params
-
-
-    # @grade.save!
     respond_with([@course,@grade], location: course_grades_path(@course))
   end
 
   def update
     @course = Course.find(params[:course_id])
     @grade = Grade.find(params[:id])
+    # @grade = Grade.find(params[:id])
     # @grade.grader = current_user
     authorize @grade
     @grade.update_attributes grade_params

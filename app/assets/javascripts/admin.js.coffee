@@ -1,6 +1,6 @@
 jQuery ->
 
-  $('a.inactive').closest('li').hide()
+  $('body.c-courses.a-index a.inactive').closest('li').hide()
 
   $('#toggle-all').click ->
     val = $(this).is(':checked')
