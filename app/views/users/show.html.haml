@@ -3,15 +3,12 @@
     = title @user
     - if current_user.has_role? :admin
       = link_to "admin page", admin_user_path(@user), class: 'button tiny'
-    %p
-      = mail_to @user.public_email, @user.public_email
-      \/
-      = @user.country
+    %p= [mail_to(@user.public_email, @user.public_email), @user.country].reject(&:blank?).join(' / ').html_safe
 
 .row
   .columns.large-3.small-5{style: 'margin-bottom: 10px'}= image_tag @user.avatar, class: 'user-avatar'
-  .columns.large-9.small-7
+  .columns.large-9.small-7.user-popup-description
     - if @user.description.present?
       = simple_format @user.description
     - else
-      #{@user.first_name} hasn't yet added any information about #{@user.third_person_singular}.
+      %p #{@user.first_name} hasn't yet added any information about #{@user.third_person_singular}.

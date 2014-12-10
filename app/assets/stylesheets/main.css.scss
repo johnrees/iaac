@@ -120,7 +120,9 @@ ul > li {
 
 .user-country {
   font-size: 0.8em;
+  line-height: 1.2em;
   color: #888;
+  font-weight: normal;
 }
 
 .user {
@@ -147,6 +149,10 @@ li.user {
   font-size: 0.85em;
   line-height: 1.1em;
   margin-top: 5px;
+  margin-bottom: 2px;
+  &.tutor {
+    font-size: 0.95em;
+  }
   // color: #111;
 }
 
@@ -403,4 +409,14 @@ table.user {
   th,td {
     vertical-align: top;
   }
+}
+
+a .name, .name {
+  color: #222;
+}
+
+
+.user-popup-description p {
+  font-size: 0.85em;
+  color: #888;
 }

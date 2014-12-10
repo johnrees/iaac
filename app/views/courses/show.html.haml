@@ -59,10 +59,11 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
       - @course.tutors.each do |tutor|
         .row{style: 'margin-top: 20px'}
           .columns.large-12
-            .media
-              .media-left= image_tag tutor.avatar, class: 'user-avatar', style: 'width: 70px; height: 70px'
-              .media-body
-                .user-name= tutor
-                .tutor-description
-                  .email= mail_to tutor.public_email, tutor.public_email
-                  = truncate tutor.description, length: 200
+            = link_to tutor, data: { reveal_id: "modal", reveal_ajax: "true" } do
+              .media
+                .media-left= image_tag tutor.avatar, class: 'user-avatar', style: 'width: 70px; height: 70px'
+                .media-body
+                  .user-name.name.tutor= tutor
+                  .tutor-description
+                    .email= mail_to tutor.public_email, tutor.public_email
+                    = truncate tutor.description, length: 150
