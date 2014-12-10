@@ -4,6 +4,7 @@
       %li= link_to "Courses", courses_path
       - @course.ancestors.reverse.each do |course|
         %li= link_to course, course
+      %li= link_to @course, @course
 
 .row
   .columns.large-12
