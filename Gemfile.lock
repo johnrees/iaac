@@ -178,6 +178,7 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     hitimes (1.2.2)
+    httpclient (2.5.3.3)
     i18n (0.7.0.beta1)
     jbuilder (2.2.4)
       activesupport (>= 3.0.0, < 5)
@@ -219,6 +220,10 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pusher (0.14.2)
+      httpclient (~> 2.4)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.6.0.beta2)
@@ -301,6 +306,7 @@ GEM
     sexp_processor (4.4.4)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    signature (0.1.7)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -379,6 +385,7 @@ DEPENDENCIES
   paper_trail
   pg
   pundit!
+  pusher
   quiet_assets
   rails (= 4.2.0.rc2)
   rails_12factor

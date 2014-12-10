@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    photo.present? ? "#{photo}/convert?format=jpg&fit=crop&w=200&h=200" : "http://placehold.it/200x200?text=."
+    photo.present? ? "#{photo}/convert?format=jpg&fit=crop&w=200&h=200".gsub('www.filepicker.io','iaac-cdn.johnre.es') : "http://placehold.it/200x200?text=."
   end
 
   def courses
