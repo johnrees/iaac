@@ -2,6 +2,7 @@ ruby "2.1.5"
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'newrelic_rpm'
 gem 'rails', '4.2.0.rc2'
 gem 'foundation-rails', github: 'zurb/foundation-rails'
 gem 'jquery-turbolinks', github: 'kossnocorp/jquery.turbolinks'
