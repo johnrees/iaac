@@ -1,12 +1,12 @@
-.nested-fields
+.nested-fields{data_id: "field-#{rand()*1000}"}
   %table
+    %tr.handle
+      %td{colspan: 2, style: 'text-align: right'}= link_to_remove_association "remove tutor", f
     %tr
       %td
         = f.association :user, collection: User.where(clearance: 1).map{|u| [u,u.id] }, label: false
-        = f.input_field :ordinal
+        = f.input_field :ordinal, class: 'ordinal', as: 'hidden'
         = f.input :can_grade
       %td
         = f.input_field :role_name, placeholder: 'Tutor', style: 'margin-bottom: 5px'
         = f.input_field :role_description, placeholder: 'Role Description', as: 'string'
-    %tr
-      %td{colspan: 2, style: 'text-align: right'}= link_to_remove_association "remove tutor", f

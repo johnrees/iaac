@@ -8,7 +8,7 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def show
-    @course = Course.includes(:tutors,:students).find(params[:id])
+    @course = Course.includes(:students,:tutor_members => :user).find(params[:id])
   end
 
   def new

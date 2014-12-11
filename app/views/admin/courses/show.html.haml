@@ -28,15 +28,22 @@
       = link_to_unless_current course, [:admin,course]
 
 .row
-  .columns.large-6
+  .columns.large-7
     %h4 Tutors
     %table
       %tbody
-        - @course.tutors.each do |tutor|
+        %thead
           %tr
-            %td= link_to tutor, tutor
+            %th Name
+            %th Role
+            %th Can Grade?
+        - @course.tutor_members.each do |tutor|
+          %tr
+            %td= link_to tutor.user, tutor.user
+            %td= tutor.role
+            %td= tutor.can_grade? ? "YES" : "NO"
 
-  .columns.large-6
+  .columns.large-5
     %h4 Students
     %table
       %thead

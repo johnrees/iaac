@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require Chart
+//= require Sortable
 //= require jquery.maskMoney.min.js
 //= require jquery.autosize
 //= require selectize

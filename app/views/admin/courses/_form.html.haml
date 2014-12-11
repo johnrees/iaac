@@ -23,7 +23,6 @@
 
   %fieldset
     %legend Students
-
     = f.association :students, multiple: true, collection: User.where(clearance: 0).map{|u| [u,u.id] }, input_html: { id: 'student-ids' }
 
 
