@@ -55,16 +55,17 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
         = link_to_unless_current course, course#, class: (@ids.include?(course.id) ? 'active' : 'inactive')
         %span.subtitle= course.subtitle
 
-    - if @course.tutors.any?
+    - if @course.tutor_members.any?
       %h4 About the Tutors
-      - @course.tutors.each do |tutor|
+      - @course.tutor_members.each do |tutor|
         .row{style: 'margin-top: 20px'}
           .columns.large-12
-            = link_to tutor, data: { reveal_id: "modal", reveal_ajax: "true" } do
+            = link_to tutor.user, data: { reveal_id: "modal", reveal_ajax: "true" } do
               .media
-                .media-left= image_tag tutor.avatar, class: 'user-avatar', style: 'width: 70px; height: 70px'
+                .media-left= image_tag tutor.user.avatar, class: 'user-avatar', style: 'width: 70px; height: 70px'
                 .media-body
-                  .user-name.name.tutor= tutor
+                  .user-name.name.tutor= tutor.user
+                  .user-name.name.tutor-role= tutor.role
                   .tutor-description
-                    .email= mail_to tutor.public_email, tutor.public_email
-                    = truncate tutor.description, length: 150
+                    .email= mail_to tutor.user.public_email, tutor.user.public_email
+                    = truncate tutor.user.description, length: 150
