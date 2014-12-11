@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210161250) do
+ActiveRecord::Schema.define(version: 20141210193957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,17 @@ ActiveRecord::Schema.define(version: 20141210161250) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "student_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "student_members", ["group_id"], name: "index_student_members_on_group_id", using: :btree
+  add_index "student_members", ["user_id", "course_id"], name: "index_student_members_on_user_id_and_course_id", unique: true, using: :btree
+
   create_table "transactions", force: true do |t|
     t.string   "type"
     t.integer  "user_id"
@@ -100,6 +111,20 @@ ActiveRecord::Schema.define(version: 20141210161250) do
   end
 
   add_index "transactions", ["type", "user_id"], name: "index_transactions_on_type_and_user_id", using: :btree
+
+  create_table "tutor_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "ordinal"
+    t.boolean  "can_grade",        default: false
+    t.string   "role_name"
+    t.text     "role_description"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "tutor_members", ["ordinal"], name: "index_tutor_members_on_ordinal", using: :btree
+  add_index "tutor_members", ["user_id", "course_id"], name: "index_tutor_members_on_user_id_and_course_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -120,8 +145,10 @@ ActiveRecord::Schema.define(version: 20141210161250) do
     t.hstore   "meta"
     t.string   "invitation_code"
     t.string   "title"
+    t.integer  "clearance",                                default: 0,   null: false
   end
 
+  add_index "users", ["clearance"], name: "index_users_on_clearance", using: :btree
   add_index "users", ["financial_status"], name: "index_users_on_financial_status", using: :btree
   add_index "users", ["invitation_code"], name: "index_users_on_invitation_code", using: :btree
 

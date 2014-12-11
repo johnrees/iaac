@@ -10,9 +10,9 @@ class Course < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :description
 
-  attr_accessor :student_ids, :tutor_ids
+  # attr_accessor :student_ids, :tutor_ids
 
-  before_update :add_people
+  # before_update :add_people
 
   # scope :students, lambda { |c| User.with_role(:student, c) }
   # scope :tutors, lambda { |c| User.with_role(:tutor, c) }
@@ -44,13 +44,22 @@ class Course < ActiveRecord::Base
   #   User.with_role(:tutor, self)
   # end
 
-  def tutors
-    subtree.map{ |d| [User.with_role(:tutor, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
+  has_many :tutor_members
+  has_many :student_members
+  has_many :students, class_name: 'User', through: :student_members, source: :user
+  has_many :tutors, class_name: 'User', through: :tutor_members, source: :user
+
+  def people
+    students + tutors
   end
 
-  def students
-    subtree.map{ |d| [User.with_role(:student, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
-  end
+  # def tutors
+  #   subtree.map{ |d| [User.with_role(:tutor, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
+  # end
+
+  # def students
+  #   subtree.map{ |d| [User.with_role(:student, d)] }.flatten.uniq.sort! { |a,b| a.last_name <=> b.last_name }
+  # end
 
   def full_name
     [name,subtitle].reject(&:blank?).join(' / ')

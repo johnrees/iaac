@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :grade do
-    grader nil
-    student nil
-    course nil
-    value 1
-    notes "MyText"
+    association :grader, factory: :user
+    association :student, factory: :user
+    association :course
+    value 6.55
+    notes "some notes"
   end
 end

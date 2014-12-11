@@ -15,8 +15,8 @@
     .row
       .columns.large-12
         %h4#tutors Tutors
-        %ul.large-block-grid-5= render User.with_role(:tutor, :any).order('last_name').uniq
+        %ul.large-block-grid-5= render @tutors#User.with_role(:tutor, :any).order('last_name').uniq
     .row
       .columns.large-12
         %h4#students Students
-        %ul.large-block-grid-6= render User.with_role(:student, :any).order('last_name').uniq
+        %ul.large-block-grid-6= render @students# render User.with_role(:student, :any).order('last_name').uniq

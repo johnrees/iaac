@@ -3,9 +3,8 @@ require 'rails_helper'
 RSpec.describe Group, :type => :feature do
 
   let(:group) { create(:group) }
-  let(:admin) { create(:user) }
+  let(:admin) { create(:user, :admin) }
   before(:each) do
-    admin.add_role :admin
     login admin
   end
 

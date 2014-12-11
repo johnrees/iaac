@@ -12,8 +12,7 @@ RSpec.describe Course, :type => :feature do
   skip "can add new students"
 
   skip "can add course" do
-    user = create(:user)
-    user.add_role :admin
+    user = create(:user, :admin)
     login user
     visit courses_path
     click_link "add course"
@@ -26,7 +25,7 @@ RSpec.describe Course, :type => :feature do
   it "can view individual course" do
     user = create(:user)
     course = create(:course, name: 'cool course')
-    user.add_role :student, course
+    course.students << user
     login user
     visit '/courses'
     click_link('cool course')
@@ -36,7 +35,7 @@ RSpec.describe Course, :type => :feature do
   it "can edit course" do
     course = create(:course, name: 'cool course')
     user = create(:user)
-    user.add_role :tutor, course
+    course.tutors << user
     login user
     visit course_path(course)
     click_link "edit course"

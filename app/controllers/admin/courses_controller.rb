@@ -8,7 +8,7 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.includes(:tutors,:students).find(params[:id])
   end
 
   def new
@@ -21,20 +21,17 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def edit
-    @course = Course.find(params[:id])
-    authorize @course
+    @course = Course.includes(:tutors,:students).find(params[:id])
   end
 
   def update
     @course = Course.find(params[:id])
-    authorize @course
     @course.update_attributes course_params
     respond_with(:admin,@course)
   end
 
   def destroy
     @course = Course.find(params[:id])
-    authorize @course
     @course.destroy
     respond_with(:admin,@course)
   end

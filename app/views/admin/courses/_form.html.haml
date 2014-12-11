@@ -10,13 +10,16 @@
     = f.input :description
     = f.input :credits
 
-  - unless @course.new_record? or @course.has_children?
-    %fieldset
-      %legend Students
-      = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: course.students.map(&:id) }, multiple: true, id: 'student-ids'
+    = f.association :students, multiple: true, collection: User.where(clearance: 0).map{|u| [u,u.id] }, input_html: { id: 'student-ids' }
+    = f.association :tutors, multiple: true, collection: User.where(clearance: 1).map{|u| [u,u.id] }, input_html: { id: 'tutor-ids' }
 
-    %fieldset
-      %legend Tutors
-      = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: course.tutors.map(&:id) }, multiple: true, id: 'tutor-ids'
+  -# - unless @course.new_record? or @course.has_children?
+  -#   %fieldset
+  -#     %legend Students
+  -#     = f.select :student_ids, User.all.map{|s| [s, s.id] }, {selected: course.students.map(&:id) }, multiple: true, id: 'student-ids'
+
+  -#   %fieldset
+  -#     %legend Tutors
+  -#     = f.select :tutor_ids, User.all.map{|s| [s, s.id] }, {selected: course.tutors.map(&:id) }, multiple: true, id: 'tutor-ids'
 
   = f.submit class: 'button'

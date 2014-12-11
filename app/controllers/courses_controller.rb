@@ -20,9 +20,9 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.includes(:students,:tutors).find(params[:id])
     authorize @course
-    @ids = Course.with_role([:tutor,:student,:coordinator,:assistant], current_user).select(:id).pluck(:id)
+    # @ids = Course.with_role([:tutor,:student,:coordinator,:assistant], current_user).select(:id).pluck(:id)
     @grade = @course.gradeable? ? Grade.where(student: current_user, course: @course).first : nil
     @modules = @course.root.subtree
   end

@@ -9,5 +9,14 @@ FactoryGirl.define do
     country_code "GB"
     password "password1234"
     password_confirmation "password1234"
+
+    trait :tutor do
+      clearance 1
+    end
+
+    trait :admin do
+      clearance 3
+    end
+
   end
 end

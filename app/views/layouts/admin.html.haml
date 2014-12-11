@@ -23,7 +23,7 @@
         %section.top-bar-section
           / Left Nav Section
           %ul.right
-            %li= link_to "Main Site", root_path
+            %li= link_to "Main Site #{current_user.id}", root_path
           %ul.left
             %li= link_to "Students", admin_users_path
             %li= link_to "Courses", admin_courses_path

@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.order(:last_name)
+    @students = User.that_study.order(:last_name)
+    @tutors = User.that_teach.order(:last_name) - @students
   end
 
   def new

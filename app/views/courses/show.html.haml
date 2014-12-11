@@ -1,3 +1,4 @@
+
 <script>
 window.urls = [];
 - @modules.each do |m|
@@ -18,10 +19,10 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
 
     - if policy(@course).update?
       = link_to "edit course", edit_course_path(@course), class: 'button tiny'
-      - if current_user.has_role? :admin
-        = link_to "admin page", admin_course_path(@course), class: 'button tiny'
-      - if @course.is_childless? and @course.students.any?
-        = link_to "grades", course_grades_path(@course), class: 'button tiny'
+      = link_to "grades", course_grades_path(@course), class: 'button tiny'
+    - if current_user.is_admin?
+      = link_to "admin page", admin_course_path(@course), class: 'button tiny'
+      -# - if @course.is_childless? and @course.students.any?
 
 .row
 
@@ -51,7 +52,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
       %h4 Course Modules
       %canvas#chart{height: 180}
       = arranged_tree_as_list(@modules.arrange(order: :name)) do |course|
-        = link_to_unless_current course, course, class: (@ids.include?(course.id) ? 'active' : 'inactive')
+        = link_to_unless_current course, course#, class: (@ids.include?(course.id) ? 'active' : 'inactive')
         %span.subtitle= course.subtitle
 
     - if @course.tutors.any?

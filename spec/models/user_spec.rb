@@ -30,11 +30,11 @@ RSpec.describe User, :type => :model do
   it "has enrolled_in?" do
     user = create(:user)
     course = create(:course)
-    expect(user.has_role? :student, course).to be_falsey
+    # expect(user.has_role? :student, course).to be_falsey
     expect(user.enrolled_in? course).to be_falsey
-    user.add_role :student, course
-    user.reload
-    expect(user.has_role? :student, course).to be_truthy
+    course.students << user
+    # user.add_role :student, course
+    # expect(user.has_role? :student, course).to be_truthy
     expect(user.enrolled_in? course).to be_truthy
   end
 

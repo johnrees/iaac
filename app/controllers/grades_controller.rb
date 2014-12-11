@@ -12,7 +12,8 @@ class GradesController < ApplicationController
     @course = Course.find(params[:course_id])
     @tutors = @course.tutors - [current_user]
     @grades = @course.grades
-    authorize @grades
+    # authorize @grades
+    @can_grade = current_user.courses_being_taught.pluck(:id).include? @course.id
   end
 
   def create

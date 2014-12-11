@@ -7,8 +7,8 @@ RSpec.describe Grade, :type => :feature do
   let(:course) { create(:course) }
 
   before(:each) do
-    tutor.add_role :tutor, course
-    student.add_role :student, course
+    course.tutors << tutor
+    course.students << student
   end
 
   skip "can submit for review" do

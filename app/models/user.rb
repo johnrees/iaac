@@ -1,8 +1,15 @@
 class User < ActiveRecord::Base
 
   has_paper_trail
-  rolify
+  # rolify
   has_secure_password
+
+  has_many :tutor_members
+  has_many :student_members
+
+  has_many :courses_being_taught, through: :tutor_members, class_name: 'Course', source: :course
+  has_many :courses_being_studied, through: :student_members, class_name: 'Course', source: :course
+
   validates_uniqueness_of :private_email, allow_nil: true, allow_blank: true
   validates_uniqueness_of :public_email
   has_and_belongs_to_many :groups
@@ -18,6 +25,14 @@ class User < ActiveRecord::Base
   has_many :grades, foreign_key: 'student_id'
   has_many :given_grades, class_name: 'Grade', foreign_key: 'grader_id'
   has_many :received_grades, class_name: 'Grade', foreign_key: 'student_id'
+
+  def course_ids
+    [courses_being_taught.pluck(:id), courses_being_studied.pluck(:id)].flatten.uniq
+  end
+
+  def is_admin?
+    clearance > 2
+  end
 
   # ransacker :student_users, :formatter => proc { |v|
   #   # [10,100]
@@ -53,11 +68,24 @@ class User < ActiveRecord::Base
     photo.present? ? "#{photo}/convert?format=jpg&fit=crop&w=200&h=200".gsub('www.filepicker.io','iaac-cdn.johnre.es') : "http://placehold.it/200x200?text=."
   end
 
+  def self.that_teach
+    User.where(id: TutorMember.all.pluck(:user_id) )
+  end
+
+  def self.that_study
+    User.where(id: StudentMember.all.pluck(:user_id) )
+  end
+
+
+  def all_courses
+    [courses_being_taught,courses_being_studied].flatten.uniq
+  end
+
   def courses
-    if has_role? :admin
-      Course.select('courses.*,true as active')
+    if is_admin?
+      Course.select('courses.*, true as active')
     else
-      c0 = Course.select('ancestry,id').with_role([:tutor,:student,:coordinator,:assistant], self).pluck('courses.ancestry,courses.id')
+      c0 = [courses_being_taught,courses_being_studied].map{|c| c.pluck(:ancestry, :id).flatten }.reject(&:blank?)
       c = c0.map{ |a| a.reject(&:blank?).first.to_s.split('/').first }.uniq
       likes = c.map{|val| "#{val}%" }
       Course.select("courses.*")
@@ -87,7 +115,8 @@ class User < ActiveRecord::Base
 
   def enrolled_in? course
     # return true unless course.has_children?
-    has_role?(:student, course) || has_role?(:tutor, course) || has_role?(:admin)
+    # has_role?(:student, course) || has_role?(:tutor, course) || has_role?(:admin)
+    is_admin? || course_ids.include?(course.id)
   end
 
   # before_validation :default_email

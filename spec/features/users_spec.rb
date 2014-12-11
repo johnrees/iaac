@@ -60,9 +60,10 @@ RSpec.describe User, :type => :feature do
   it "lists all users" do
     login
     eric = create(:user, first_name: 'Eric', last_name: 'Cartman')
-    eric.add_role :student, create(:course)
+    course = create(:course)
+    course.students << eric
     mr = create(:user, first_name: 'Mr', last_name: 'Garrison')
-    mr.add_role :tutor, create(:course)
+    course.tutors << mr
     create(:user, first_name: 'Randy', last_name: 'Marsh')
     visit users_path
 

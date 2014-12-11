@@ -8,7 +8,7 @@ describe CoursePolicy do
   context "for a student" do
     let(:user) do
       user = create(:user)
-      user.add_role :student, course
+      course.students << user
       return user
     end
 

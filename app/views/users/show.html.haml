@@ -1,7 +1,7 @@
 .row
   .columns.large-12
     = title @user
-    - if current_user.has_role? :admin
+    - if current_user.is_admin?
       = link_to "admin page", admin_user_path(@user), class: 'button tiny'
     %p= [mail_to(@user.public_email, @user.public_email), @user.country].reject(&:blank?).join(' / ').html_safe
 

@@ -1,15 +1,27 @@
 class GradePolicy < ApplicationPolicy
 
+  def show?
+    false
+  end
+
+  def new?
+    false
+  end
+
+  def edit?
+    false
+  end
+
   def index?
-    user.has_role?(:tutor, :any) || user.has_role?(:admin)
+    user.is_admin? || user.courses_being_taught.pluck(:id).include?(record.course_id)
   end
 
   def create?
-    user.has_role?(:tutor, record.course) || user.has_role?(:admin)
+    user.courses_being_taught.pluck(:id).include?(record.course_id)
   end
 
   def update?
-    user.has_role?(:tutor, record.course) || user.has_role?(:admin)
+    user.courses_being_taught.pluck(:id).include?(record.course_id)
   end
 
 end

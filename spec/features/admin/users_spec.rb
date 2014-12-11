@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :feature do
 
-  let(:admin) { create(:user) }
+  let(:admin) { create(:user, :admin) }
   before(:each) do
-    admin.add_role :admin
     login admin
   end
 
@@ -36,7 +35,8 @@ RSpec.describe User, :type => :feature do
 
   it "lists STUDENTS" do
     u = create(:user, first_name: 'Steve', last_name: 'Irwin')
-    u.add_role(:student, create(:course))
+    course = create(:course)
+    course.students << u
     visit admin_users_path
     expect(page).to have_link('Irwin')
   end

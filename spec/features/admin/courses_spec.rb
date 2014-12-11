@@ -3,10 +3,9 @@ require 'rails_helper'
 RSpec.describe Course, :type => :feature do
 
   let(:course) { create(:course, name: 'Painting') }
-  let(:admin) { create(:user) }
+  let(:admin) { create(:user, :admin) }
 
   before(:each) do
-    admin.add_role :admin
     login admin
   end
 
