@@ -21,7 +21,7 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def edit
-    @course = Course.includes(:tutors,:students).find(params[:id])
+    @course = Course.includes(:tutor_members,:students).find(params[:id])
   end
 
   def update

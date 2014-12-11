@@ -10,8 +10,22 @@
     = f.input :description
     = f.input :credits
 
+  %fieldset
+    %legend Tutors
+
+    -# = f.association :tutors, multiple: true, collection: User.where(clearance: 1).map{|u| [u,u.id] }, input_html: { id: 'tutor-ids' }
+
+    #tutor-members
+      = f.simple_fields_for :tutor_members do |tutor_member|
+        = render 'tutor_member_fields', f: tutor_member
+      .links
+        = link_to_add_association 'add tutor', f, :tutor_members
+
+  %fieldset
+    %legend Students
+
     = f.association :students, multiple: true, collection: User.where(clearance: 0).map{|u| [u,u.id] }, input_html: { id: 'student-ids' }
-    = f.association :tutors, multiple: true, collection: User.where(clearance: 1).map{|u| [u,u.id] }, input_html: { id: 'tutor-ids' }
+
 
   -# - unless @course.new_record? or @course.has_children?
   -#   %fieldset

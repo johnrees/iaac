@@ -49,6 +49,9 @@ class Course < ActiveRecord::Base
   has_many :students, class_name: 'User', through: :student_members, source: :user
   has_many :tutors, class_name: 'User', through: :tutor_members, source: :user
 
+  accepts_nested_attributes_for :tutor_members, :reject_if => :all_blank, :allow_destroy => true
+
+
   def people
     students + tutors
   end

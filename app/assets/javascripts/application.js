@@ -18,6 +18,7 @@
 //= require jquery.maskMoney.min.js
 //= require jquery.autosize
 //= require selectize
+//= require cocoon
 //= require_tree .
 //= require turbolinks
 
