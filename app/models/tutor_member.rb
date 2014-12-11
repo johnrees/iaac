@@ -3,6 +3,6 @@ class TutorMember < ActiveRecord::Base
   belongs_to :course
 
   def role
-    role_name || "Tutor"
+    role_name.present? ? role_name : "Tutor"
   end
 end
