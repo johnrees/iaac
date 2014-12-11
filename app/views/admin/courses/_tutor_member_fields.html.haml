@@ -3,6 +3,7 @@
     %tr
       %td
         = f.association :user, collection: User.where(clearance: 1).map{|u| [u,u.id] }, label: false
+        = f.input_field :ordinal
         = f.input :can_grade
       %td
         = f.input_field :role_name, placeholder: 'Tutor', style: 'margin-bottom: 5px'
