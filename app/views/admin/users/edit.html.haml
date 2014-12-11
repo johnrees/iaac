@@ -7,7 +7,8 @@
         %legend User Details
         = f.input :first_name
         = f.input :last_name
-        = f.input :title
+        - if @user.clearance == 1
+          = f.input :title
         = f.input :public_email
         = f.input :private_email
         = f.input :country_code, label: 'Country'
