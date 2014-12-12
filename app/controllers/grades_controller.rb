@@ -11,7 +11,7 @@ class GradesController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @tutors = @course.tutors - [current_user]
-    @grades = @course.grades
+    # @grades = @course.grades.includes(:user).order('user.last_name')
     # authorize @grades
     @can_grade = current_user.courses_being_taught.pluck(:id).include? @course.id
   end

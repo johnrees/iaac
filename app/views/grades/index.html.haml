@@ -1,3 +1,8 @@
+:css
+  table.key * {
+  font-size: 0.9em;
+  padding: 2px 4px;
+  }
 .row
   .columns.large-12
     %ul.breadcrumbs
@@ -11,8 +16,34 @@
 
     = title "Grades"
 
+    %table.key
+      %thead
+        %tr
+          %th{colspan: 2} Grade
+          %th Explanation
+      %tr
+        %th 0-4
+        %td FAIL
+        %td This means that the student is not going to get his Master Degree, so this grade has to be justified and well explained
+      %tr
+        %th 4
+        %td INCOMPLETE
+        %td This means that the tutor has to offer another deadline in order to receive a second submission that he will grade again
+      %tr
+        %th 5-6
+        %td LOW PASS
+        %td
+      %tr
+        %th 7-8
+        %td PASS
+        %td
+      %tr
+        %th 9-10
+        %td HIGH PASS
+        %td
+
     #grades
-      - @course.students.each do |student|
+      - @course.students.order(:last_name).each do |student|
 
         = simple_form_for [@course,Grade.for(student, @course, current_user)], remote: true do |f|
           = content_tag_for :table, student do

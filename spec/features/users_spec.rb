@@ -25,7 +25,7 @@ RSpec.describe User, :type => :feature do
     visit signup_path
     fill_in "First name", with: "John"
     fill_in "Last name", with: "Rees"
-    fill_in "Public email", with: "john@bitsushi.com"
+    fill_in "Public email", with: "bot@mgmt.iaac.net"
     fill_in "Password", with: "c00lpassword"
     fill_in "Password confirmation", with: "c00lpassword"
     click_button "Sign Up"
