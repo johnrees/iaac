@@ -45,7 +45,7 @@ window.data = #{raw @modules.map{|c| {value: c.credits, color: (@course.highligh
         - if @course.students.empty?
           .panel No students have been assigned to this module yet
         - else
-          %ul.small-block-grid-3.large-block-grid-5.medium-block-grid-3= render @course.students
+          %ul.small-block-grid-3.large-block-grid-5.medium-block-grid-3= render @course.students.order(:last_name)
 
   .columns.large-4.side.right
     - if @modules.any?
