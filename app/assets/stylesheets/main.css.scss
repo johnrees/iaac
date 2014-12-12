@@ -420,3 +420,8 @@ a .name, .name {
   font-size: 0.85em;
   color: #888;
 }
+
+textarea.private-notes {
+  background: #FFEEBC;
+  color: darken(#FFEEBC, 70%);
+}
